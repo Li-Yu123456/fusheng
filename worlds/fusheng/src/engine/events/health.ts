@@ -1,0 +1,110 @@
+// 健康域：注意——M1 中健康事件只改 LifeState，不反馈到死亡概率（mortality.ts 注释有说明：
+// 死亡由 OWID 校准的 Gompertz 表独占，保证分布可精确验收；状态→死亡率反馈是 M2 议题）。
+import type { EventTemplate } from './index';
+
+export const HEALTH: EventTemplate[] = [
+  {
+    id: 'he-checkup',
+    domain: 'health',
+    minAge: 30,
+    maxAge: 70,
+    text: '体检单下来，指标栏里有两个箭头。',
+    effects: { health: 3 },
+  },
+  {
+    id: 'he-big-ill',
+    domain: 'health',
+    minAge: 35,
+    maxAge: 65,
+    text: '病来如山倒，病房的天花板看了一个月。',
+    effects: { health: -15, wealth: -8 },
+  },
+  {
+    id: 'he-recover',
+    domain: 'health',
+    minAge: 36,
+    maxAge: 66,
+    text: '出院那天，路边的桂花香得让人鼻子发酸。',
+    effects: { health: 10, happiness: 5 },
+  },
+  {
+    id: 'he-exercise',
+    domain: 'health',
+    minAge: 25,
+    maxAge: 60,
+    text: '同龄人开始陆续进出医院，{name}决定对自己狠一点。',
+    choice: {
+      prompt: '要不要把锻炼捡起来？',
+      options: [
+        {
+          label: '晨跑十年',
+          effects: { health: 10 },
+          outcome: '清晨五点半的街道，从此多了一个影子。',
+        },
+        {
+          label: '顺其自然',
+          effects: { health: -2 },
+          outcome: '生死有命，多喝热水。',
+        },
+      ],
+    },
+    once: true,
+  },
+  {
+    id: 'he-smoke',
+    domain: 'health',
+    minAge: 18,
+    maxAge: 30,
+    text: '工友递过来人生第一支烟，火苗在风里晃。',
+    choice: {
+      prompt: '接不接？',
+      options: [
+        { label: '接了', effects: { health: -8, happiness: 2 }, outcome: '烟雾里像藏着成年礼，也埋着账单。' },
+        { label: '摆摆手', effects: {}, outcome: '转身去买了包瓜子。' },
+      ],
+    },
+    once: true,
+  },
+  {
+    id: 'he-chronic',
+    domain: 'health',
+    minAge: 55,
+    maxAge: 80,
+    text: '老慢病落了根，药盒按早中晚分了三格。',
+    effects: { health: -8 },
+  },
+  {
+    id: 'he-insomnia',
+    domain: 'health',
+    minAge: 30,
+    maxAge: 70,
+    text: '后半夜的月光挪过窗台，人还睁着眼。',
+    effects: { health: -3, happiness: -3 },
+  },
+  {
+    id: 'he-eyes',
+    domain: 'health',
+    minAge: 50,
+    maxAge: 70,
+    text: '报纸要拿远了才看得清，老花镜换了一副又一副。',
+    effects: { health: -2 },
+  },
+  {
+    id: 'he-surgery',
+    domain: 'health',
+    minAge: 45,
+    maxAge: 75,
+    text: '手术室的灯亮了四个小时，家属签了三回字。',
+    effects: { health: -10, wealth: -6 },
+  },
+  {
+    id: 'he-still-strong',
+    domain: 'health',
+    minAge: 65,
+    maxAge: 85,
+    // 状态因果：一直健康的人更可能「硬朗到老」——事件网络里的正反馈
+    cond: (c) => c.state.health > 60,
+    text: '同辈人大多先走了，{name}还能一口气上三楼。',
+    effects: { happiness: 5 },
+  },
+];

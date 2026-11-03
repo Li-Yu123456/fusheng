@@ -1,0 +1,112 @@
+// 家庭域：婚育节奏与出生国 fertility 挂钩（高生育率社会里多子事件概率更高），
+// 亲人的离去按年龄段铺开——家庭是幸福感的主振源。
+import type { EventTemplate } from './index';
+
+export const FAMILY: EventTemplate[] = [
+  {
+    id: 'fa-first-love',
+    domain: 'family',
+    minAge: 16,
+    maxAge: 22,
+    text: '操场那头的人回头看了一眼，春天就来了。',
+    effects: { happiness: 6 },
+    once: true,
+  },
+  {
+    id: 'fa-marry',
+    domain: 'family',
+    minAge: 22,
+    maxAge: 32,
+    text: '两家人坐在了一起，商量一桩亲事。',
+    choice: {
+      prompt: '这门亲事应不应？',
+      options: [
+        { label: '成家', effects: { happiness: 8, wealth: -5 }, outcome: '喜酒摆了八桌，鞭炮纸红了半条街。' },
+        { label: '再等等', effects: { happiness: -2 }, outcome: '缘分急不来，先把日子立起来。' },
+      ],
+    },
+    once: true,
+  },
+  {
+    id: 'fa-child',
+    domain: 'family',
+    minAge: 24,
+    maxAge: 36,
+    text: '{child}出生那晚，全家的灯亮到了天明。',
+    effects: { happiness: 10, wealth: -4 },
+    once: true,
+  },
+  {
+    id: 'fa-child-2',
+    domain: 'family',
+    minAge: 26,
+    maxAge: 40,
+    // 高生育率国家多子女更常见：数据直接进条件
+    cond: (c) => c.snapshot.fertility > 2.8,
+    text: '第二个孩子来了，米缸又深了一寸。',
+    effects: { happiness: 6, wealth: -5 },
+  },
+  {
+    id: 'fa-quarrel',
+    domain: 'family',
+    minAge: 25,
+    maxAge: 60,
+    text: '为一笔说不清的开销，和{partner}冷战了半个月。',
+    effects: { happiness: -5 },
+  },
+  {
+    id: 'fa-father-pass',
+    domain: 'family',
+    minAge: 40,
+    maxAge: 60,
+    text: '父亲的手凉下来的时候，屋里静得能听见香灰落下。',
+    effects: { happiness: -10 },
+    once: true,
+  },
+  {
+    id: 'fa-mother-pass',
+    domain: 'family',
+    minAge: 50,
+    maxAge: 70,
+    text: '母亲走了。从此再没人喊{name}的小名。',
+    effects: { happiness: -10 },
+    once: true,
+  },
+  {
+    id: 'fa-new-house',
+    domain: 'family',
+    minAge: 28,
+    maxAge: 50,
+    text: '攒了半辈子，新房终于上了梁。',
+    effects: { wealth: 6, happiness: 5 },
+    once: true,
+  },
+  {
+    id: 'fa-reunion',
+    domain: 'family',
+    minAge: 30,
+    maxAge: 70,
+    text: '年夜饭坐满一桌，{child}又长高了一头。',
+    effects: { happiness: 6 },
+  },
+  {
+    id: 'fa-grandchild',
+    domain: 'family',
+    minAge: 55,
+    maxAge: 75,
+    text: '{child}抱着孙辈回来，小家伙一把攥住了{name}的手指。',
+    effects: { happiness: 8 },
+    once: true,
+  },
+  {
+    id: 'fa-migrate',
+    domain: 'family',
+    minAge: 20,
+    maxAge: 40,
+    // 低收入国外出讨生活的概率更高
+    cond: (c) => c.snapshot.gdpPc < 2500,
+    text: '跟着同乡去了远方，站台喇叭声里回头望了一眼。',
+    effects: { wealth: 8, happiness: -4 },
+    once: true,
+  },
+];

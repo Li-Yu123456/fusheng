@@ -1,0 +1,90 @@
+// 童年域：0-12 岁的日常肌理。为什么单独成域：童年事件不受个人选择影响，
+// 只受出生国数据（schooling/gdpPc）影响——「投胎」的权重在这一域最重。
+import type { EventTemplate } from './index';
+
+export const CHILDHOOD: EventTemplate[] = [
+  {
+    id: 'ch-first-word',
+    domain: 'childhood',
+    minAge: 0,
+    maxAge: 2,
+    text: '{name}咿呀学语，含混的第一个词让全家笑作一团。',
+    effects: { happiness: 3 },
+  },
+  {
+    id: 'ch-fever',
+    domain: 'childhood',
+    minAge: 0,
+    maxAge: 5,
+    text: '一场高烧来势汹汹，赤脚医生在床边守了大半夜。',
+    effects: { health: -6, happiness: -2 },
+  },
+  {
+    id: 'ch-play',
+    domain: 'childhood',
+    minAge: 3,
+    maxAge: 8,
+    text: '巷口的泥巴和纸飞机，是这一年的全部江山。',
+    effects: { happiness: 4 },
+  },
+  {
+    id: 'ch-move',
+    domain: 'childhood',
+    minAge: 4,
+    maxAge: 10,
+    text: '全家搬了新住处，{name}在陌生的床上数了一夜房梁。',
+    effects: { happiness: 1 },
+    once: true,
+  },
+  {
+    id: 'ch-grandma',
+    domain: 'childhood',
+    minAge: 3,
+    maxAge: 9,
+    text: '外婆的故事里有老虎、月亮，和从前那次饥荒。',
+    effects: { happiness: 3 },
+  },
+  {
+    id: 'ch-chores',
+    domain: 'childhood',
+    minAge: 6,
+    maxAge: 12,
+    text: '开始学着烧火、挑水，肩膀还没有灶台高。',
+    effects: { education: 1 },
+  },
+  {
+    id: 'ch-pet',
+    domain: 'childhood',
+    minAge: 5,
+    maxAge: 12,
+    text: '捡回一只瘸腿的小猫，它成了整个童年的证人。',
+    effects: { happiness: 5 },
+    once: true,
+  },
+  {
+    id: 'ch-talent',
+    domain: 'childhood',
+    minAge: 6,
+    maxAge: 12,
+    // cond 用国家 schooling：识字率高社会里「被老师发现天赋」的概率本身就更高
+    cond: (c) => c.snapshot.schooling > 4,
+    text: '老师发现{name}的字写得工整，把作业贴上了教室的墙。',
+    effects: { education: 4, happiness: 2 },
+  },
+  {
+    id: 'ch-river',
+    domain: 'childhood',
+    minAge: 5,
+    maxAge: 12,
+    text: '夏天的河滩晒脱了一层皮，来年还是照去。',
+    effects: { health: -2, happiness: 4 },
+  },
+  {
+    id: 'ch-quiet',
+    domain: 'childhood',
+    minAge: 4,
+    maxAge: 11,
+    text: '{name}话不多，喜欢蹲在门槛上看蚂蚁搬家。',
+    effects: { happiness: 1, education: 2 },
+  },
+];

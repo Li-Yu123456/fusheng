@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>浮生 · 按真实数据过完一生</title>
+<meta name="description" content="真实统计数据驱动的投胎模拟器——每一次出生，都有数据出处。">
+<meta name="theme-color" content="#f4efe6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)">
+<!-- data-URI favicon：免一次 /favicon.ico 请求，console 才能做到零错误 -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23f4efe6'/%3E%3Ccircle cx='32' cy='38' r='15' fill='%23b3542e'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- TODO(M2): 首页字符集固定，改用 "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;900&display=swap" rel="stylesheet"></noscript>
+<style>__CSS__</style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <p class="kicker">FUSHENG · 数据叙事人生模拟</p>
+    <h1 class="title">浮<span class="dot">·</span>生</h1>
+    <p class="tagline">按真实统计数据，把这一生过到最后。</p>
+  </header>
+
+  <section class="stream" id="stream" aria-label="全球新生儿实况">
+    <div class="stream-head">
+      <h2>此刻，地球上<em> · </em></h2>
+      <p class="living" id="living" aria-live="polite">正在接通星河……</p>
+    </div>
+    <ol class="births" id="births"></ol>
+    <p class="stream-note">每约 4.3 人 / 秒 · 仿全球真实出生率的节奏</p>
+  </section>
+
+  <section class="worlds" aria-label="可进入的世界">
+    <h2>世界</h2>
+    <div id="worlds" class="world-cards">
+      <noscript><p class="fallback">此页需要 JavaScript 才能进入世界。</p></noscript>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>人生数据出处 · <a href="https://ourworldindata.org" rel="noopener" target="_blank">Our World in Data</a>（CC-BY 4.0）</p>
+    <p>浮生 M1 · 命运不重来，数据可复核。</p>
+  </footer>
+</div>
+<script>__JS__</script>
+  <!-- 全站公告（hub 下发，Shadow DOM 隔离） -->
+  <script src="/nt/notice.js" defer></script>
+</body>
+</html>

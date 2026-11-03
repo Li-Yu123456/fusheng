@@ -1,0 +1,1892 @@
+/* ============================================================================
+   浮生 · 视觉契约实现（CONTRACTS.md §4）
+   基调：命运文书——纸、墨、砖红印章。动效一律 ≤350ms ease-out；
+   深浅双主题跟随系统（html[data-theme] 可钉死）；reduced-motion 全降级。
+   ========================================================================== */
+
+:root {
+  --paper: #f4efe6;
+  --card: #faf7f0;
+  --ink: #2b2620;
+  --ink-dim: rgba(43, 38, 32, 0.6);
+  --ink-faint: rgba(43, 38, 32, 0.38);
+  --line: rgba(43, 38, 32, 0.16);
+  --accent: #b3542e;
+  --accent-ink: #f9f4ea;
+  --wash: rgba(43, 38, 32, 0.05); /* 卡片 hover/激活的墨洗 */
+
+  /* Domain 六色：低饱和墨水系（浅色下） */
+  --d-childhood: #a8843c;
+  --d-education: #46698a;
+  --d-career: #5c7052;
+  --d-family: #a8646f;
+  --d-health: #5f837c;
+  --d-wealth: #8a6d3c;
+  --d-era: #7a6a58;
+
+  --serif: 'Noto Serif SC', 'Songti SC', 'SimSun', 'STSong', Georgia, serif;
+}
+
+html[data-theme='dark'] {
+  --paper: #14161a;
+  --card: #1c1f24;
+  --ink: #e6dfd2;
+  --ink-dim: rgba(230, 223, 210, 0.62);
+  --ink-faint: rgba(230, 223, 210, 0.4);
+  --line: rgba(230, 223, 210, 0.16);
+  --accent: #c96b42;
+  --accent-ink: #16181c;
+  --wash: rgba(230, 223, 210, 0.06);
+
+  --d-childhood: #c9a458;
+  --d-education: #6f94b5;
+  --d-career: #7d9070;
+  --d-family: #c07f8b;
+  --d-health: #7da39b;
+  --d-wealth: #b08f57;
+  --d-era: #9a8672;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 350ms ease-out, color 350ms ease-out;
+}
+
+/* 纸的肌理：整页一层极淡的噪点（feTurbulence data-URI），深浅主题各自调透明度——
+   纯色底是"屏幕"，带噪点的底才是"纸" */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+html[data-theme='dark'] body::before {
+  opacity: 0.07;
+}
+/* 噪点层之上才是内容 */
+.shell {
+  position: relative;
+  z-index: 1;
+}
+
+button {
+  font-family: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* 焦点可达性：键盘焦点统一砖红墨圈 */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.shell {
+  position: relative;
+  max-width: 720px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding: 24px 20px 48px;
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 40;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--card);
+  color: var(--ink-dim);
+  transition: color 200ms ease-out, border-color 200ms ease-out;
+}
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.screen {
+  animation: fadeUp 350ms ease-out both;
+}
+
+/* ---------- 通用件 ---------- */
+
+.primary-btn {
+  display: inline-block;
+  padding: 12px 44px;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-indent: 0.35em; /* 抵消末字距，保持视觉居中 */
+  color: var(--accent-ink);
+  background: var(--accent);
+  border-radius: 0;
+  transition: filter 200ms ease-out, transform 200ms ease-out;
+}
+.primary-btn:hover {
+  filter: brightness(1.08);
+}
+.primary-btn:active {
+  transform: scale(0.985);
+}
+.primary-btn.small {
+  padding: 8px 26px;
+  font-size: 15px;
+}
+
+.ghost-btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  color: var(--ink-dim);
+  border: 1px solid var(--line);
+  border-radius: 0;
+  transition: color 200ms ease-out, border-color 200ms ease-out;
+}
+.ghost-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.key-hint {
+  font-size: 12px;
+  color: var(--ink-faint);
+  letter-spacing: 0.1em;
+}
+
+/* ---------- 投胎设定页：「命运案头」双栏舞台 ---------- */
+/* 设计系统（ui-ux-pro-max + frontend-design 综合裁定）：
+   不对称双栏 × 巨字英雄 × 硬边档案盒（Brutalist 的墨线与块面，纸感配色保留） */
+
+.setup-stage {
+  display: grid;
+  grid-template-columns: minmax(280px, 5fr) minmax(340px, 7fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: start; /* 右栏卷宗自由生长，左栏才能钉住 */
+  min-height: calc(100dvh - 72px);
+  padding-top: 4vh;
+}
+
+/* 左栏：宣言 */
+.stage-manifesto {
+  position: sticky;
+  top: 0;
+  height: calc(100dvh - 48px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 4px double color-mix(in srgb, var(--ink) 78%, var(--paper)); /* 装订缝：双线加重，撑起两侧 */
+  padding-right: clamp(20px, 3vw, 44px);
+}
+.manifesto-top {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  flex: 1; /* 宣言区撑满：巨字顶天立地，不留悬浮的空白 */
+}
+/* 巨字英雄：这两个字就是界面主角 */
+.brand-hero {
+  margin: 0;
+  font-size: clamp(110px, 23vmin, 260px);
+  font-weight: 900;
+  line-height: 0.98;
+  letter-spacing: 0.02em;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  letter-spacing: -0.06em; /* 竖排两字收紧：聚气 */
+}
+.brand-vertical {
+  margin: 8px 0 0;
+  writing-mode: vertical-rl;
+  font-size: clamp(13px, 1.6vmin, 16px);
+  letter-spacing: 0.42em;
+  color: var(--ink-dim);
+  border-left: 1px solid var(--line);
+  padding-left: 14px;
+  min-height: 200px;
+}
+.manifesto-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-start;
+  padding-bottom: 2vh;
+}
+/* 闲章：绝对定位的水印方印——骑在左栏中段空白上，不占文档流
+   （占流版曾把按钮挤出视口：水印就该浮着，不参与排版） */
+.stage-manifesto::after {
+  content: '浮生\\A爲記';
+  white-space: pre;
+  position: absolute;
+  left: 50%;
+  top: 44%;
+  transform: translate(-50%, -50%) rotate(-2.5deg);
+  padding: 22px 14px;
+  writing-mode: vertical-rl;
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 0.5em;
+  color: color-mix(in srgb, var(--accent) 82%, transparent);
+  border: 3px double currentColor;
+  border-radius: 4px;
+  opacity: 0.32;
+  pointer-events: none;
+}
+.manifesto-note {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 2;
+  color: var(--ink-dim);
+  letter-spacing: 0.08em;
+}
+.stage-go {
+  padding: 16px 58px;
+  font-size: 19px;
+  border-radius: 0;
+  box-shadow: 4px 4px 0 0 var(--ink); /* 硬阴影：印章按下去的分量 */
+}
+.stage-go:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 0 var(--ink);
+}
+.stage-go:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 0 var(--ink);
+}
+.manifesto-src {
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+}
+
+/* 视口裁切时的滚动暗示：卷宗底缘渐隐（内容由页面自然滚动承接） */
+@supports (animation-timeline: scroll()) {
+  .stage-dossier::after {
+    content: '';
+    position: sticky;
+    bottom: 0;
+    display: block;
+    height: 34px;
+    background: linear-gradient(to bottom, transparent, var(--paper));
+    pointer-events: none;
+    margin: -34px 0 0;
+  }
+}
+
+/* 右栏：卷宗 */
+.dossier-sec {
+  border-top: 2px solid var(--ink);
+  padding: 12px 0 26px;
+}
+.dossier-sec:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+.dossier-label {
+  margin: 0 0 14px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5em;
+  color: var(--ink);
+}
+.dossier-label span {
+  color: var(--ink-dim);
+  margin-left: 10px;
+}
+
+/* 印章墙：国家即印章，选中即盖章 */
+.stamp {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 9px 12px;
+  text-align: left;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 0;
+  transition: border-color 160ms ease-out, background-color 160ms ease-out, transform 160ms ease-out;
+}
+.stamp:hover {
+  border-color: var(--ink);
+  transform: translateY(-1px);
+}
+.stamp.sel {
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 7%, var(--card));
+  padding: 8px 11px; /* 抵消 2px 边框的尺寸跳变 */
+}
+.stamp.sel::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+}
+.stamp.fate {
+  width: 100%;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 12px;
+  padding: 12px 14px;
+  border-style: dashed;
+  border-width: 2px;
+}
+.stamp.fate .stamp-name {
+  font-size: 17px;
+  color: var(--accent);
+}
+.stamp.fate.sel {
+  border-style: solid;
+  background: color-mix(in srgb, var(--accent) 8%, var(--card));
+}
+.stamp-name {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+/* 盖章感：选中/hover 的瞬间，国名落红印 */
+.stamp:hover .stamp-name,
+.stamp.sel .stamp-name {
+  color: var(--accent);
+}
+.stamp-hint {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink-faint);
+  letter-spacing: 0.04em;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+.stamp-group {
+  margin-top: 12px;
+}
+.stamp-group-title {
+  margin: 2px 0 6px;
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.5em;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.stamp-group-title::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  background: var(--ink);
+  flex: none;
+}
+.stamp-wall {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+  gap: 7px;
+}
+
+.field {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 0 0 26px;
+  padding: 14px 0 0;
+}
+
+/* （旧国家网格体系已被 stamp 印章墙取代，此段整体退役） */
+
+.year-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 6px;
+}
+.year-big {
+  min-width: 96px;
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+input[type='range'] {
+  flex: 1;
+  appearance: none;
+  -webkit-appearance: none;
+  height: 26px;
+  background: transparent;
+}
+input[type='range']::-webkit-slider-runnable-track {
+  height: 3px;
+  background: var(--line);
+  border-radius: 2px;
+}
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 17px;
+  height: 17px;
+  margin-top: -7px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--card);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+input[type='range']::-moz-range-track {
+  height: 3px;
+  background: var(--line);
+  border-radius: 2px;
+}
+input[type='range']::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--card);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.year-ticks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.gender-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+.chip {
+  padding: 7px 22px;
+  font-size: 15px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink-dim);
+  transition: all 200ms ease-out;
+}
+.chip.sel {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--wash);
+}
+
+.seed-input {
+  width: 100%;
+  margin-top: 8px;
+  padding: 8px 2px;
+  font-family: inherit;
+  font-size: 17px;
+  letter-spacing: 0.14em;
+  color: var(--ink);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  transition: border-color 200ms ease-out;
+}
+.seed-input:focus {
+  outline: none;
+  border-bottom-color: var(--accent);
+}
+
+.field-note {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: var(--ink-faint);
+}
+
+/* ---------- 命运抽签 ---------- */
+
+.drawing {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 34px;
+}
+
+.drawing-head {
+  margin: 0;
+  font-size: 14px;
+  letter-spacing: 0.5em;
+  text-indent: 0.5em;
+  color: var(--ink-dim);
+}
+
+.reels {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.reel-row {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+}
+.reel-label {
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  color: var(--ink-faint);
+}
+.reel-value {
+  min-width: 168px;
+  font-size: 34px;
+  font-weight: 900;
+  line-height: 1.25;
+  font-variant-numeric: tabular-nums;
+  animation: reelIn 130ms ease-out both;
+}
+.reel-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 1px;
+  background: transparent;
+  transition: background-color 200ms ease-out;
+  align-self: center;
+}
+.reel-row.locked .reel-value {
+  border-bottom: 2px solid var(--accent);
+}
+.reel-row.locked .reel-dot {
+  background: var(--accent);
+}
+
+.drawing-foot {
+  margin: 0;
+  font-size: 13px;
+  letter-spacing: 0.6em;
+  color: var(--ink-faint);
+}
+
+/* ---------- 出生文书 ---------- */
+
+.birth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100dvh - 72px);
+}
+
+.doc-card {
+  width: min(480px, 100%);
+  padding: 30px 30px 26px;
+  background: var(--card);
+  border: 2px solid var(--ink);
+  outline: 1px solid var(--line);
+  outline-offset: 5px; /* 双线框：户籍文书的裱边 */
+  border-radius: 0;
+  box-shadow: 6px 6px 0 0 color-mix(in srgb, var(--ink) 12%, transparent);
+}
+
+.doc-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.doc-title {
+  font-size: 14px;
+  letter-spacing: 0.5em;
+  color: var(--ink-dim);
+}
+
+/* 印章：砖红底反白小方章，微倾——盖下去的手劲 */
+.doc-seal {
+  display: inline-block;
+  padding: 6px 7px;
+  font-size: 11px;
+  line-height: 1.35;
+  text-align: center;
+  letter-spacing: 0.1em;
+  color: var(--accent-ink);
+  background: var(--accent);
+  border-radius: 2px;
+  transform: rotate(-4deg);
+}
+
+.doc-line {
+  margin: 10px 0;
+  font-size: 15.5px;
+}
+.doc-line.big {
+  margin: 16px 0 12px;
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+.doc-line.dim {
+  color: var(--ink-dim);
+  font-size: 14.5px;
+}
+
+.doc-foot {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 26px;
+}
+
+/* ---------- 人生时间轴 ---------- */
+
+.life {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100dvh - 72px);
+}
+
+.life-head {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 12px 14px;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(6px);
+  border: 2px solid var(--ink);
+  border-radius: 0;
+}
+
+.life-year {
+  display: flex;
+  flex-direction: column;
+  min-width: 86px;
+}
+.life-year-num {
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+  animation: yearIn 260ms ease-out both; /* 年份翻篇的落墨感（key 切换重挂载触发） */
+}
+.life-age {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: var(--ink-dim);
+}
+
+/* 顶栏竖排装饰：命运档案的侧签 */
+.life-head::after {
+  content: '浮生记';
+  writing-mode: vertical-rl;
+  font-size: 10px;
+  letter-spacing: 0.34em;
+  color: var(--ink-faint);
+  border-left: 1px solid var(--line);
+  padding-left: 8px;
+  margin-left: 2px;
+  align-self: stretch;
+  display: none; /* 窄屏外的桌面端才显示 */
+}
+@media (min-width: 640px) {
+  .life-head::after {
+    display: block;
+  }
+}
+
+.bars {
+  flex: 1;
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+.bar-row {
+  display: grid;
+  grid-template-columns: 30px 1fr 26px;
+  align-items: center;
+  gap: 8px;
+}
+.bar-label {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--ink-dim);
+}
+.bar-track {
+  height: 4px;
+  background: var(--wash);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 2px;
+  transition: width 350ms ease-out;
+}
+.bar-fill.bump,
+.bar-num.bump {
+  animation: bump 350ms ease-out;
+}
+.bar-num {
+  font-size: 11.5px;
+  text-align: right;
+  color: var(--ink-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+.life-controls {
+  display: flex;
+  gap: 8px;
+}
+.ctrl-btn {
+  padding: 6px 12px;
+  font-size: 12.5px;
+  letter-spacing: 0.08em;
+  color: var(--ink-dim);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  transition: color 200ms ease-out, border-color 200ms ease-out;
+}
+.ctrl-btn:hover:not(:disabled) {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.ctrl-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.event-feed {
+  flex: 1;
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0 4px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  max-height: none;
+  overscroll-behavior: contain; /* 滚动到头不冲击页面 */
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+
+/* 折叠行：更早的往事并成一行档案摘要（丝滑的关键——DOM 有界） */
+.event-fold {
+  max-width: 560px;
+}
+.event-fold-btn {
+  width: 100%;
+  padding: 9px 12px;
+  font-size: 12.5px;
+  letter-spacing: 0.12em;
+  color: var(--ink-faint);
+  text-align: center;
+  border: 1px dashed var(--line);
+  border-radius: 3px;
+  transition: color 200ms ease-out, border-color 200ms ease-out;
+}
+.event-fold-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.event-card {
+  position: relative;
+  max-width: 560px;
+  padding: 12px 16px 13px 18px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--line);
+  border-radius: 0;
+  animation: fadeUp 350ms ease-out both;
+  content-visibility: auto; /* 屏外旧卡跳过渲染——长人生的滚动恒定丝滑 */
+  contain-intrinsic-size: auto 92px;
+  transition: transform 200ms ease-out;
+}
+.event-card:hover {
+  transform: translateY(-1px); /* 悬停微抬：纸页被指尖捻起 */
+}
+.event-card.no-anim {
+  animation: none;
+}
+
+.event-card.era {
+  max-width: none; /* 时代事件满宽：压过个人叙事一头的分量 */
+  background: color-mix(in srgb, var(--d-era) 9%, var(--card));
+  border-left-color: var(--d-era);
+  border-top-color: color-mix(in srgb, var(--d-era) 45%, var(--line));
+}
+.event-card.health {
+  border-left-color: var(--d-health);
+}
+.event-card.childhood {
+  border-left-color: var(--d-childhood);
+}
+.event-card.education {
+  border-left-color: var(--d-education);
+}
+.event-card.career {
+  border-left-color: var(--d-career);
+}
+.event-card.family {
+  border-left-color: var(--d-family);
+}
+
+.event-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.event-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex: none;
+}
+.event-meta {
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  color: var(--ink-faint);
+}
+/* 档案编号：灰墨小字靠右，卷宗感 */
+.event-seq {
+  float: right;
+  margin-left: 12px;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  opacity: 0.75;
+  font-variant-numeric: tabular-nums;
+}
+.event-src {
+  margin-left: 6px;
+  font-size: 10.5px;
+  color: var(--ink-faint);
+}
+
+.event-text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+/* 抉择卡 */
+.event-card.choice {
+  border-left: none;
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 6%, var(--card));
+}
+/* 抉择印章：右上角竖排小章，命运路口的记认 */
+.event-card.choice:not(.answered)::after {
+  content: '抉择';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  writing-mode: vertical-rl;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  padding: 5px 3px;
+  color: var(--accent-ink);
+  background: var(--accent);
+  border-radius: 2px;
+  transform: rotate(3deg);
+  opacity: 0.92;
+}
+.event-card.choice.answered {
+  border-color: var(--line);
+  background: var(--card);
+  opacity: 0.86;
+}
+.choice-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+.choice-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 14.5px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  transition: border-color 200ms ease-out, background-color 200ms ease-out;
+}
+.choice-btn:hover {
+  border-color: var(--accent);
+  background: var(--wash);
+}
+.choice-key {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  font-size: 12px;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 2px;
+  flex: none;
+}
+.choice-result {
+  margin: 10px 0 0;
+  font-size: 13.5px;
+  color: var(--ink-dim);
+}
+.choice-picked {
+  color: var(--accent);
+}
+.fx-badges {
+  margin-left: 8px;
+  white-space: nowrap;
+}
+.fx-badge {
+  display: inline-block;
+  margin-right: 6px;
+  font-size: 11.5px;
+  color: var(--ink-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+/* 死亡卡：墨字居中，边框转灰，庄重收束 */
+.event-card.death {
+  max-width: none;
+  text-align: center;
+  border-left: 1px solid var(--line);
+  border-color: var(--line);
+  background: var(--wash);
+  padding: 20px 16px;
+}
+.event-card.death .event-top {
+  justify-content: center;
+}
+.event-card.death .event-text {
+  font-size: 16.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.life-foot {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 8px 0 10px;
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-align: center;
+  color: var(--ink-faint);
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+
+/* ---------- 终局报告 ---------- */
+
+.end {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100dvh - 72px);
+}
+
+.end-card {
+  width: min(560px, 100%);
+  padding: 34px 30px 26px;
+  text-align: center;
+  background: var(--card);
+  border: 2px solid var(--ink);
+  outline: 1px solid var(--line);
+  outline-offset: 5px;
+  border-radius: 0;
+  box-shadow: 6px 6px 0 0 color-mix(in srgb, var(--ink) 12%, transparent);
+}
+
+.end-kicker {
+  margin: 0;
+  font-size: 13px;
+  letter-spacing: 0.6em;
+  text-indent: 0.6em;
+  color: var(--ink-dim);
+}
+
+.end-age {
+  margin: 12px 0 0;
+  font-size: 96px;
+  font-weight: 900;
+  line-height: 1.05;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.end-age.rise {
+  animation: rise 350ms ease-out both;
+}
+
+.end-cause {
+  margin: 6px 0 0;
+  font-size: 16px;
+  color: var(--ink-dim);
+}
+
+.end-vs {
+  margin: 18px 0 0;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.end-mosaic {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  justify-content: center;
+  margin: 24px auto 6px;
+  max-width: 420px;
+}
+.mos-cell {
+  width: 7px;
+  height: 16px;
+  border-radius: 1px;
+  opacity: 0.78;
+}
+.mos-cell.era {
+  outline: 1px solid var(--ink);
+  outline-offset: 1px;
+  opacity: 1;
+}
+
+.mosaic-cap {
+  margin: 4px 0 0;
+  font-size: 11.5px;
+  letter-spacing: 0.2em;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.end-stats {
+  list-style: none;
+  margin: 22px 0 0;
+  padding: 14px 0 0;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--ink-dim);
+}
+.end-domains {
+  margin-left: 10px;
+}
+.domain-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0 7px;
+  font-size: 12.5px;
+  color: var(--ink);
+}
+.domain-tag i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.end-foot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.end-source {
+  margin: 24px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: 11.5px;
+  line-height: 1.8;
+  text-align: left;
+  color: var(--ink-faint);
+}
+
+/* ---------- 议事厅（M2 民主共创） ---------- */
+
+/* 入口：setup 页右上、主题钮下方的竖排小签 */
+.council-entry {
+  position: fixed;
+  top: 58px;
+  right: 14px;
+  z-index: 39;
+  padding: 12px 6px;
+  writing-mode: vertical-rl;
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  color: var(--ink-dim);
+  background: color-mix(in srgb, var(--card) 92%, transparent);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  transition: color 200ms ease-out, border-color 200ms ease-out;
+}
+.council-entry:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.council-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.council-title {
+  margin: 0;
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: 0.3em;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 10px;
+}
+.council-sub {
+  margin: 4px 0 0;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  color: var(--ink-dim);
+}
+
+.council-board {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  padding: 10px 14px;
+  font-size: 12.5px;
+  letter-spacing: 0.1em;
+  color: var(--ink-dim);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  font-variant-numeric: tabular-nums;
+}
+.council-loading,
+.council-empty {
+  font-size: 13.5px;
+  color: var(--ink-faint);
+}
+.council-msg {
+  margin: 12px 0 0;
+  padding: 8px 14px;
+  font-size: 13.5px;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+  border-left: 3px solid var(--accent);
+  border-radius: 2px;
+}
+
+.council-tabs {
+  display: flex;
+  gap: 4px;
+  margin: 20px 0 14px;
+  border-bottom: 1px solid var(--line);
+}
+.council-tab {
+  padding: 8px 18px;
+  font-size: 14.5px;
+  letter-spacing: 0.14em;
+  color: var(--ink-dim);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color 200ms ease-out, border-color 200ms ease-out;
+}
+.council-tab.sel {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.wish-form {
+  display: flex;
+  gap: 10px;
+}
+.wish-input {
+  flex: 1;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  transition: border-color 200ms ease-out;
+}
+.wish-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.wish-list,
+.prop-list {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.wish-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 0;
+  border-left: 3px solid var(--line);
+ }
+.wish-text {
+  flex: 1;
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+.boost-btn {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-dim);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  transition: color 200ms ease-out, border-color 200ms ease-out;
+}
+.boost-btn:hover,
+.boost-btn.has {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.prop-form {
+  padding: 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.prop-form-title {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ink-dim);
+  letter-spacing: 0.06em;
+}
+.prop-form-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.prop-select {
+  padding: 7px 10px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+}
+.prop-age {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  color: var(--ink-dim);
+}
+.prop-age input {
+  width: 58px;
+  padding: 6px 8px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+}
+.prop-textarea {
+  resize: vertical;
+  padding: 9px 12px;
+  font-family: inherit;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+}
+.prop-textarea:focus,
+.prop-age input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.prop-fx-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.prop-fx-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--ink-dim);
+}
+.prop-fx-item input {
+  width: 54px;
+  padding: 6px 8px;
+  font-family: inherit;
+  font-size: 13.5px;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  font-variant-numeric: tabular-nums;
+}
+
+.admin-row {
+  margin-top: 12px;
+}
+.admin-input {
+  width: min(320px, 100%);
+  padding: 8px 12px;
+  font-family: inherit;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--ink-dim);
+  background: transparent;
+  border: 1px dashed var(--line);
+  border-radius: 3px;
+}
+
+.prop-card {
+  padding: 14px 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--ink);
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.prop-card.live {
+  border-color: color-mix(in srgb, var(--d-career) 55%, var(--line));
+}
+.prop-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.prop-status {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  padding: 2px 8px;
+  border-radius: 2px;
+  background: var(--wash);
+  color: var(--ink-dim);
+}
+.prop-status[data-status='verified'] {
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 9%, transparent);
+}
+.prop-status[data-status='live'] {
+  color: var(--accent-ink);
+  background: var(--d-career);
+}
+.prop-domain {
+  flex: 1;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+}
+.prop-text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+}
+.prop-fx {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--ink-dim);
+  font-variant-numeric: tabular-nums;
+}
+.prop-report {
+  padding: 10px 12px;
+  background: var(--wash);
+  border-radius: 3px;
+}
+.report-pass,
+.report-fail {
+  margin: 0;
+  font-size: 13.5px;
+}
+.report-pass { color: var(--d-career); }
+.report-fail { color: var(--accent); }
+.report-note {
+  margin: 4px 0 0;
+  font-size: 11.5px;
+  color: var(--ink-faint);
+}
+.prop-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.prop-live-note {
+  font-size: 12.5px;
+  color: var(--ink-faint);
+  letter-spacing: 0.06em;
+}
+
+/* ---------- 中轴编年体：事件悬挂于命运墨线 ---------- */
+
+.chronicle {
+  position: relative;
+  padding: 6px 0 56px;
+}
+/* 命运墨线：贯穿全流的垂直主线（透明度压低，线是骨架不是主角） */
+.chronicle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  margin-left: -1px;
+  background: var(--ink);
+  opacity: 0.5;
+}
+
+/* 年份节点：线上的一枚小签，两侧短线延展——编年的节拍 */
+.chronicle-year {
+  list-style: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 22px 0 10px;
+}
+.chronicle-year::before,
+.chronicle-year::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+.chronicle-year span {
+  position: relative;
+  z-index: 1;
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+  color: var(--ink-dim);
+  background: var(--paper);
+  padding: 2px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-variant-numeric: tabular-nums;
+}
+/* 十年大节点：加粗放大的整十年份——卷宗的章节感 */
+.chronicle-year.major span {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+/* 悬挂页：左右交错，各占半幅 */
+.chronicle-item {
+  list-style: none;
+  position: relative;
+  width: calc(50% - 26px);
+  margin-bottom: 14px;
+}
+.chronicle-item.left {
+  margin-right: auto;
+  text-align: left;
+}
+.chronicle-item.right {
+  margin-left: auto;
+}
+/* 悬挂点：卡片与墨线的连接短横 */
+.chronicle-item::before {
+  content: '';
+  position: absolute;
+  top: 22px;
+  width: 26px;
+  height: 1px;
+  background: var(--line);
+}
+.chronicle-item.left::before {
+  right: -26px;
+}
+.chronicle-item.right::before {
+  left: -26px;
+}
+/* 时代事件与死亡：挣脱交错、横贯全幅——时代与终点不属于某一侧 */
+.chronicle-item.era-full {
+  width: 100%;
+  margin: 18px 0;
+}
+.chronicle-item.era-full::before {
+  display: none;
+}
+.chronicle-item.death-end {
+  margin-bottom: 40px;
+}
+
+.chronicle-item .event-card {
+  max-width: none;
+}
+
+/* 移动端：墨线靠左，悬挂页全部右侧单列（交错在小屏是灾难） */
+@media (max-width: 640px) {
+  .chronicle::before {
+    left: 15px;
+    margin-left: 0;
+  }
+  .chronicle-year {
+    justify-content: flex-start;
+    padding-left: 34px;
+  }
+  .chronicle-year::before {
+    display: none;
+  }
+  .chronicle-year::after {
+    display: none;
+  }
+  .chronicle-item,
+  .chronicle-item.left,
+  .chronicle-item.right {
+    width: auto;
+    margin-left: 34px;
+    margin-right: 0;
+  }
+  .chronicle-item::before {
+    left: -19px;
+    right: auto;
+    width: 19px;
+  }
+}
+
+
+/* ---------- 账号徽章与浮层（M3 SSO / 前世） ---------- */
+.auth-badge {
+  position: fixed;
+  top: 14px;
+  right: 56px; /* 主题钮左侧一排 */
+  z-index: 41;
+  padding: 5px 14px;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: var(--ink-dim);
+  background: color-mix(in srgb, var(--card) 92%, transparent);
+  border: 1px solid var(--line);
+  border-radius: 0;
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color 200ms ease-out, border-color 200ms ease-out;
+}
+.auth-badge:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.auth-panel {
+  position: fixed;
+  top: 54px;
+  right: 56px;
+  z-index: 41;
+  width: min(320px, 88vw);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: 0;
+  box-shadow: 6px 6px 0 color-mix(in srgb, var(--ink) 12%, transparent);
+}
+.auth-hi {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--ink-dim);
+  line-height: 1.7;
+}
+.auth-msg {
+  margin: 0;
+  padding: 7px 10px;
+  font-size: 12.5px;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+}
+.auth-note {
+  margin: 0;
+  font-size: 11.5px;
+  line-height: 1.7;
+  color: var(--ink-faint);
+}
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.auth-row {
+  display: flex;
+  gap: 8px;
+}
+.auth-row .auth-input { flex: 1; }
+.auth-input {
+  width: 100%;
+  padding: 9px 11px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 0;
+}
+.auth-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.auth-past {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: min(420px, 60vh);
+  overflow-y: auto;
+}
+.past-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 10px 12px;
+  text-align: left;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 0;
+  transition: border-color 200ms ease-out;
+}
+.past-row:hover { border-color: var(--accent); }
+.past-age {
+  font-size: 17px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  flex: none;
+}
+.past-meta {
+  flex: 1;
+  font-size: 11.5px;
+  color: var(--ink-dim);
+  letter-spacing: 0.04em;
+}
+.past-go {
+  font-size: 11.5px;
+  color: var(--accent);
+  white-space: nowrap;
+}
+@media (max-width: 640px) {
+  .auth-badge { right: 50px; top: 12px; }
+  .auth-panel { right: 12px; left: 12px; width: auto; }
+}
+
+/* ---------- 动效（全部 ≤350ms ease-out） ---------- */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes reelIn {
+  from {
+    opacity: 0;
+    transform: translateY(7px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes bump {
+  0% {
+    filter: brightness(1);
+    transform: scaleX(1);
+  }
+  35% {
+    filter: brightness(1.5);
+    transform: scaleX(1.06); /* 墨条被笔锋按重了一分 */
+  }
+  100% {
+    filter: brightness(1);
+    transform: scaleX(1);
+  }
+}
+
+@keyframes yearIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- 无障碍：reduced-motion 全降级（CSS 兜底层） ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---------- 375px 移动端 ---------- */
+
+@media (max-width: 420px) {
+  .shell {
+    padding: 18px 14px 42px;
+  }
+  /* 案头双栏折叠为单列：宣言区变横向头图 */
+  .setup-stage {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding-top: 2vh;
+  }
+  .stage-manifesto {
+    position: static;
+    height: auto;
+    border-right: none;
+    border-bottom: 2px solid var(--ink);
+    padding: 0 0 18px;
+    flex-direction: column;
+  }
+  /* 拇指法则：窄屏的投胎闸固定在底部，随时可按 */
+  .stage-go {
+    position: fixed;
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    z-index: 35;
+    margin: 0;
+  }
+  .manifesto-top {
+    align-items: center;
+  }
+  .brand-hero {
+    writing-mode: horizontal-tb;
+    text-orientation: initial;
+    font-size: 76px;
+    letter-spacing: 0.12em;
+  }
+  .brand-vertical {
+    writing-mode: horizontal-tb;
+    min-height: 0;
+    border-left: none;
+    border-top: 1px solid var(--line);
+    padding: 8px 0 0;
+    letter-spacing: 0.3em;
+  }
+  .stage-go {
+    width: 100%;
+    box-shadow: 3px 3px 0 0 var(--ink);
+  }
+  .stamp-wall {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .year-big {
+    min-width: 74px;
+    font-size: 30px;
+  }
+  .doc-card,
+  .end-card {
+    padding: 22px 18px 20px;
+  }
+  .doc-line.big {
+    font-size: 21px;
+  }
+  .end-age {
+    font-size: 72px;
+  }
+
+  .life-head {
+    flex-wrap: wrap;
+    gap: 10px 14px;
+    padding: 10px 12px;
+  }
+  .life-year {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 10px;
+    min-width: 0;
+  }
+  .life-year-num {
+    font-size: 26px;
+  }
+  .bars {
+    flex-basis: 100%;
+  }
+  .end-foot {
+    flex-wrap: wrap;
+  }
+}

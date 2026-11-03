@@ -1,0 +1,319 @@
+/* home/src/styles.css —— 视觉契约 §4：米色纸感/砖红/墨色/Noto Serif SC
+   为什么用 CSS 变量做双主题： prefers-color-scheme 跟随系统，一套变量两套值，无 JS 参与 */
+
+:root {
+  --paper: #f4efe6;
+  --paper-deep: #ece4d6; /* 卡片/分区在纸面上的层次 */
+  --ink: #26221d;
+  --ink-soft: #6b6257;
+  --brick: #b3542e;
+  --brick-soft: rgba(179, 84, 46, 0.12);
+  --hairline: rgba(38, 34, 29, 0.14);
+  --serif: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14161a;
+    --paper-deep: #1b1e24;
+    --ink: #e8e2d6;
+    --ink-soft: #9a927f;
+    --brick: #d06a3e; /* 暗色下砖红提亮一档，保证对比 */
+    --brick-soft: rgba(208, 106, 62, 0.16);
+    --hairline: rgba(232, 226, 214, 0.16);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 300ms ease-out;
+}
+
+.page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: clamp(24px, 6vw, 56px) 20px 40px;
+}
+
+a {
+  color: inherit;
+}
+
+/* ---------- 报头 ---------- */
+
+.masthead {
+  text-align: center;
+  animation: rise 350ms ease-out both;
+}
+
+.kicker {
+  margin: 0 0 14px;
+  font-size: 12px;
+  letter-spacing: 0.42em;
+  text-indent: 0.42em; /* 抵消末字间距，视觉居中 */
+  color: var(--ink-soft);
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(64px, 16vw, 104px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: 0.08em;
+}
+
+.title .dot {
+  color: var(--brick); /* 浮·生 之间的朱砂点，全站唯一的强色 */
+  font-weight: 400;
+}
+
+.tagline {
+  margin: 14px 0 0;
+  font-size: 15px;
+  color: var(--ink-soft);
+  letter-spacing: 0.12em;
+}
+
+/* ---------- 新生儿流 ---------- */
+
+.stream {
+  margin-top: clamp(40px, 9vw, 72px);
+}
+
+.stream-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 12px;
+}
+
+.stream-head h2 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+}
+
+.stream-head h2 em {
+  font-style: normal;
+  color: var(--brick);
+}
+
+.living {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  letter-spacing: 0.08em;
+}
+
+.living strong {
+  color: var(--brick);
+  font-weight: 600;
+}
+
+.births {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  margin: 14px 0 8px;
+  padding: 0;
+  overflow: hidden;
+  /* 右缘渐隐：旧消息滑向"过去"，不做硬截断 */
+  -webkit-mask-image: linear-gradient(90deg, #000 78%, transparent 100%);
+  mask-image: linear-gradient(90deg, #000 78%, transparent 100%);
+  min-height: 64px;
+  align-items: stretch;
+}
+
+.stream.offline .births {
+  opacity: 0.45;
+  transition: opacity 300ms ease-out;
+}
+
+.births li {
+  flex: 0 0 auto;
+  max-width: 220px;
+  padding: 10px 14px;
+  background: var(--paper-deep);
+  border: 1px solid var(--hairline);
+  border-left: 2px solid var(--brick);
+  border-radius: 3px;
+  animation: slide-in 320ms ease-out both;
+}
+
+.births .line {
+  font-size: 13.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.births .sub {
+  margin-top: 2px;
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.births .loading {
+  border-left-color: var(--hairline);
+  color: var(--ink-soft);
+  font-size: 13px;
+  align-self: center;
+}
+
+.stream-note {
+  margin: 0;
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  letter-spacing: 0.1em;
+}
+
+/* ---------- 世界卡 ---------- */
+
+.worlds {
+  margin-top: clamp(36px, 8vw, 60px);
+}
+
+.worlds h2 {
+  margin: 0 0 14px;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+}
+
+.world-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 22px;
+  background: var(--paper-deep);
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  text-decoration: none;
+  transition: border-color 300ms ease-out, transform 300ms ease-out;
+}
+
+.world-card:hover,
+.world-card:focus-visible {
+  border-color: var(--brick);
+  transform: translateY(-2px);
+}
+
+.world-card .emoji {
+  font-size: 34px;
+  line-height: 1;
+  flex: 0 0 auto;
+}
+
+.world-card .wc-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.world-card .wc-name {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+.world-card .wc-desc {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.world-card .wc-go {
+  flex: 0 0 auto;
+  font-size: 13px;
+  color: var(--brick);
+  letter-spacing: 0.1em;
+}
+
+.worlds .fallback {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+/* ---------- 页脚 ---------- */
+
+.foot {
+  margin-top: clamp(48px, 10vw, 80px);
+  padding-top: 18px;
+  border-top: 1px solid var(--hairline);
+  text-align: center;
+}
+
+.foot p {
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--ink-soft);
+  letter-spacing: 0.08em;
+}
+
+.foot a {
+  color: var(--brick);
+  text-decoration: none;
+  border-bottom: 1px solid var(--brick-soft);
+}
+
+/* ---------- 动效（全部 ≤350ms · ease-out） ---------- */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-14px);
+  }
+}
+
+/* reduced-motion：全部动效降级为直接呈现 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* 375px 窄屏：新生儿卡片收窄、世界卡改纵向呼吸 */
+@media (max-width: 400px) {
+  .births li {
+    max-width: 168px;
+    padding: 8px 11px;
+  }
+
+  .world-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .world-card .wc-go {
+    margin-left: auto;
+  }
+}

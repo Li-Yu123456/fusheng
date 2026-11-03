@@ -1,0 +1,742 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`黄金快照 seed=42/CHN/1995/m（真实 world.json） > 事件序列快照 1`] = `
+[
+  {
+    "age": 0,
+    "domain": "childhood",
+    "effects": {
+      "happiness": -2,
+      "health": -6,
+    },
+    "id": "ch-fever",
+    "text": "一场高烧来势汹汹，赤脚医生在床边守了大半夜。",
+    "year": 1995,
+  },
+  {
+    "age": 1,
+    "domain": "childhood",
+    "effects": {
+      "happiness": 3,
+    },
+    "id": "ch-first-word",
+    "text": "张子轩咿呀学语，含混的第一个词让全家笑作一团。",
+    "year": 1996,
+  },
+  {
+    "age": 2,
+    "domain": "childhood",
+    "effects": {
+      "happiness": -2,
+      "health": -6,
+    },
+    "id": "ch-fever",
+    "text": "一场高烧来势汹汹，赤脚医生在床边守了大半夜。",
+    "year": 1997,
+  },
+  {
+    "age": 3,
+    "domain": "childhood",
+    "effects": {
+      "happiness": 4,
+    },
+    "id": "ch-play",
+    "text": "巷口的泥巴和纸飞机，是这一年的全部江山。",
+    "year": 1998,
+  },
+  {
+    "age": 4,
+    "domain": "childhood",
+    "effects": {
+      "happiness": 1,
+    },
+    "id": "ch-move",
+    "text": "全家搬了新住处，张子轩在陌生的床上数了一夜房梁。",
+    "year": 1999,
+  },
+  {
+    "age": 5,
+    "domain": "childhood",
+    "effects": {
+      "education": 2,
+      "happiness": 1,
+    },
+    "id": "ch-quiet",
+    "text": "张子轩话不多，喜欢蹲在门槛上看蚂蚁搬家。",
+    "year": 2000,
+  },
+  {
+    "age": 6,
+    "domain": "education",
+    "effects": {
+      "education": 6,
+    },
+    "id": "ed-start",
+    "text": "背上母亲缝的布书包，上学路来回走了三遍才舍得进教室。",
+    "year": 2001,
+  },
+  {
+    "age": 7,
+    "domain": "childhood",
+    "effects": {
+      "happiness": 5,
+    },
+    "id": "ch-pet",
+    "text": "捡回一只瘸腿的小猫，它成了整个童年的证人。",
+    "year": 2002,
+  },
+  {
+    "age": 7,
+    "domain": "childhood",
+    "effects": {
+      "happiness": 3,
+    },
+    "id": "ch-grandma",
+    "text": "外婆的故事里有老虎、月亮，和从前那次饥荒。",
+    "year": 2002,
+  },
+  {
+    "age": 8,
+    "domain": "childhood",
+    "effects": {
+      "education": 4,
+      "happiness": 2,
+    },
+    "id": "ch-talent",
+    "text": "老师发现张子轩的字写得工整，把作业贴上了教室的墙。",
+    "year": 2003,
+  },
+  {
+    "age": 9,
+    "domain": "education",
+    "effects": {
+      "education": 4,
+      "happiness": 4,
+    },
+    "id": "ed-exam-win",
+    "text": "放榜那天，张子轩的名字排在最前头，父亲把奖状贴上了堂屋正墙。",
+    "year": 2004,
+  },
+  {
+    "age": 10,
+    "domain": "childhood",
+    "effects": {
+      "happiness": 4,
+      "health": -2,
+    },
+    "id": "ch-river",
+    "text": "夏天的河滩晒脱了一层皮，来年还是照去。",
+    "year": 2005,
+  },
+  {
+    "age": 11,
+    "domain": "education",
+    "effects": {
+      "education": 6,
+    },
+    "id": "ed-mentor",
+    "text": "一位老先生借给张子轩三本书，只说了句：山外有山。",
+    "year": 2006,
+  },
+  {
+    "age": 12,
+    "domain": "education",
+    "effects": {
+      "education": 3,
+      "happiness": 2,
+    },
+    "id": "ed-old-book",
+    "text": "在旧书摊淘到一本没头没尾的书，就着雨季读完了。",
+    "year": 2007,
+  },
+  {
+    "age": 13,
+    "domain": "education",
+    "effects": {
+      "education": -2,
+      "happiness": -3,
+    },
+    "id": "ed-exam-fail",
+    "text": "一道数学题葬送了半个学期，张子轩把卷子折成了纸飞机。",
+    "year": 2008,
+  },
+  {
+    "age": 13,
+    "domain": "education",
+    "effects": {
+      "education": 6,
+    },
+    "id": "ed-mentor",
+    "text": "一位老先生借给张子轩三本书，只说了句：山外有山。",
+    "year": 2008,
+  },
+  {
+    "age": 14,
+    "domain": "education",
+    "effects": {
+      "education": 3,
+      "happiness": 2,
+    },
+    "id": "ed-old-book",
+    "text": "在旧书摊淘到一本没头没尾的书，就着雨季读完了。",
+    "year": 2009,
+  },
+  {
+    "age": 14,
+    "domain": "education",
+    "effects": {
+      "education": -2,
+      "happiness": -3,
+    },
+    "id": "ed-exam-fail",
+    "text": "一道数学题葬送了半个学期，张子轩把卷子折成了纸飞机。",
+    "year": 2009,
+  },
+  {
+    "age": 15,
+    "domain": "education",
+    "effects": {
+      "education": 4,
+      "happiness": 4,
+    },
+    "id": "ed-exam-win",
+    "text": "放榜那天，张子轩的名字排在最前头，父亲把奖状贴上了堂屋正墙。",
+    "year": 2010,
+  },
+  {
+    "age": 16,
+    "domain": "family",
+    "effects": {
+      "happiness": 6,
+    },
+    "id": "fa-first-love",
+    "text": "操场那头的人回头看了一眼，春天就来了。",
+    "year": 2011,
+  },
+  {
+    "age": 18,
+    "dataSource": "全球智能手机渗透率 2010 年代过半（GSMA/OWID）",
+    "domain": "era",
+    "effects": {
+      "happiness": 3,
+    },
+    "id": "era-mobile-2010s",
+    "text": "智能手机进了口袋，排队的人都低头看起了屏幕。",
+    "year": 2013,
+  },
+  {
+    "age": 19,
+    "choice": {
+      "options": [
+        {
+          "effects": {
+            "education": 10,
+          },
+          "label": "全力备考",
+        },
+        {
+          "effects": {
+            "education": -5,
+            "wealth": 8,
+          },
+          "label": "直接谋生",
+        },
+      ],
+      "prompt": "要不要搏一场大考？",
+    },
+    "domain": "education",
+    "effects": {
+      "education": 10,
+    },
+    "id": "ed-gaokao",
+    "text": "成年礼是一场大考：考场还是社会，摆在眼前。 灯又亮了三百个夜晚，张子轩把课本翻出了毛边。",
+    "year": 2014,
+  },
+  {
+    "age": 22,
+    "domain": "career",
+    "effects": {
+      "wealth": 5,
+    },
+    "id": "ca-first-job",
+    "text": "第一份工：站过柜台、下过车间，也守过田埂。",
+    "year": 2017,
+  },
+  {
+    "age": 23,
+    "choice": {
+      "options": [
+        {
+          "effects": {
+            "happiness": 2,
+            "health": -8,
+          },
+          "label": "接了",
+        },
+        {
+          "effects": {},
+          "label": "摆摆手",
+        },
+      ],
+      "prompt": "接不接？",
+    },
+    "domain": "health",
+    "effects": {
+      "happiness": 2,
+      "health": -8,
+    },
+    "id": "he-smoke",
+    "text": "工友递过来人生第一支烟，火苗在风里晃。 烟雾里像藏着成年礼，也埋着账单。",
+    "year": 2018,
+  },
+  {
+    "age": 24,
+    "domain": "family",
+    "effects": {
+      "happiness": 10,
+      "wealth": -4,
+    },
+    "id": "fa-child",
+    "text": "杨芳出生那晚，全家的灯亮到了天明。",
+    "year": 2019,
+  },
+  {
+    "age": 25,
+    "dataSource": "WHO COVID-19 大流行声明（2020-2022）",
+    "domain": "era",
+    "effects": {
+      "happiness": -6,
+      "health": -3,
+    },
+    "id": "era-covid",
+    "text": "口罩成了出门的钥匙，年货隔着铁门递。",
+    "year": 2020,
+  },
+  {
+    "age": 26,
+    "choice": {
+      "options": [
+        {
+          "effects": {
+            "health": 10,
+          },
+          "label": "晨跑十年",
+        },
+        {
+          "effects": {
+            "health": -2,
+          },
+          "label": "顺其自然",
+        },
+      ],
+      "prompt": "要不要把锻炼捡起来？",
+    },
+    "domain": "health",
+    "effects": {
+      "health": -2,
+    },
+    "id": "he-exercise",
+    "text": "同龄人开始陆续进出医院，张子轩决定对自己狠一点。 生死有命，多喝热水。",
+    "year": 2021,
+  },
+  {
+    "age": 27,
+    "domain": "career",
+    "effects": {
+      "happiness": 2,
+      "wealth": 2,
+    },
+    "id": "ca-switch",
+    "text": "隔行如隔山，张子轩还是把锄头换成了扳手。",
+    "year": 2022,
+  },
+  {
+    "age": 28,
+    "choice": {
+      "options": [
+        {
+          "effects": {
+            "happiness": 8,
+            "wealth": -5,
+          },
+          "label": "成家",
+        },
+        {
+          "effects": {
+            "happiness": -2,
+          },
+          "label": "再等等",
+        },
+      ],
+      "prompt": "这门亲事应不应？",
+    },
+    "domain": "family",
+    "effects": {
+      "happiness": -2,
+    },
+    "id": "fa-marry",
+    "text": "两家人坐在了一起，商量一桩亲事。 缘分急不来，先把日子立起来。",
+    "year": 2023,
+  },
+  {
+    "age": 29,
+    "choice": {
+      "options": [
+        {
+          "effects": {
+            "happiness": 3,
+            "wealth": -15,
+          },
+          "label": "辞职创业",
+        },
+        {
+          "effects": {
+            "happiness": -2,
+          },
+          "label": "守着饭碗",
+        },
+      ],
+      "prompt": "把积蓄押上桌吗？",
+    },
+    "domain": "career",
+    "effects": {
+      "happiness": 3,
+      "wealth": -15,
+    },
+    "id": "ca-startup",
+    "text": "一个念头在心里滚了三年：要不要自己单干？ 租下铺面那天，张子轩在门口站了很久。",
+    "year": 2024,
+  },
+  {
+    "age": 30,
+    "domain": "family",
+    "effects": {
+      "happiness": 6,
+    },
+    "id": "fa-reunion",
+    "text": "年夜饭坐满一桌，杨芳又长高了一头。",
+    "year": 2025,
+  },
+  {
+    "age": 31,
+    "domain": "career",
+    "effects": {
+      "happiness": 5,
+      "wealth": 8,
+    },
+    "id": "ca-promotion",
+    "text": "多年媳妇熬成婆，张子轩带起了自己的班组。",
+    "year": 2026,
+  },
+  {
+    "age": 32,
+    "domain": "health",
+    "effects": {
+      "happiness": -3,
+      "health": -3,
+    },
+    "id": "he-insomnia",
+    "text": "后半夜的月光挪过窗台，人还睁着眼。",
+    "year": 2027,
+  },
+  {
+    "age": 32,
+    "domain": "career",
+    "effects": {
+      "happiness": -8,
+      "wealth": -12,
+    },
+    "id": "ca-layoff",
+    "text": "公告栏前站满了人，张子轩的名字在第三张纸上。",
+    "year": 2027,
+  },
+  {
+    "age": 33,
+    "domain": "family",
+    "effects": {
+      "happiness": -5,
+    },
+    "id": "fa-quarrel",
+    "text": "为一笔说不清的开销，和杨雪梅冷战了半个月。",
+    "year": 2028,
+  },
+  {
+    "age": 35,
+    "domain": "family",
+    "effects": {
+      "happiness": 5,
+      "wealth": 6,
+    },
+    "id": "fa-new-house",
+    "text": "攒了半辈子，新房终于上了梁。",
+    "year": 2030,
+  },
+  {
+    "age": 36,
+    "domain": "career",
+    "effects": {
+      "happiness": 3,
+      "wealth": 4,
+    },
+    "id": "ca-artisan",
+    "text": "手艺这件事急不得——又磨了十年。",
+    "year": 2031,
+  },
+  {
+    "age": 37,
+    "domain": "career",
+    "effects": {
+      "happiness": 6,
+      "wealth": 3,
+    },
+    "id": "ca-award",
+    "text": "行业里发了个不起眼的奖，张子轩把它摆在了柜子最上层。",
+    "year": 2032,
+  },
+  {
+    "age": 38,
+    "domain": "health",
+    "effects": {
+      "health": 3,
+    },
+    "id": "he-checkup",
+    "text": "体检单下来，指标栏里有两个箭头。",
+    "year": 2033,
+  },
+  {
+    "age": 38,
+    "domain": "health",
+    "effects": {
+      "happiness": 5,
+      "health": 10,
+    },
+    "id": "he-recover",
+    "text": "出院那天，路边的桂花香得让人鼻子发酸。",
+    "year": 2033,
+  },
+  {
+    "age": 39,
+    "domain": "health",
+    "effects": {
+      "health": -15,
+      "wealth": -8,
+    },
+    "id": "he-big-ill",
+    "text": "病来如山倒，病房的天花板看了一个月。",
+    "year": 2034,
+  },
+  {
+    "age": 40,
+    "domain": "family",
+    "effects": {
+      "happiness": -10,
+    },
+    "id": "fa-father-pass",
+    "text": "父亲的手凉下来的时候，屋里静得能听见香灰落下。",
+    "year": 2035,
+  },
+  {
+    "age": 40,
+    "domain": "health",
+    "effects": {
+      "happiness": 5,
+      "health": 10,
+    },
+    "id": "he-recover",
+    "text": "出院那天，路边的桂花香得让人鼻子发酸。",
+    "year": 2035,
+  },
+  {
+    "age": 42,
+    "domain": "family",
+    "effects": {
+      "happiness": 6,
+    },
+    "id": "fa-reunion",
+    "text": "年夜饭坐满一桌，杨芳又长高了一头。",
+    "year": 2037,
+  },
+  {
+    "age": 43,
+    "domain": "career",
+    "effects": {
+      "happiness": 3,
+      "wealth": 4,
+    },
+    "id": "ca-artisan",
+    "text": "手艺这件事急不得——又磨了十年。",
+    "year": 2038,
+  },
+  {
+    "age": 45,
+    "domain": "health",
+    "effects": {
+      "health": -10,
+      "wealth": -6,
+    },
+    "id": "he-surgery",
+    "text": "手术室的灯亮了四个小时，家属签了三回字。",
+    "year": 2040,
+  },
+  {
+    "age": 45,
+    "domain": "family",
+    "effects": {
+      "happiness": -5,
+    },
+    "id": "fa-quarrel",
+    "text": "为一笔说不清的开销，和杨雪梅冷战了半个月。",
+    "year": 2040,
+  },
+  {
+    "age": 46,
+    "domain": "health",
+    "effects": {
+      "health": -10,
+      "wealth": -6,
+    },
+    "id": "he-surgery",
+    "text": "手术室的灯亮了四个小时，家属签了三回字。",
+    "year": 2041,
+  },
+  {
+    "age": 48,
+    "domain": "career",
+    "effects": {
+      "happiness": 6,
+      "wealth": 3,
+    },
+    "id": "ca-award",
+    "text": "行业里发了个不起眼的奖，张子轩把它摆在了柜子最上层。",
+    "year": 2043,
+  },
+  {
+    "age": 49,
+    "domain": "health",
+    "effects": {
+      "happiness": -3,
+      "health": -3,
+    },
+    "id": "he-insomnia",
+    "text": "后半夜的月光挪过窗台，人还睁着眼。",
+    "year": 2044,
+  },
+  {
+    "age": 50,
+    "domain": "family",
+    "effects": {
+      "happiness": -10,
+    },
+    "id": "fa-mother-pass",
+    "text": "母亲走了。从此再没人喊张子轩的小名。",
+    "year": 2045,
+  },
+  {
+    "age": 51,
+    "domain": "health",
+    "effects": {
+      "health": -2,
+    },
+    "id": "he-eyes",
+    "text": "报纸要拿远了才看得清，老花镜换了一副又一副。",
+    "year": 2046,
+  },
+  {
+    "age": 53,
+    "domain": "health",
+    "effects": {
+      "health": 3,
+    },
+    "id": "he-checkup",
+    "text": "体检单下来，指标栏里有两个箭头。",
+    "year": 2048,
+  },
+  {
+    "age": 53,
+    "domain": "career",
+    "effects": {
+      "happiness": -8,
+      "wealth": -12,
+    },
+    "id": "ca-layoff",
+    "text": "公告栏前站满了人，张子轩的名字在第三张纸上。",
+    "year": 2048,
+  },
+  {
+    "age": 54,
+    "domain": "health",
+    "effects": {
+      "health": -2,
+    },
+    "id": "he-eyes",
+    "text": "报纸要拿远了才看得清，老花镜换了一副又一副。",
+    "year": 2049,
+  },
+  {
+    "age": 55,
+    "domain": "family",
+    "effects": {
+      "happiness": 8,
+    },
+    "id": "fa-grandchild",
+    "text": "杨芳抱着孙辈回来，小家伙一把攥住了张子轩的手指。",
+    "year": 2050,
+  },
+  {
+    "age": 56,
+    "domain": "health",
+    "effects": {
+      "health": -8,
+    },
+    "id": "he-chronic",
+    "text": "老慢病落了根，药盒按早中晚分了三格。",
+    "year": 2051,
+  },
+  {
+    "age": 57,
+    "domain": "health",
+    "effects": {
+      "health": -15,
+      "wealth": -8,
+    },
+    "id": "he-big-ill",
+    "text": "病来如山倒，病房的天花板看了一个月。",
+    "year": 2052,
+  },
+  {
+    "age": 57,
+    "domain": "health",
+    "effects": {
+      "health": -8,
+    },
+    "id": "he-chronic",
+    "text": "老慢病落了根，药盒按早中晚分了三格。",
+    "year": 2052,
+  },
+]
+`;
+
+exports[`黄金快照 seed=42/CHN/1995/m（真实 world.json） > 终局摘要快照 1`] = `
+{
+  "cause": "久病之后，油尽灯枯",
+  "deathAge": 60,
+  "stats": {
+    "choicesMade": 5,
+    "domainsTouched": [
+      "childhood",
+      "education",
+      "family",
+      "era",
+      "career",
+      "health",
+    ],
+    "eventsSeen": 59,
+  },
+  "vsLex": {
+    "born": 1995,
+    "bornCountryLex": 70.4,
+    "died": 2055,
+    "pct": 85.2,
+  },
+}
+`;

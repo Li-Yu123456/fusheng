@@ -1,0 +1,1648 @@
+{
+ "meta": {
+  "source": "mock fixture for engine tests (参考量级取自 OWID)",
+  "license": "CC0",
+  "fetchedAt": "2026-11-01",
+  "tables": {}
+ },
+ "countries": {
+  "NGA": {
+   "name": {
+    "zh": "尼日利亚"
+   },
+   "years": {
+    "1950": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1951": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1952": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1953": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1954": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1955": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1956": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1957": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1958": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1959": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1960": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1961": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1962": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1963": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1964": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1965": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1966": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1967": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1968": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1969": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1970": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1971": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1972": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1973": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1974": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1975": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1976": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1977": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1978": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1979": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1980": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1981": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1982": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1983": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1984": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1985": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1986": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1987": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1988": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1989": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1990": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1991": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1992": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1993": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1994": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1995": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1996": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1997": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1998": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "1999": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "2000": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "2001": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "2002": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "2003": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "2004": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "2005": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "2006": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "2007": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "2008": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "2009": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "2010": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "2011": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "2012": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "2013": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "2014": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "2015": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "2016": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "2017": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "2018": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "2019": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "2020": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "2021": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "2022": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "2023": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "2024": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "2025": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    },
+    "2026": {
+     "lex": 52.0,
+     "childMort": 180,
+     "fertility": 6.5,
+     "schooling": 2.5,
+     "gdpPc": 1500
+    }
+   }
+  },
+  "CHN": {
+   "name": {
+    "zh": "中国"
+   },
+   "years": {
+    "1950": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1951": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1952": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1953": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1954": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1955": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1956": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1957": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1958": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1959": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1960": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1961": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1962": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1963": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1964": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1965": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1966": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1967": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1968": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1969": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1970": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1971": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1972": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1973": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1974": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1975": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1976": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1977": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1978": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1979": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1980": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1981": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1982": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1983": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1984": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1985": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1986": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1987": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1988": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1989": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1990": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1991": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1992": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1993": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1994": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1995": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1996": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1997": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1998": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "1999": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "2000": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "2001": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "2002": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "2003": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "2004": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "2005": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "2006": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "2007": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "2008": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "2009": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "2010": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "2011": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "2012": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "2013": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "2014": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "2015": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "2016": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "2017": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "2018": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "2019": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "2020": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "2021": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "2022": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "2023": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "2024": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "2025": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    },
+    "2026": {
+     "lex": 69.8,
+     "childMort": 37.0,
+     "fertility": 1.79,
+     "schooling": 7.1,
+     "gdpPc": 4000
+    }
+   }
+  },
+  "JPN": {
+   "name": {
+    "zh": "日本"
+   },
+   "years": {
+    "1950": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1951": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1952": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1953": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1954": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1955": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1956": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1957": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1958": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1959": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1960": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1961": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1962": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1963": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1964": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1965": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1966": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1967": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1968": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1969": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1970": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1971": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1972": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1973": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1974": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1975": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1976": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1977": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1978": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1979": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1980": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1981": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1982": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1983": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1984": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1985": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1986": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1987": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1988": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1989": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1990": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1991": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1992": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1993": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1994": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1995": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1996": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1997": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1998": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "1999": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "2000": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "2001": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "2002": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "2003": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "2004": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "2005": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "2006": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "2007": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "2008": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "2009": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "2010": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "2011": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "2012": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "2013": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "2014": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "2015": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "2016": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "2017": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "2018": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "2019": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "2020": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "2021": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "2022": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "2023": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "2024": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "2025": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    },
+    "2026": {
+     "lex": 81.0,
+     "childMort": 8.0,
+     "fertility": 1.4,
+     "schooling": 10.5,
+     "gdpPc": 22000
+    }
+   }
+  }
+ }
+}

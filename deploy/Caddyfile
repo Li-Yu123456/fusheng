@@ -1,0 +1,29 @@
+# 浮生 · 生产部署 Caddyfile（M3 演练件——真上线只差域名与 VPS）
+# 架构照搬 nevatown 模式：Caddy 前置（自动 HTTPS/HTTP3）反代 hub，hub 仍管静态+SSE+API。
+#
+# 用法（有服务器与泛域名后）：
+#   1. scp 本目录与仓库到服务器，npm install && npm run build
+#   2. 域名 DNS：A 记录 @ → 服务器 IP；泛解析 *.fusheng.example → 同 IP
+#   3. FUSHENG_ADMIN_TOKEN=强随机 FUSHENG_PORT=4310 PM2/systemd 起 hub
+#   4. Caddy 装好（apt install caddy / brew install caddy），本文件放 /etc/caddy/
+#      （替换两处 fusheng.example 为真域名），caddy validate && systemctl reload caddy
+
+fusheng.example {
+	encode zstd gzip
+
+	# SSE 专用通道：禁缓冲（事件流被缓冲=新生儿停流），超时放长
+	@sse path /api/stream
+	handle @sse {
+		reverse_proxy 127.0.0.1:4310
+		flush_interval -1
+	}
+
+	# 其余一切（静态/API/公告/议事厅）走 hub
+	reverse_proxy 127.0.0.1:4310
+}
+
+# 世界子域（多世界上线时启用；M3 演练期单世界可先注释）
+# world.fusheng.example {
+# 	reverse_proxy 127.0.0.1:4310
+# 	# 世界由 hub 按 Host 分发（hub/server.mjs 的 WORLDS 注册表扩一行即可）
+# }

@@ -1,0 +1,118 @@
+// 事业域：职业起点由国情（schooling/gdpPc）分流——农业国进田埂、识字率低进流水线，
+// 教育 STATE 反过来改变可触发池（事件间因果的硬体现）。
+import type { EventTemplate } from './index';
+
+export const CAREER: EventTemplate[] = [
+  {
+    id: 'ca-first-job',
+    domain: 'career',
+    minAge: 19,
+    maxAge: 26,
+    text: '第一份工：站过柜台、下过车间，也守过田埂。',
+    effects: { wealth: 5 },
+    once: true,
+  },
+  {
+    id: 'ca-factory',
+    domain: 'career',
+    minAge: 18,
+    maxAge: 30,
+    // 低受教育年限的社会，制造业/体力岗是主要吸纳口
+    cond: (c) => c.snapshot.schooling < 7,
+    text: '流水线昼夜不歇，{name}的手速渐渐追上了传送带。',
+    effects: { wealth: 6, health: -4 },
+  },
+  {
+    id: 'ca-farm',
+    domain: 'career',
+    minAge: 17,
+    maxAge: 60,
+    cond: (c) => c.snapshot.gdpPc < 3500,
+    text: '看天吃饭的年月，缴完账再算自家的缸。',
+    effects: { wealth: 3, health: -3 },
+  },
+  {
+    id: 'ca-promotion',
+    domain: 'career',
+    minAge: 26,
+    maxAge: 50,
+    cond: (c) => c.state.education > 35,
+    text: '多年媳妇熬成婆，{name}带起了自己的班组。',
+    effects: { wealth: 8, happiness: 5 },
+  },
+  {
+    id: 'ca-layoff',
+    domain: 'career',
+    minAge: 30,
+    maxAge: 55,
+    text: '公告栏前站满了人，{name}的名字在第三张纸上。',
+    effects: { wealth: -12, happiness: -8 },
+  },
+  {
+    id: 'ca-switch',
+    domain: 'career',
+    minAge: 25,
+    maxAge: 50,
+    text: '隔行如隔山，{name}还是把锄头换成了扳手。',
+    effects: { wealth: 2, happiness: 2 },
+  },
+  {
+    id: 'ca-startup',
+    domain: 'career',
+    minAge: 28,
+    maxAge: 45,
+    cond: (c) => c.state.wealth > 40 || c.state.education > 60,
+    text: '一个念头在心里滚了三年：要不要自己单干？',
+    choice: {
+      prompt: '把积蓄押上桌吗？',
+      options: [
+        {
+          label: '辞职创业',
+          weight: (c) => (c.state.wealth > 60 ? 2 : 1),
+          effects: { wealth: -15, happiness: 3 },
+          outcome: '租下铺面那天，{name}在门口站了很久。',
+        },
+        {
+          label: '守着饭碗',
+          effects: { happiness: -2 },
+          outcome: '夜深人静时还是会想，但饭碗端得稳。',
+        },
+      ],
+    },
+    once: true,
+  },
+  {
+    id: 'ca-award',
+    domain: 'career',
+    minAge: 35,
+    maxAge: 60,
+    text: '行业里发了个不起眼的奖，{name}把它摆在了柜子最上层。',
+    effects: { happiness: 6, wealth: 3 },
+  },
+  {
+    id: 'ca-artisan',
+    domain: 'career',
+    minAge: 30,
+    maxAge: 65,
+    text: '手艺这件事急不得——又磨了十年。',
+    effects: { wealth: 4, happiness: 3 },
+  },
+  {
+    id: 'ca-apprentice',
+    domain: 'career',
+    minAge: 16,
+    maxAge: 22,
+    cond: (c) => c.state.education < 50,
+    text: '拜师那天敬了茶，师父只说：先扫三年地。',
+    effects: { education: 3 },
+  },
+  {
+    id: 'ca-retire',
+    domain: 'career',
+    minAge: 60,
+    maxAge: 70,
+    text: '最后一天下班，{name}把工具擦了一遍才交回去。',
+    effects: { happiness: 4 },
+    once: true,
+  },
+];

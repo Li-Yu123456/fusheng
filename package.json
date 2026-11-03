@@ -1,0 +1,14 @@
+{
+  "name": "fusheng",
+  "private": true,
+  "version": "0.1.0",
+  "description": "浮生 Fusheng — 数据叙事人生模拟世界（M1）",
+  "type": "module",
+  "workspaces": ["worlds/*", "home"],
+  "scripts": {
+    "data": "node data-pipeline/fetch.mjs",
+    "build": "node scripts/font-subset.mjs && npm run build -w home && npm run build -w worlds/fusheng",
+    "test": "npm test -w worlds/fusheng",
+    "start": "node hub/server.mjs"
+  }
+}
