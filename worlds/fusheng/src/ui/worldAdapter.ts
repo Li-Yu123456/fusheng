@@ -127,5 +127,21 @@ export function getWorldLex(year: number): number | null {
   return n > 0 ? Math.round((sum / n) * 10) / 10 : null;
 }
 
+/** 该国「有真实寿命记录」的年份域——滑块与 fate 抽样都以此为准，
+ *  绝不让玩家选出一个数据为 null 的组合（那会让出生文书编数字） */
+export function countryYearRange(cc: string): { min: number; max: number } | null {
+  const c = worldData?.countries[cc];
+  if (!c) return null;
+  let min: number | null = null;
+  let max: number | null = null;
+  for (const y of Object.keys(c.years).map(Number).sort((a, b) => a - b)) {
+    if (c.years[String(y)]?.lex != null) {
+      if (min === null) min = y;
+      max = y;
+    }
+  }
+  return min === null || max === null ? null : { min, max };
+}
+
 // 终局脚注署名用（数据出处与许可）
 export const WORLD_SOURCE = 'Our World in Data（CC BY 4.0）';

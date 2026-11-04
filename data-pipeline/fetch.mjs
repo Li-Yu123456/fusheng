@@ -11,8 +11,8 @@ const ROOT = dirname(dirname(fileURLToPath(import.meta.url))); // 仓库根 fush
 const CACHE_DIR = join(ROOT, 'data-pipeline', 'cache');
 const OUT_PATH = join(ROOT, 'worlds', 'fusheng', 'src', 'data', 'world.json');
 
-const YEAR_MIN = 1950;
-const YEAR_MAX = 2026;
+const YEAR_MIN = 1750; // 数据驱动：child-mortality 有值起点 1751（回填半径内），lex 更早也有——再往前只剩孤立学术估计，伤害"精准"承诺
+const YEAR_MAX = 2026; // 当下；未来不投
 // 头回填信任半径：首数据点距 1950 超过 40 年（首点 >1990）时，用现代值冒充历史
 // 会严重失真（如沙特 schooling 只有 2015-2020 两个点），此时诚实输出 null 让引擎降级。
 // 40 年以内（如南非 childMort 从 1974 起）趋势平缓，首值回填可接受——任务规定"表内
@@ -33,15 +33,10 @@ const TABLES = [
   { field: 'gdpPc', slug: 'gdp-per-capita-maddison', column: 'GDP per capita', decimals: 0 },
 ];
 
-// 国家集：G20 全部成员国（EU 非国家不计）+ 非洲/南亚/东南亚代表，共 29 国 ≥ 契约下限 24。
-const COUNTRIES = {
-  ARG: '阿根廷', AUS: '澳大利亚', BRA: '巴西', CAN: '加拿大', CHN: '中国',
-  FRA: '法国', DEU: '德国', IND: '印度', IDN: '印度尼西亚', ITA: '意大利',
-  JPN: '日本', MEX: '墨西哥', RUS: '俄罗斯', SAU: '沙特阿拉伯', ZAF: '南非',
-  KOR: '韩国', TUR: '土耳其', GBR: '英国', USA: '美国',
-  NGA: '尼日利亚', PAK: '巴基斯坦', BGD: '孟加拉国', ETH: '埃塞俄比亚', EGY: '埃及',
-  VNM: '越南', PHL: '菲律宾', THA: '泰国', KEN: '肯尼亚', GHA: '加纳',
-};
+// 国家全集：单一事实源 countries-zh.mjs——200 行为体 = OWID lex∩childMort 双表有值交集
+// （2026-11-04 实测），含中文名与洲际归类；入选门槛是死亡模型双支柱必须有值。
+import { COUNTRIES_ZH } from './countries-zh.mjs';
+const COUNTRIES = Object.fromEntries(Object.entries(COUNTRIES_ZH).map(([k, v]) => [k, v.zh]));
 
 async function fetchCsv(slug) {
   const cachePath = join(CACHE_DIR, `${slug}.csv`);
@@ -220,7 +215,7 @@ async function main() {
       }
       yearsOut[String(y)] = row;
     }
-    countriesOut[iso3] = { name: { zh: COUNTRIES[iso3] }, years: yearsOut };
+    countriesOut[iso3] = { name: { zh: COUNTRIES[iso3] }, continent: COUNTRIES_ZH[iso3].continent, years: yearsOut };
   }
 
   const world = {

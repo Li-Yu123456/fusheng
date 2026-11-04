@@ -9,6 +9,7 @@
     "data": "node data-pipeline/fetch.mjs",
     "build": "node scripts/font-subset.mjs && npm run build -w home && npm run build -w worlds/fusheng",
     "test": "npm test -w worlds/fusheng",
-    "start": "node hub/server.mjs"
+    "start": "node hub/server.mjs",
+    "go": "npm install --no-audit --no-fund && npm run build && npm start"
   }
 }

@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react
 import type { LifeInput, LifeResult } from './engine';
 import { simulate } from './engine';
 import { makeRng } from '../engine/rng';
-import { listCountries, type CountryMeta } from './worldAdapter';
+import { listCountries, countryYearRange, type CountryMeta } from './worldAdapter';
 import SetupScreen, { type SetupDraft } from './SetupScreen';
 import DrawingOverlay from './DrawingOverlay';
 import BirthReport from './BirthReport';
@@ -62,7 +62,16 @@ export default function App() {
       const seed = d.seed ? Number(d.seed) : 1 + Math.floor(Math.random() * 999999999);
       const fate = d.seed ? makeRng(seed) : Math.random;
       const country = d.country && countries.some((c) => c.code === d.country) ? d.country : countries[Math.floor(fate() * countries.length)].code;
-      const birthYear = d.birthYear ?? clampYear(1950 + Math.floor(fate() * 56));
+      // 年份抽样只在「该国真实有寿命记录」的域内掷——引擎对无记录组合会拒绝（精准铁律）
+      let birthYear = d.birthYear ?? clampYear(1750 + Math.floor(fate() * 277));
+      if (d.birthYear == null) {
+        const cr = countryYearRange(country);
+        if (cr) {
+          for (let t = 0; t < 24 && !(birthYear >= cr.min && birthYear <= cr.max); t++) {
+            birthYear = Math.round(cr.min + fate() * (cr.max - cr.min));
+          }
+        }
+      }
       const gender: 'm' | 'f' = d.gender ?? (fate() < 0.5 ? 'm' : 'f');
       const li: LifeInput = { seed, country, birthYear, gender };
       setInput(li);

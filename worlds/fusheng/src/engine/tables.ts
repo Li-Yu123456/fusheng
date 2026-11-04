@@ -84,8 +84,13 @@ export function birthSnapshot(world: WorldData, country: string, birthYear: numb
   const fertility = g('fertility');
   const schooling = g('schooling');
   const gdpPc = g('gdpPc');
+  // 精准铁律：lex 是死亡模型的锚点，缺它的一切数字都是编造——直接抛错，
+  // 由 UI 层保证只送入该国该年有真实寿命记录的组合（worldAdapter.countryYearRange）
+  if (lex === null || lex === undefined) {
+    throw new Error(`无真实寿命记录：${country} ${birthYear}（换年份或换国家）`);
+  }
   return {
-    lex: lex ?? FALLBACK.lex,
+    lex,
     childMort: childMort ?? FALLBACK.childMort,
     fertility: fertility ?? FALLBACK.fertility,
     schooling: schooling ?? FALLBACK.schooling,

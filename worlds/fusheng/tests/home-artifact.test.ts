@@ -8,8 +8,7 @@ const html = readFileSync(fileURLToPath(new URL('../../home/dist/index.html', im
 
 describe('主页构建产物结构健康', () => {
   it('HTML 注释配平（<!-- 与 --> 数量相等）', () => {
-    expect(html.count?.('<!--') ?? (html.match(/<!--/g) ?? []).length)
-      .toBe((html.match(/-->/g) ?? []).length);
+    expect((html.match(/<!--/g) ?? []).length).toBe((html.match(/-->/g) ?? []).length);
   });
 
   it('body 核心容器上纸（.page 在 body 内而非被注释吞掉）', () => {

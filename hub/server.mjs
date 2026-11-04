@@ -300,6 +300,29 @@ const server = http.createServer((req, res) => {
   });
 });
 
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    // 端口被占：大概率是浮生已在运行（双击启动/上次没关）。确认是我们的服务就指路，不是就说明冲突。
+    fetch(`http://localhost:${PORT}/api/pulse`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (d && typeof d.living === 'number') {
+          console.log(`浮生已在运行——直接打开 http://localhost:${PORT} 即可（无需再启动）`);
+          process.exit(0);
+        } else {
+          console.error(`端口 ${PORT} 被其他程序占用。可改端口：FUSHENG_PORT=4311 npm start`);
+          process.exit(1);
+        }
+      })
+      .catch(() => {
+        console.error(`端口 ${PORT} 被其他程序占用。可改端口：FUSHENG_PORT=4311 npm start`);
+        process.exit(1);
+      });
+    return;
+  }
+  throw err;
+});
+
 server.listen(PORT, () => {
   console.log(`[hub] 浮生中枢已启动 http://localhost:${PORT} （静态根 ${REPO_ROOT}）`);
   // 集中端令牌：环境变量优先；本地玩法没有 env 时生成一次性令牌打印在控制台（议事厅「颁布」用）

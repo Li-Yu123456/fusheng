@@ -4,7 +4,7 @@
 // 为什么国籍用意象文案而不标难度——命运不该提前报价，暗示留在诗句里。
 import { useMemo, useState, type FormEvent } from 'react';
 import type { CountryMeta } from './worldAdapter';
-import { listByContinent } from './worldAdapter';
+import { listByContinent, countryYearRange } from './worldAdapter';
 import { YEAR_MIN, YEAR_MAX } from './yearRange';
 
 export interface SetupDraft {
@@ -30,18 +30,24 @@ export default function SetupScreen({
   const [gender, setGender] = useState<'m' | 'f' | null>(initial.gender);
   const [seed, setSeed] = useState(initial.seed);
 
+  // 滑块域：选了国家→该国真实寿命记录域；交给命运→全域（fate 抽样另有避开无值年份的逻辑）
+  const range = useMemo(() => (country ? countryYearRange(country) : null) ?? { min: YEAR_MIN, max: YEAR_MAX }, [country]);
+  const yMin = range.min;
+  const yMax = range.max;
   const decades = useMemo(() => {
     const ds: number[] = [];
-    for (let y = YEAR_MIN; y <= YEAR_MAX; y += 10) ds.push(y);
+    for (let y = Math.ceil(yMin / 10) * 10; y <= yMax; y += 10) ds.push(y);
     return ds;
-  }, []);
+  }, [yMin, yMax]);
+  // 所选国家的域不含当前年份时，收拢到域内（数据精准优先于记忆的选择）
+  const effYear = Math.max(yMin, Math.min(yMax, year));
 
   // 洲际分组：出生地按洲列全（分组数据来自 worldAdapter，跨洲国口径见其注释）
   const groups = useMemo(() => listByContinent(), []);
 
   const submit = (e: FormEvent) => {
     e.preventDefault();
-    onSubmit({ seed: seed.trim(), country, birthYear: year, gender });
+    onSubmit({ seed: seed.trim(), country, birthYear: effYear, gender });
   };
 
   return (
@@ -110,10 +116,10 @@ export default function SetupScreen({
             <input
               id="year-slider"
               type="range"
-              min={YEAR_MIN}
-              max={YEAR_MAX}
+              min={yMin}
+              max={yMax}
               step={1}
-              value={year}
+              value={effYear}
               onChange={(e) => setYear(Number(e.target.value))}
               aria-label="出生年份"
             />

@@ -1,0 +1,38 @@
+# GitHub Pages 自动部署：push 到 main 即发布纯前端版——任何人点开链接零安装即玩。
+# 架构依据：浮生玩法本体（引擎+数据+人生）100% 跑在浏览器；hub 的出生流/议事厅/账号
+# 是增强层，前端对它们全部有降级（离线样式/静默），静态托管下体验完整。
+name: pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm install --no-audit --no-fund
+      - run: npm run build -w home
+      - run: npm run build -w worlds/fusheng
+      - name: 组装 Pages 产物（与 hub 路径同构：主页在根、世界在 /worlds/fusheng/）
+        run: |
+          mkdir -p site/worlds/fusheng
+          cp home/dist/index.html site/index.html
+          cp -r worlds/fusheng/dist/* site/worlds/fusheng/
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: site }
+      - id: deploy
+        uses: actions/deploy-pages@v4
