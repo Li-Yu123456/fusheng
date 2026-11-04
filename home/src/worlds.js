@@ -4,13 +4,13 @@
 const FALLBACK_WORLD = {
   key: 'fusheng',
   name: { zh: '浮生' },
-  path: '/worlds/fusheng/',
+  path: 'worlds/fusheng/', // 相对路径：hub（/）与 Pages（/fusheng/）下都解析正确
   desc: { zh: '按真实统计数据投胎，把这一生过到最后' },
   emoji: '♾️',
 };
 
 export function renderWorlds(containerEl) {
-  fetch('/worlds.json')
+  fetch('worlds.json') // 相对：hub 根与 Pages site 根都有 worlds.json
     .then((r) => {
       if (!r.ok) throw new Error('http ' + r.status);
       return r.json();

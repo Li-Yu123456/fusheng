@@ -70,7 +70,10 @@ export function queryField(world: WorldData, country: string, year: number, fiel
   if (vLo !== null && vHi !== null) {
     return vLo + ((vHi - vLo) * (year - lo)) / (hi - lo); // 线性插值
   }
-  return vLo ?? vHi; // 只有单侧有数据：取端点（外推不猜）
+  // 单侧有值 = 查询年在该字段数据域之外。数据层（管线）已对"该不该回填"做过唯一裁决
+  // （BACKFILL_MAX_GAP=40），world.json 里的 null 就是裁决后的诚实输出——查询层越权
+  // 回填会让 1850 年的 null 被 1900 年的值冒充，精准铁律在此必须贯通：域外即 null。
+  return null;
 }
 
 /**

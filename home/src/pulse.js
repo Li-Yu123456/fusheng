@@ -26,6 +26,8 @@ export function startPulse(listEl, livingEl, sectionEl) {
   const loading = document.createElement('li');
   loading.className = 'loading';
   loading.textContent = '正在接通星河……';
+  // 静态托管（如 Pages）没有 SSE：几秒后把等待文案换成诚实的离线说明，不装死
+  setTimeout(() => { if (loading.textContent.includes('接通')) loading.textContent = '离线模式——本地完整版有全球实时新生儿流'; }, 4000);
   listEl.appendChild(loading);
 
   const setLiving = (n) => {

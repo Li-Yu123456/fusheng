@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
-const html = readFileSync(fileURLToPath(new URL('../../home/dist/index.html', import.meta.url)), 'utf-8');
+const html = readFileSync(fileURLToPath(new URL('../../../home/dist/index.html', import.meta.url)), 'utf-8');
 
 describe('主页构建产物结构健康', () => {
   it('HTML 注释配平（<!-- 与 --> 数量相等）', () => {
@@ -15,6 +15,11 @@ describe('主页构建产物结构健康', () => {
     const body = html.slice(html.indexOf('<body'));
     expect(body).toContain('class="page"');
     expect(body).toContain('id="worlds"');
+  });
+
+
+  it('世界卡链接为相对路径（Pages 子路径与 hub 根双环境通吃）', () => {
+    expect(html).not.toMatch(/href="\/worlds\//); // 绝对路径会在子路径部署下 404
   });
 
   it('公告脚本在', () => {

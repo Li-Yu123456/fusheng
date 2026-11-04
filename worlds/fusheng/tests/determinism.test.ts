@@ -39,9 +39,7 @@ describe('确定性（纯函数契约）', () => {
     }
   });
 
-  it('国家数据缺失也不崩（降级路径）', () => {
-    const r = simulate({ seed: 42, country: 'ZZZ', birthYear: 1995, gender: 'm' }, mock);
-    expect(r.events.length).toBeGreaterThan(0);
-    expect(r.summary.vsLex.bornCountryLex).toBeGreaterThan(0);
+  it('无真实寿命记录的组合 → simulate 明确拒绝（精准铁律）', () => {
+    expect(() => simulate({ seed: 42, country: 'ZZZ', birthYear: 1995, gender: 'm' }, mock)).toThrow(/无真实寿命记录/);
   });
 });

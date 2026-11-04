@@ -31,6 +31,17 @@ jobs:
           mkdir -p site/worlds/fusheng
           cp home/dist/index.html site/index.html
           cp -r worlds/fusheng/dist/* site/worlds/fusheng/
+          cat > site/worlds.json <<'W'
+          {"worlds":[{"key":"fusheng","host":null,"name":{"zh":"浮生"},"path":"worlds/fusheng/","desc":{"zh":"按真实统计数据投胎，把这一生过到最后"},"emoji":"♾️"}]}
+          W
+          python3 - <<'FIX'
+          # heredoc 缩进清洗
+          import re
+          p = 'site/worlds.json'
+          s = open(p).read()
+          s = re.sub(r'^\s+([{"\w])', r'\1', s, flags=re.M)
+          open(p, 'w').write(s)
+          FIX
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with: { path: site }
