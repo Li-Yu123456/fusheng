@@ -12,10 +12,14 @@
 ## 运行
 
 ```bash
-npm install        # 首次
-npm run build      # 字体子集检查 + 主页 + 世界构建
-npm start          # 启动 hub（端口默认 4310，FUSHENG_PORT 可改；启动地址见控制台）
+cd fusheng
+npm install
+npm run build
+npm start
 ```
+
+第一条 `cd` 进仓库目录是必须的（在仓库外跑 npm 会报 Missing script）；
+四条逐行分别执行，或整块复制也可——每一行都不含会被 shell 误读的字符。
 
 - 主页：SSE 实时新生儿流（全球真实出生率 4.3/秒）
 - 世界：`/worlds/fusheng/`——投胎 → 出生文书 → 人生时间轴（中轴编年体）→ 终局报告
