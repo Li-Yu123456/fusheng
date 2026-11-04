@@ -63,7 +63,8 @@ async function main() {
     worldText = [...chars].join('');
   }
 
-  const strip = (s) => s.replace(/&text=[^"']*/g, '');
+  const strip = (s) => s.replace(/(href=")[^"]*(&text=)[^"]*(")/g, '$1$3');
+  // 只剥 href 属性内的 text=——注释/文本里的 URL 不碰（曾因全文件替换破坏注释闭合吞掉整页）
 
   // 主页：与世界页同一上限判定——两次实测（1564 与 802 字符）Google 均拒绝/忽略，
   // 只有几百字符内的小集才值得注入；超限剥离 text=，保留分片按需
