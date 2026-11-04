@@ -24,8 +24,8 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
       - run: npm install --no-audit --no-fund
-      - run: npm run build -w home
-      - run: npm run build -w worlds/fusheng
+      - run: FS_STATIC=1 npm run build -w home
+      - run: FS_STATIC=1 npm run build -w worlds/fusheng
       - name: 组装 Pages 产物（与 hub 路径同构：主页在根、世界在 /worlds/fusheng/）
         run: |
           mkdir -p site/worlds/fusheng

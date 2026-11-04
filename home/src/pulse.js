@@ -38,11 +38,14 @@ export function startPulse(listEl, livingEl, sectionEl) {
     if (Number.isFinite(n) && n >= 0) setLiving(n);
   };
 
-  // 初始 living 用一次 pulse 拉齐；之后由 SSE 的 stat 事件接力刷新
-  fetch('/api/pulse')
-    .then((r) => r.json())
-    .then((p) => renderLiving(p.living))
-    .catch(() => {}); /* 失败不打断首屏：stat 事件很快会补上 */
+  // 初始 living 用一次 pulse 拉齐；之后由 SSE 的 stat 事件接力刷新。
+  // 静态版无后端（无在线人数概念），编译期整块裁掉
+  if (!__FS_STATIC__) {
+    fetch('/api/pulse')
+      .then((r) => r.json())
+      .then((p) => renderLiving(p.living))
+      .catch(() => {}); /* 失败不打断首屏：stat 事件很快会补上 */
+  }
 
   const pushBirth = (d) => {
     if (loading.isConnected) loading.remove();
@@ -61,8 +64,15 @@ export function startPulse(listEl, livingEl, sectionEl) {
     while (listEl.children.length > MAX_ITEMS) listEl.lastElementChild.remove();
   };
 
-  // EventSource 断线原生自动重连（服务器 retry: 3000）；这里只做视觉降级标记
-  const es = new EventSource('/api/stream?v=' + Date.now());
+  // 静态版（Pages，编译期常量）：无后端，直接诚实降级文案；
+  // hub 逻辑整体包在反向分支里——esbuild 静态构建时整块删除，产物零后端痕迹
+  if (__FS_STATIC__) {
+    loading.textContent = '离线模式——本地完整版有全球实时新生儿流';
+  } else {
+    fetch('/api/pulse')
+    .then((r) => {
+      if (!r.ok) return;
+      const es = new EventSource('/api/stream?v=' + Date.now());
   es.addEventListener('birth', (e) => {
     sectionEl.classList.remove('offline');
     try {
@@ -78,6 +88,9 @@ export function startPulse(listEl, livingEl, sectionEl) {
       /* 同上 */
     }
   });
-  es.onopen = () => sectionEl.classList.remove('offline');
-  es.onerror = () => sectionEl.classList.add('offline');
+      es.onopen = () => sectionEl.classList.remove('offline');
+      es.onerror = () => sectionEl.classList.add('offline');
+    })
+      .catch(() => {});
+  }
 }

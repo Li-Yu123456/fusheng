@@ -24,6 +24,7 @@ function headers(): HeadersInit {
 
 /** 启动时并入已颁布社区事件（hub 返回的已是入卷格式，直接进池） */
 export async function initCommunity(): Promise<void> {
+  if (__FS_STATIC__) return; // 静态版：无 hub，不请求（公告/议事厅不可用，基线照玩）
   try {
     const r = await fetch('/nt/community-events.json', { cache: 'no-cache' });
     if (!r.ok) return;
@@ -84,6 +85,7 @@ async function jsonOr<T>(r: Response, fallback: T): Promise<T> {
 }
 
 export async function fetchCouncil(): Promise<CouncilData | null> {
+  if (__FS_STATIC__) return null;
   try {
     const r = await fetch('/api/council', { headers: headers() });
     if (!r.ok) return null;

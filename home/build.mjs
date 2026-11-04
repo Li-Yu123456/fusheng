@@ -13,6 +13,7 @@ const srcDir = path.join(homeDir, 'src');
 const distDir = path.join(homeDir, 'dist');
 
 const result = await build({
+  define: { __FS_STATIC__: JSON.stringify(!!process.env.FS_STATIC) }, // Pages 构建=静态版：编译期裁掉后端请求
   entryPoints: [path.join(srcDir, 'main.js')],
   bundle: true,
   minify: true,

@@ -22,6 +22,7 @@ function headers(): HeadersInit {
 }
 
 export async function fetchMe(): Promise<Me> {
+  if (__FS_STATIC__) return { signed: false }; // 静态版：无后端账号，编译期短路
   try {
     const r = await fetch('/api/auth/me', { headers: headers() });
     if (!r.ok) return { signed: false };
@@ -50,6 +51,7 @@ export async function signOut(): Promise<void> {
 }
 
 export async function saveLife(input: { seed: number; country: string; birthYear: number; gender: 'm' | 'f' }, deathAge: number, events: number): Promise<void> {
+  if (__FS_STATIC__) return;
   try {
     await fetch('/api/lives', {
       method: 'POST',
@@ -67,6 +69,7 @@ export async function saveLife(input: { seed: number; country: string; birthYear
 }
 
 export async function fetchPastLives(): Promise<PastLife[] | null> {
+  if (__FS_STATIC__) return [];
   try {
     const r = await fetch('/api/lives/me', { headers: headers() });
     if (!r.ok) return null;

@@ -9,6 +9,19 @@ import './ui/styles.css';
 
 // 为什么不包 StrictMode：DrawingOverlay 的命签定格回调是一次性语义（ref 防重），
 // 开发态双挂载会引入无意义的重复动画校验成本；正确性由 vitest 与构建态保证。
+// 公告：hub 版运行时探测（200 才注入 notice.js）；静态版编译期裁掉——零请求零 404
+if (!__FS_STATIC__) {
+  fetch('/api/pulse')
+    .then((r) => {
+      if (r.ok) {
+        const el = document.createElement('script');
+        el.src = '/nt/notice.js';
+        document.head.appendChild(el);
+      }
+    })
+    .catch(() => {});
+}
+
 initWorld()
   .then(() => {
     // 社区事件热池与数据并行——议事厅颁布过的内容，即刻并入这段人生的事件池

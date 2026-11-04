@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { birthSnapshot, FALLBACK, queryField } from '../src/engine/tables';
+import { birthSnapshot, queryField } from '../src/engine/tables';
 import type { WorldData } from '../src/engine/types';
 
 // 构造带缺口的迷你世界：验证插值与降级而非数据本身
