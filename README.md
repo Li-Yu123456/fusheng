@@ -5,21 +5,19 @@
 
 ## 进入产品
 
-**本机启动后打开 → [http://localhost:4310](http://localhost:4310)**
+双击仓库根目录的 `开始浮生.command`（macOS）——自动安装依赖、构建、启动并打开浏览器，零命令行。
 
-（双击仓库里的 `开始浮生.command` 一键启动：自动装依赖、构建、起服务、开浏览器。
-此地址为本机运行态——任何人 clone 后在自己机器上同样双击即玩；
-公网部署见 `deploy/DEPLOY.md`。）
+任何人 clone 后在自己机器上同样双击即玩；公网部署见 `deploy/DEPLOY.md`。
 
 ## 运行
 
 ```bash
 npm install        # 首次
 npm run build      # 字体子集检查 + 主页 + 世界构建
-npm start          # hub 起在 http://localhost:4310（FUSHENG_PORT 可改）
+npm start          # 启动 hub（端口默认 4310，FUSHENG_PORT 可改；启动地址见控制台）
 ```
 
-- 主页：`http://localhost:4310/`（SSE 实时新生儿流，全球真实出生率 4.3/秒）
+- 主页：SSE 实时新生儿流（全球真实出生率 4.3/秒）
 - 世界：`/worlds/fusheng/`——投胎 → 出生文书 → 人生时间轴（中轴编年体）→ 终局报告
 - 议事厅：世界页右上竖签——许愿 → 顶票 → 提案 → 试验场 → 颁布（令牌在 hub 控制台）
 - 复现一命：`/worlds/fusheng/?seed=42`（同号同命，逐字节一致）

@@ -6,3 +6,4 @@ data-pipeline/cache/
 .omc/
 .impeccable/
 *.log
+scripts/m4-events.mjs
