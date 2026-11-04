@@ -10,7 +10,7 @@ const FALLBACK_WORLD = {
 };
 
 export function renderWorlds(containerEl) {
-  if (__FS_STATIC__) return; // 静态版：直接用下方单世界表，零请求
+  if (__FS_STATIC__) { mount(containerEl, [FALLBACK_WORLD]); return; } // 静态版：硬编码表直出，零请求
   fetch('worlds.json') // 相对：hub 根与 Pages site 根都有 worlds.json
     .then((r) => {
       if (!r.ok) throw new Error('http ' + r.status);
