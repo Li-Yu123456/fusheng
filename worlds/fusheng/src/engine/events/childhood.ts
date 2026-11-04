@@ -87,4 +87,58 @@ export const CHILDHOOD: EventTemplate[] = [
     text: '{name}话不多，喜欢蹲在门槛上看蚂蚁搬家。',
     effects: { happiness: 1, education: 2 },
   },
+
+  // ---- M4 扩容：童年的褶皱 ----
+  {
+    id: 'ch-shadow-play',
+    domain: 'childhood',
+    minAge: 5,
+    maxAge: 12,
+    text: '墙上的手影一会儿是狗，一会儿是鹰，你给它们都起了名字。',
+    effects: { happiness: 3 },
+  },
+  {
+    id: 'ch-first-friend',
+    domain: 'childhood',
+    minAge: 5,
+    maxAge: 11,
+    text: '那个总把弹珠分你一半的孩子，成了你此生第一个朋友。',
+    effects: { happiness: 4 },
+    once: true,
+  },
+  {
+    id: 'ch-riddle-nights',
+    domain: 'childhood',
+    minAge: 4,
+    maxAge: 10,
+    text: '外婆的谜语翻来覆去就那几个，你假装每次都猜不出来。',
+    effects: { education: 2, happiness: 2 },
+  },
+  {
+    id: 'ch-pox',
+    domain: 'childhood',
+    minAge: 3,
+    maxAge: 8,
+    text: '出疹子的那半个月，指甲被剪得极短，手上套着小手套。',
+    effects: { health: -3 },
+  },
+  {
+    id: 'ch-lost-found',
+    domain: 'childhood',
+    minAge: 4,
+    maxAge: 9,
+    text: '集市上松开了大人的手。半个村子的人举着火把找你。',
+    effects: { happiness: -3 },
+    once: true,
+  },
+  {
+    id: 'ch-chores',
+    domain: 'childhood',
+    minAge: 6,
+    maxAge: 12,
+    // 低收入家庭的童年更早承担家务与农活——数据直接进条件
+    cond: (c) => c.snapshot.gdpPc < 3000,
+    text: '挑水的扁担磨红了肩，你在门口数过路过的每一辆牛车。',
+    effects: { health: -1, wealth: 1 },
+  },
 ];

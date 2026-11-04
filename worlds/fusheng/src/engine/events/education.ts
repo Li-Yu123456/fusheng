@@ -113,4 +113,58 @@ export const EDUCATION: EventTemplate[] = [
     text: '在旧书摊淘到一本没头没尾的书，就着雨季读完了。',
     effects: { education: 3, happiness: 2 },
   },
+
+  // ---- M4 扩容：求学的明暗 ----
+  {
+    id: 'ed-praised',
+    domain: 'education',
+    minAge: 8,
+    maxAge: 16,
+    text: '作文被当成范文念了一遍，你把头埋得很低，耳朵却竖得很直。',
+    effects: { education: 3, happiness: 2 },
+  },
+  {
+    id: 'ed-deskmate',
+    domain: 'education',
+    minAge: 8,
+    maxAge: 16,
+    text: '同桌掰了半块橡皮给你，三八线画了又擦，擦了又画。',
+    effects: { happiness: 3 },
+  },
+  {
+    id: 'ed-lamp-nights',
+    domain: 'education',
+    minAge: 12,
+    maxAge: 20,
+    text: '一盏灯陪到后半夜，蚊子在灯罩上撞出细小的声响。',
+    effects: { education: 3, health: -1 },
+  },
+  {
+    id: 'ed-fail-once',
+    domain: 'education',
+    minAge: 14,
+    maxAge: 20,
+    text: '放榜那天没找到自己的名字。回去的路走得很慢。',
+    effects: { happiness: -4, education: 1 },
+    once: true,
+  },
+  {
+    id: 'ed-aid',
+    domain: 'education',
+    minAge: 10,
+    maxAge: 20,
+    // 助学金更常见于低收入地区——不是天赋问题，是资源问题
+    cond: (c) => c.snapshot.gdpPc < 4000,
+    text: '助学金批下来了，班主任说：钱不多，但你只管往前念。',
+    effects: { education: 3, wealth: 3 },
+    once: true,
+  },
+  {
+    id: 'ed-self-taught',
+    domain: 'education',
+    minAge: 16,
+    maxAge: 28,
+    text: '借来的词典翻到脱页，你用米饭粒把最常查的那几页粘了回去。',
+    effects: { education: 4 },
+  },
 ];

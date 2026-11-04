@@ -107,4 +107,58 @@ export const HEALTH: EventTemplate[] = [
     text: '同辈人大多先走了，{name}还能一口气上三楼。',
     effects: { happiness: 5 },
   },
+
+  // ---- M4 扩容：身体的账本 ----
+  {
+    id: 'he-vaccine',
+    domain: 'health',
+    minAge: 0,
+    maxAge: 12,
+    // 全球扩大免疫规划从 1974 年起铺开——出生年份直接进条件
+    cond: (c) => c.birthYear >= 1974,
+    text: '村里的赤脚医生来了，针头排在一小盒酒精棉里。哭声此起彼伏，你也在其中。',
+    effects: { health: 3 },
+    once: true,
+  },
+  {
+    id: 'he-toothache',
+    domain: 'health',
+    minAge: 30,
+    maxAge: 70,
+    text: '牙疼不是病。等到拔的时候，半边脸肿得变了形。',
+    effects: { health: -2, wealth: -2 },
+  },
+  {
+    id: 'he-morning-walk',
+    domain: 'health',
+    minAge: 40,
+    maxAge: 70,
+    text: '清晨的路走了三年，路边的狗都认得你的脚步。',
+    effects: { health: 4 },
+  },
+  {
+    id: 'he-pulled-through',
+    domain: 'health',
+    minAge: 40,
+    maxAge: 75,
+    text: '一场大病，医生说能挺过来不容易。出院那天的太阳格外白。',
+    effects: { health: 5, happiness: 4 },
+    once: true,
+  },
+  {
+    id: 'he-reading-glasses',
+    domain: 'health',
+    minAge: 45,
+    maxAge: 70,
+    text: '报纸要拿远了才看得清，第一副老花镜配了好半天。',
+    effects: { health: -1 },
+  },
+  {
+    id: 'he-chronic-peace',
+    domain: 'health',
+    minAge: 50,
+    maxAge: 85,
+    text: '药盒按早中晚分了三格。和身体谈成了和解，日子照过。',
+    effects: { health: 2, happiness: 2 },
+  },
 ];
