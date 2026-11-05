@@ -83,7 +83,10 @@ export function listByContinent(): { continent: string; countries: CountryMeta[]
   const all = listCountries();
   const groups = new Map<string, CountryMeta[]>();
   for (const c of all) {
-    const key = CONTINENT_OF[c.code] ?? '其他';
+    // 优先读 world.json 的 continent 字段（数据层唯一事实源，200 国全覆盖），
+    // 退化到硬编码映射（历史 29 国），最后「其他」兜底——绝不吞掉任何国家
+    const fromData = (worldData?.countries as Record<string, { continent?: string }> | undefined)?.[c.code]?.continent;
+    const key = fromData ?? CONTINENT_OF[c.code] ?? '其他';
     if (!groups.has(key)) groups.set(key, []);
     groups.get(key)!.push(c);
   }
