@@ -8,6 +8,7 @@ import { CAREER } from './career';
 import { FAMILY } from './family';
 import { HEALTH } from './health';
 import { ERA } from './era';
+import { CULTURAL_EVENTS } from './cultural';
 
 /** 事件条件与选项加权所能看到的全部世界——只读，保证纯函数 */
 export interface EventContext {
@@ -54,6 +55,7 @@ const BASE: EventTemplate[] = [
   ...FAMILY,
   ...HEALTH,
   ...ERA,
+  ...CULTURAL_EVENTS, // 文化圈专属事件（cond 按 country 匹配文化圈触发）
 ];
 
 let extra: EventTemplate[] = [];

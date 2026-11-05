@@ -25,6 +25,12 @@ const MAX_ITEMS = 6;
 export function startPulse(listEl, livingEl, sectionEl) {
   const loading = document.createElement('li');
   loading.className = 'loading';
+  // 静态版（Pages 编译期常量）：无后端，出生流区块整个隐藏——不装在等待什么
+  if (__FS_STATIC__) {
+    const sec = loading.closest('section') || document.getElementById('stream');
+    if (sec) sec.style.display = 'none';
+    return;
+  }
   loading.textContent = '正在接通星河……';
   // 静态托管（如 Pages）没有 SSE：几秒后把等待文案换成诚实的离线说明，不装死
   setTimeout(() => { if (loading.textContent.includes('接通')) loading.textContent = '离线模式——本地完整版有全球实时新生儿流'; }, 4000);
@@ -66,9 +72,7 @@ export function startPulse(listEl, livingEl, sectionEl) {
 
   // 静态版（Pages，编译期常量）：无后端，直接诚实降级文案；
   // hub 逻辑整体包在反向分支里——esbuild 静态构建时整块删除，产物零后端痕迹
-  if (__FS_STATIC__) {
-    loading.textContent = '离线模式——本地完整版有全球实时新生儿流';
-  } else {
+  {
     fetch('/api/pulse')
     .then((r) => {
       if (!r.ok) return;
