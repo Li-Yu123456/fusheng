@@ -5,7 +5,8 @@
 import { useMemo, useState, type FormEvent } from 'react';
 import type { CountryMeta } from './worldAdapter';
 import { listByContinent, countryYearRange } from './worldAdapter';
-import { YEAR_MIN, YEAR_MAX } from './yearRange';
+import { YEAR_MIN, YEAR_MAX, yearLabel } from './yearRange';
+import { isDeepHistory } from '../engine/deepHistory';
 
 export interface SetupDraft {
   seed: string; // '' = 随机
@@ -109,6 +110,11 @@ export default function SetupScreen({
 
         <section className="dossier-sec" aria-label="出生年份">
           <h2 className="dossier-label">贰 <span>生逢何年</span></h2>
+          {isDeepHistory(effYear) && (
+            <p className="deep-history-note" style={{ margin: '0 0 8px', fontSize: 12, color: 'var(--accent)', letterSpacing: '0.08em' }}>
+              深史时期（学术估计）· 数字来自人口学模型与骨骼考古，非分国真实记录
+            </p>
+          )}
           <div className="year-row">
             <output className="year-big" htmlFor="year-slider">
               {year}
@@ -118,8 +124,8 @@ export default function SetupScreen({
               type="range"
               min={yMin}
               max={yMax}
-              step={1}
-              value={effYear}
+              step={effYear < 1750 ? 10 : 1}
+              value={yearLabel(effYear)}
               onChange={(e) => setYear(Number(e.target.value))}
               aria-label="出生年份"
             />

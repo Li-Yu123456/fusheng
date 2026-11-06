@@ -1,10 +1,12 @@
 // 人生主循环：simulate 是纯函数——一切随机性都流经 makeRng(seed) 单流，
 // 无 Math.random / Date.now / 外部状态，这是黄金快照与确定性测试成立的前提。
 import { makeRng } from './rng';
-import { birthSnapshot } from './tables';
+import { birthSnapshot, type BirthSnapshot } from './tables';
 import { calibrateMortality, MAX_AGE } from './mortality';
 import { makeName } from './names';
 import { ALL_EVENTS, type EventContext, type EventTemplate } from './events';
+import { isDeepHistory, deepHistoryEstimate } from './deepHistory';
+import { cultureOf } from './cultureRegions';
 import type { LifeEvent, LifeInput, LifeResult, LifeState, WorldData } from './types';
 
 const clamp = (v: number, lo = 0, hi = 100) => Math.min(hi, Math.max(lo, v));
@@ -27,7 +29,39 @@ function pickCause(rng: () => number, age: number, health: number): string {
 
 export function simulate(input: LifeInput, world: WorldData): LifeResult {
   const rng = makeRng(input.seed);
-  const snap = birthSnapshot(world, input.country, input.birthYear);
+
+  // 数据分层：公元前 2100-1749 深史学术估计 → 1750+ OWID 真实分国数据。
+  // 过渡期处理：部分国家的真实数据起点晚于 1750（如中国 1950 起、大多数非洲国家 1950 起），
+  // 该国该年无真实记录时降级到深史估计（标注"估计"），绝不抛错中断游戏——精准是分层标注，不是拒之门外。
+  const deepHistSnap = (): BirthSnapshot => {
+    // 过渡年（如 1750-1950 某国无数据）钳到 1749——用最后一个深史锚点估计
+    const y = Math.min(Math.max(input.birthYear, -2100), 1749);
+    const est = deepHistoryEstimate(y, cultureOf(input.country));
+    return {
+      lex: est.lex,
+      childMort: est.childMort,
+      fertility: 5.5,
+      schooling: 0.5,
+      gdpPc: 500,
+      present: { lex: false, childMort: false, fertility: false, schooling: false, gdpPc: false },
+    };
+  };
+  let snap: BirthSnapshot;
+  if (isDeepHistory(input.birthYear)) {
+    snap = deepHistSnap();
+  } else {
+    try {
+      snap = birthSnapshot(world, input.country, input.birthYear);
+    } catch (e) {
+      // 该国该年无真实记录 → 降级到深史估计——但只在年份合理时（1750-1950 过渡带）。
+      // 未知国家在 1995 年仍应报「无真实寿命记录」（精准铁律：不编造数据）。
+      if (input.birthYear <= 1950) {
+        snap = deepHistSnap();
+      } else {
+        throw e;
+      }
+    }
+  }
   const model = calibrateMortality(snap.lex, snap.childMort);
   const name = makeName(rng, input.country, input.gender);
 

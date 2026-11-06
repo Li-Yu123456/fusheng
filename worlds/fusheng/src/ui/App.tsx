@@ -13,7 +13,7 @@ import CouncilHall from './CouncilHall';
 import AuthBadge from './AuthBadge';
 import { saveLife } from './auth';
 import EndReport from './EndReport';
-import { clampYear } from './yearRange';
+import { YEAR_MIN, YEAR_MAX, clampYear } from './yearRange';
 
 type Phase = 'setup' | 'drawing' | 'birth' | 'life' | 'end' | 'council';
 type ThemeMode = 'auto' | 'light' | 'dark';
@@ -63,7 +63,7 @@ export default function App() {
       const fate = d.seed ? makeRng(seed) : Math.random;
       const country = d.country && countries.some((c) => c.code === d.country) ? d.country : countries[Math.floor(fate() * countries.length)].code;
       // 年份抽样只在「该国真实有寿命记录」的域内掷——引擎对无记录组合会拒绝（精准铁律）
-      let birthYear = d.birthYear ?? clampYear(1750 + Math.floor(fate() * 277));
+      let birthYear = d.birthYear ?? clampYear(YEAR_MIN + Math.floor(fate() * (YEAR_MAX - YEAR_MIN)));
       if (d.birthYear == null) {
         const cr = countryYearRange(country);
         if (cr) {
