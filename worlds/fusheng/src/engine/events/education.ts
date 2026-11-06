@@ -5,7 +5,7 @@ import type { EventTemplate } from './index';
 export const EDUCATION: EventTemplate[] = [
   {
     id: 'ed-start',
-    maxYear: 2000,
+    maxYear: 1995, // 手缝书包到 90 年代中期为止
     minYear: 1000,
     domain: 'education',
     minAge: 6,

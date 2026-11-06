@@ -13,7 +13,7 @@ export const CHILDHOOD: EventTemplate[] = [
   },
   {
     id: 'ch-fever',
-    maxYear: 1990, // 赤脚医生制度 1985 年正式终结
+    maxYear: 1985, // 赤脚医生制度 1985 年正式取消（此后为乡村医生）
     domain: 'childhood',
     minAge: 0,
     maxAge: 5,
