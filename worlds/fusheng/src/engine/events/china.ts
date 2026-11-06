@@ -239,4 +239,197 @@ export const CHINA: EventTemplate[] = [
     text: '你的户口本上写着「农业户口」。这三个字决定了你能不能在城市里安家、你的孩子能不能在城里上学、你老了以后有没有退休金。你进城打了十年工，建了这个城市的高楼大厦，但这个城市不认为你是它的人。',
     effects: { wealth: -3, happiness: -5 }, weight: 3, once: true,
     dataSource: '户籍制度（城乡二元结构）' },
+
+  // ══════════════════════════════════════════════════════════
+  // 深化·时代大事补充
+  // ══════════════════════════════════════════════════════════
+
+  { id: 'cn-t-hk-return', domain: 'era', minAge: 5, maxAge: 80, minYear: 1997, maxYear: 1997, cond: CHN,
+    text: '六月三十日午夜，电视里英国国旗降下来了，中国国旗升上去了。你不太懂这意味着什么，但父亲看完之后站了很久，然后去厨房烧了一壶水，泡了一杯茶——他平时不怎么喝茶。',
+    effects: { happiness: 5 }, weight: 3, once: true,
+    dataSource: '香港回归 1997 年 7 月 1 日' },
+
+  { id: 'cn-t-shenao', domain: 'era', minAge: 8, maxAge: 60, minYear: 2001, maxYear: 2001, cond: CHN,
+    text: '七月十三日晚上，萨马兰奇拆开信封，念出了一个词——「北京」。你父亲从沙发上跳了起来，把你吓了一跳。你从来没见过他这么激动，甚至超过了那年他评上先进工作者的时候。',
+    effects: { happiness: 6 }, weight: 3, once: true,
+    dataSource: '北京申奥成功 2001 年 7 月 13 日' },
+
+  { id: 'cn-t-shibo', domain: 'era', minAge: 5, maxAge: 70, minYear: 2010, maxYear: 2010, cond: CHN,
+    text: '你去了世博会——排了三个小时才进中国馆。馆内的动画把《清明上河图》变成了活的，画里的人在走动、在叫卖、在摇船。你站在那里看了很久，忘了拍照。',
+    effects: { happiness: 5, education: 3 }, weight: 2, once: true,
+    dataSource: '上海世博会 2010 年 5-10 月（7308 万人次参观）' },
+
+  { id: 'cn-t-guzai', domain: 'era', minAge: 20, maxAge: 60, minYear: 2015, maxYear: 2015, cond: CHN,
+    text: '股票跌停了。你盯着手机屏幕上的绿数字，从早上九点半看到下午三点——中间没吃饭。你投进去的钱少了一半，像有人直接从你口袋里掏走了一沓。你安慰自己：没卖就不算亏。但你知道你在骗自己。',
+    effects: { wealth: -8, happiness: -6 }, weight: 3, once: true,
+    dataSource: '2015 年中国股灾（上证指数从 5178 跌至 2850）' },
+
+  { id: 'cn-t-p2p', domain: 'career', minAge: 25, maxAge: 55, minYear: 2018, maxYear: 2020, cond: CHN,
+    text: '你投的那个理财平台跑路了。APP 打开还是那个界面，但提现按钮点不动了。你加了维权群，群里四百多人，每天有人发语音哭。你去派出所报案，排在你前面的那个人，投了三百万。',
+    effects: { wealth: -10, happiness: -8 }, weight: 2, once: true,
+    dataSource: 'P2P 网贷暴雷潮 2018-2020（约 5000 家平台清退）' },
+
+  { id: 'cn-t-lanwan', domain: 'era', minAge: 25, maxAge: 55, minYear: 2021, maxYear: 2023, cond: CHN,
+    text: '你买的期房烂尾了。开发商的资金链断了，工地上长出了草。你每个月还在还月供，但那栋楼只盖到了第十八层——而你的房子在第二十三层。你和其他业主一起去售楼处，铁门锁着，玻璃上贴着一张法院的封条。',
+    effects: { wealth: -12, happiness: -10 }, weight: 2, once: true,
+    dataSource: '房地产行业暴雷/烂尾楼（2021 年起，恒大等）' },
+
+  { id: 'cn-t-santai', domain: 'family', minAge: 25, maxAge: 45, minYear: 2021, maxYear: 2026, cond: CHN,
+    text: '三孩政策出来了。你和爱人面面相觑——第一个孩子还在上幼儿园，第二个刚会走路，现在让你生第三个？你算了一笔账：房贷、车贷、教育费、医疗费——这三个数字加在一起，比你的工资条长了三倍。',
+    effects: { happiness: -3, wealth: -3 }, weight: 2, once: true,
+    dataSource: '三孩政策 2021 年 5 月' },
+
+  // ══════════════════════════════════════════════════════════
+  // 深化·女性特有事件
+  // ══════════════════════════════════════════════════════════
+
+  { id: 'cn-f-cuihun', domain: 'family', minAge: 25, maxAge: 35, minYear: 1990, maxYear: 2026, cond: CHN_F,
+    text: '过年回家，七大姑八大姨轮番上阵。「有对象了吗？」「隔壁小李家的闺女都二胎了。」「你今年都二十八了，再不嫁就晚了。」你夹了一筷子菜，塞进嘴里，假装没听见。母亲在桌子底下踢了你一脚。',
+    effects: { happiness: -5 }, weight: 3 },
+
+  { id: 'cn-f-career_break', domain: 'career', minAge: 28, maxAge: 38, minYear: 2000, maxYear: 2026, cond: CHN_F,
+    text: '你休完产假回到公司，发现自己的工位换了——搬到了角落里，离窗户很远。领导说「体谅你，给你安排了轻松的岗位」。你明白他的意思：你已经被从晋升名单上划掉了。',
+    effects: { wealth: -5, happiness: -6 }, weight: 3, once: true,
+    dataSource: '职场生育惩罚（中国女性生育后收入平均下降约 30%）' },
+
+  { id: 'cn-f-zhousao', domain: 'family', minAge: 30, maxAge: 65, minYear: 1990, maxYear: 2026, cond: CHN_F,
+    text: '婆婆又来了。她打开你的冰箱，说菜不新鲜；打开你的衣柜，说衣服太露；打开你的抽屉，说乱。你站在客厅里，手里还端着刚倒的水。你丈夫在阳台上打电话——他永远在阳台上打电话。',
+    effects: { happiness: -5 }, weight: 2 },
+
+  { id: 'cn-f-dink', domain: 'family', minAge: 28, maxAge: 45, minYear: 2005, maxYear: 2026, cond: CHN_F,
+    text: '你和丈夫商量好了不要孩子——你们是「丁克」。双方父母都急了，轮番打电话、安排偶遇、送补品。但你看着朋友圈里同龄人晒娃的照片，配文永远是「累死了」，你觉得自己的选择没有错。',
+    effects: { happiness: 4, wealth: 3 }, weight: 2, once: true },
+
+  // ══════════════════════════════════════════════════════════
+  // 深化·男性特有事件
+  // ══════════════════════════════════════════════════════════
+
+  { id: 'cn-m-caili', domain: 'family', minAge: 25, maxAge: 35, minYear: 2000, maxYear: 2026,
+    cond: (c) => CHN(c) && c.gender === 'm' && c.snapshot.gdpPc < 8000,
+    text: '丈母娘开口了：彩礼十八万八，城里有房，车不低于十五万。你算了一下自己的存款——工作五年，攒了六万。父亲说砸锅卖铁也给你凑，但你看着父亲已经花白的头发，说不出口。',
+    effects: { wealth: -10, happiness: -8 }, weight: 3, once: true,
+    dataSource: '彩礼（部分地区农村彩礼 10-30 万元）' },
+
+  { id: 'cn-m-35crisis', domain: 'career', minAge: 35, maxAge: 40, minYear: 2018, maxYear: 2026,
+    cond: (c) => CHN(c) && c.gender === 'm',
+    text: '公司又裁了一批人，全都是三十五岁以上的。你看着他们抱着纸箱走出大楼——有人箱子里放着一盆绿萝，有人放着一双运动鞋。你的工牌还挂在脖子上，但你开始更新简历了。猎头回复说：「您这个年纪……我们再看看。」',
+    effects: { wealth: -5, happiness: -8 }, weight: 3, once: true,
+    dataSource: '35 岁危机（中国互联网行业普遍现象）' },
+
+  // ══════════════════════════════════════════════════════════
+  // 深化·城市/农村差异
+  // ══════════════════════════════════════════════════════════
+
+  { id: 'cn-u-chaiqian', domain: 'family', minAge: 20, maxAge: 60, minYear: 2005, maxYear: 2026,
+    cond: (c) => CHN(c) && c.snapshot.gdpPc > 5000,
+    text: '拆迁了。你家那栋住了三十年的老房子墙上被人用红漆写了个大大的「拆」字，圈了一个圈。邻居们有人欢天喜地——赔了三套房；有人不肯搬——住了几代人的地方，怎么舍得。你父亲在那面墙前面站了很久，抽了三支烟。',
+    effects: { wealth: 10, happiness: -3 }, weight: 3, once: true,
+    dataSource: '城市拆迁（2000 年代起大规模城市化）' },
+
+  { id: 'cn-u-xuequ', domain: 'family', minAge: 30, maxAge: 45, minYear: 2010, maxYear: 2026,
+    cond: (c) => CHN(c) && c.snapshot.gdpPc > 8000,
+    text: '为了孩子上学，你买了学区房——一间十五平米的老房子，墙皮都在脱落，但对应的是全市最好的实验小学。你花了三百二十万。中介说这叫「买房子送学位」。你看着那间像储藏室一样的房间，想笑，又笑不出来。',
+    effects: { wealth: -12, happiness: -3 }, weight: 3, once: true,
+    dataSource: '学区房（一线城市学区房单价可达周边 2-3 倍）' },
+
+  { id: 'cn-r-gengdi', domain: 'career', minAge: 20, maxAge: 55, minYear: 2006, maxYear: 2026, cond: CHN_RURAL,
+    text: '农业税取消了。祖祖辈辈交了几千年的「皇粮国税」，到你们这一代不用交了。父亲听到广播的时候正在吃早饭，筷子停在半空，愣了好一会儿。他说：「活了六十年，头一回听说种地不用交钱。」',
+    effects: { wealth: 4, happiness: 6 }, weight: 3, once: true,
+    dataSource: '农业税条例废止 2006 年 1 月 1 日' },
+
+  { id: 'cn-r-kongchao', domain: 'family', minAge: 30, maxAge: 60, minYear: 2015, maxYear: 2026, cond: CHN_RURAL,
+    text: '村里的年轻人越来越少了。你数了数，村小学从三百人变成了五十人，教室空了一半。隔壁王婶家的儿子在城里买了房，春节回来待三天就走了。你自己的孩子在县城读高中，一个月回来一次。村里的老人越来越多，狗也越来越多了。',
+    effects: { happiness: -5 }, weight: 2, once: true,
+    dataSource: '农村空心化（2000 年代起）' },
+
+  // ══════════════════════════════════════════════════════════
+  // 深化·新兴职业与生活方式
+  // ══════════════════════════════════════════════════════════
+
+  { id: 'cn-n-waimai', domain: 'career', minAge: 18, maxAge: 45, minYear: 2015, maxYear: 2026, cond: CHN,
+    text: '你成了外卖骑手。黄色的制服、电动车、保温箱——这三样东西现在定义了你。系统给你三十五分钟送达，超时扣一半钱。你学会了在红灯前两秒停车、在写字楼电梯关门的最后一刻挤进去、在小区保安喊「不能进」之前已经冲进了大堂。',
+    effects: { wealth: 4, health: -6 }, weight: 3,
+    dataSource: '外卖行业（2024 年中国外卖骑手超 1000 万人）' },
+
+  { id: 'cn-n-zhibo', domain: 'career', minAge: 18, maxAge: 35, minYear: 2018, maxYear: 2026,
+    cond: (c) => CHN(c) && c.snapshot.gdpPc > 5000,
+    text: '你开了直播。第一天对着手机说了四个小时，弹幕只有三条——两条是你妈发的。第三个月你学会了喊「家人们」「三二一上链接」，粉丝涨到了两万。你发现这比上班挣得多，但你不确定自己还能喊多久。',
+    effects: { wealth: 5, happiness: -3 }, weight: 2, once: true,
+    dataSource: '直播带货（2018 年起爆发式增长）' },
+
+  { id: 'cn-n-linghuo', domain: 'career', minAge: 22, maxAge: 40, minYear: 2020, maxYear: 2026, cond: CHN,
+    text: '你没有固定工作——白天跑滴滴，晚上代驾，周末接私活。你管这叫「灵活就业」，但你心里知道，这意味着没有五险一金、没有年假、没有病假。你的收入是同学的两倍，但你的安全感是同学的一半。',
+    effects: { wealth: 5, happiness: -5, health: -3 }, weight: 3,
+    dataSource: '灵活就业（2024 年中国约 2 亿人）' },
+
+  // ══════════════════════════════════════════════════════════
+  // 深化·心理健康与身体
+  // ══════════════════════════════════════════════════════════
+
+  { id: 'cn-h-depression', domain: 'health', minAge: 18, maxAge: 45, minYear: 2010, maxYear: 2026, cond: CHN,
+    text: '你已经三个月没有睡过一个整觉了。躺在床上，眼睛闭着，但脑子在转——房贷、工作、孩子、父母——每一个念头都像一根线，越缠越紧。你去看医生，医生说这叫「焦虑状态」，给你开了一盒药。你拿着药走出医院，在门口站了很久，不知道该不该吃。',
+    effects: { health: -8, happiness: -8 }, weight: 2, once: true,
+    dataSource: '焦虑/抑郁（中国抑郁症患者约 9500 万，就诊率 <20%）' },
+
+  { id: 'cn-h-guolao', domain: 'health', minAge: 28, maxAge: 45, minYear: 2015, maxYear: 2026, cond: CHN,
+    text: '你最近总觉得胸口闷。同事说他认识一个人，也是这个年纪，也是总说胸闷，然后在加班的时候倒下了，再也没有起来。你约了体检，但一直没去——不是没时间，是你怕查出什么来。',
+    effects: { health: -8 }, weight: 2,
+    dataSource: '过劳死/心源性猝死（中国每年约 55 万人心源性猝死）' },
+
+  { id: 'cn-h-yangsheng', domain: 'health', minAge: 45, maxAge: 75, minYear: 2015, maxYear: 2026, cond: CHN,
+    text: '你开始养生了。保温杯里泡枸杞，早睡早起，每天走一万步。你把朋友圈里的养生文章都看了一遍——有的说不能吃这个，有的说必须吃那个。你搞不清楚谁说的对，但保温杯里的枸杞，你是真的在喝。',
+    effects: { health: 3, happiness: 2 }, weight: 2 },
+
+  // ══════════════════════════════════════════════════════════
+  // 深化·春运（全民共同记忆）
+  // ══════════════════════════════════════════════════════════
+
+  { id: 'cn-t-chunyun', domain: 'family', minAge: 18, maxAge: 50, minYear: 1990, maxYear: 2026, cond: CHN,
+    text: '春运抢票的页面刷新了第两百次。你终于抢到了一张站票——从广州到武汉，十八个小时。火车上人挤人，你的脚有一半时间是悬空的。但你想的是到家那一刻：母亲已经包好了饺子，父亲把炭炉子生好了。你在拥挤的车厢里，觉得值得。',
+    effects: { happiness: 6, health: -3 }, weight: 3,
+    dataSource: '春运（世界最大规模人口迁徙，2024 年约 84 亿人次）' },
+
+  { id: 'cn-t-chunyun-drive', domain: 'family', minAge: 25, maxAge: 50, minYear: 2010, maxYear: 2026,
+    cond: (c) => CHN(c) && c.snapshot.gdpPc > 4000,
+    text: '你开着车回老家——导航显示六百公里，预计八个小时。你在高速上堵了三个小时，服务区的方便面卖完了，你啃了一包饼干。但后备箱里装着你给父母买的东西：一台按摩椅、两箱水果、一套新棉被。你看着前方看不到头的红色尾灯，想到母亲已经在村口等了。',
+    effects: { happiness: 5, wealth: -3 }, weight: 2,
+    dataSource: '自驾返乡（2010 年代起春运新常态）' },
+
+  // ══════════════════════════════════════════════════════════
+  // 深化·抉择链（有后果的选择）
+  // ══════════════════════════════════════════════════════════
+
+  { id: 'cn-choice-beijing', domain: 'career', minAge: 22, maxAge: 28, minYear: 2005, maxYear: 2026, cond: CHN,
+    text: '你大学毕业了，面前有两条路：留在北京，月薪八千，房租三千五，住在五环外一间十二平米的次卧；回老家县城，月薪三千五，住家里，走路上班十五分钟。你的同学有的留了，有的回了——留下的说值得，回去的说不后悔。',
+    effects: {}, weight: 3, once: true,
+    choice: {
+      prompt: '留在大城市，还是回老家？',
+      options: [
+        { label: '留在北京——年轻就该拼',
+          effects: { wealth: 5, education: 3, health: -5, happiness: -3 },
+          outcome: '你留在了北京。头三年你换了四次房子，每次搬家的理由都一样：房东要涨房租。第四年你升了职，工资翻了一倍。你开始觉得自己属于这座城市了——直到有一天你在地铁里看到一个小女孩给奶奶让座，你突然想家了。',
+        },
+        { label: '回老家——安稳也是幸福',
+          effects: { wealth: 2, happiness: 5, education: 1 },
+          outcome: '你回了县城。父母帮你找了一份银行柜员的工作，朝九晚五，双休。你买了一套九十平的房子，月供一千二。每天下班母亲已经做好了饭。有时候你会想「如果当年留在了北京」——但看着窗外的夕阳和桌上的热汤，你觉得这样也很好。',
+        },
+      ],
+    } },
+
+  { id: 'cn-choice-jiaoyu', domain: 'family', minAge: 30, maxAge: 40, minYear: 2005, maxYear: 2026, cond: CHN,
+    text: '孩子上学了。你面临一个所有中国家长都要面对的选择：让孩子快乐成长，还是让他赢在起跑线上？你看着孩子的脸——他还不知道什么叫「竞争」，他只知道今天放学后想出去玩。你想起自己小时候，也是这样想的。',
+    effects: {}, weight: 3, once: true,
+    choice: {
+      prompt: '怎么教育孩子？',
+      options: [
+        { label: '严格——吃得苦中苦，方为人上人',
+          effects: { happiness: -5, wealth: -5 },
+          outcome: '你给孩子报了五个班——奥数、英语、钢琴、书法、跆拳道。星期六早上七点出门，晚上九点回家。孩子的成绩确实上去了，但你发现他越来越不爱说话了。有一天他问你：「爸爸，我什么时候可以玩？」你说：「等你考上大学。」',
+        },
+        { label: '放养——童年只有一次',
+          effects: { happiness: 5 },
+          outcome: '你没给孩子报任何班。他放学后在小区里疯跑，捉蚂蚱、踢球、挖泥巴。他的成绩中等，但他是全班笑得最多的那个。你有时候会焦虑——别人家孩子已经学完初中数学了——但你看着他把一只甲虫小心翼翼放进瓶子里的时候，你觉得这样做没错。',
+        },
+      ],
+    } },
 ];
