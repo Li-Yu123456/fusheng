@@ -114,8 +114,7 @@ export const HEALTH: EventTemplate[] = [
 
   // ---- M4 扩容：身体的账本 ----
   {
-    id: 'he-vaccine',
-    minYear: 1800,
+    id: 'he-vaccine', minYear: 1974,
     domain: 'health',
     minAge: 0,
     maxAge: 12,

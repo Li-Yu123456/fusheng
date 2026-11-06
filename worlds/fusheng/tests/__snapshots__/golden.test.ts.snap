@@ -309,13 +309,14 @@ exports[`黄金快照 seed=42/CHN/1995/m（真实 world.json） > 事件序列�
   },
   {
     "age": 22,
-    "domain": "family",
+    "dataSource": "996 工作制（2010 年代中国互联网行业）",
+    "domain": "career",
     "effects": {
-      "happiness": 5,
-      "wealth": -1,
+      "health": -6,
+      "wealth": 4,
     },
-    "id": "fa-stray-dog",
-    "text": "雨夜里捡回来的小狗，后来成了院子里最凶也最忠的那个。",
+    "id": "ea-15",
+    "text": "手机上弹出了加班通知。你看了一眼窗外凌晨两点的写字楼，每一层都还亮着灯。",
     "year": 2017,
   },
   {
@@ -348,6 +349,17 @@ exports[`黄金快照 seed=42/CHN/1995/m（真实 world.json） > 事件序列�
   },
   {
     "age": 23,
+    "domain": "family",
+    "effects": {
+      "happiness": 5,
+      "wealth": -1,
+    },
+    "id": "fa-stray-dog",
+    "text": "雨夜里捡回来的小狗，后来成了院子里最凶也最忠的那个。",
+    "year": 2018,
+  },
+  {
+    "age": 24,
     "domain": "career",
     "effects": {
       "health": -2,
@@ -355,16 +367,6 @@ exports[`黄金快照 seed=42/CHN/1995/m（真实 world.json） > 事件序列�
     },
     "id": "ca-market-stall",
     "text": "下班后再去夜市守两个小时摊，收摊时月亮已经很高。",
-    "year": 2018,
-  },
-  {
-    "age": 24,
-    "domain": "career",
-    "effects": {
-      "wealth": 5,
-    },
-    "id": "ca-first-job",
-    "text": "第一份工：站过柜台、下过车间，也守过田埂。",
     "year": 2019,
   },
   {
@@ -392,6 +394,18 @@ exports[`黄金快照 seed=42/CHN/1995/m（真实 world.json） > 事件序列�
   },
   {
     "age": 26,
+    "dataSource": "春运（世界最大规模人口迁徙）",
+    "domain": "family",
+    "effects": {
+      "happiness": 3,
+      "health": -2,
+    },
+    "id": "ea-14",
+    "text": "春节抢票的页面刷新了第两百次。你终于买到一张站票，要在火车上站十八个小时回家。",
+    "year": 2021,
+  },
+  {
+    "age": 27,
     "choice": {
       "options": [
         {
@@ -411,31 +425,10 @@ exports[`黄金快照 seed=42/CHN/1995/m（真实 world.json） > 事件序列�
     },
     "domain": "health",
     "effects": {
-      "health": 10,
+      "health": -2,
     },
     "id": "he-exercise",
-    "text": "同龄人开始陆续进出医院，张子轩决定对自己狠一点。 清晨五点半的街道，从此多了一个影子。",
-    "year": 2021,
-  },
-  {
-    "age": 26,
-    "domain": "family",
-    "effects": {
-      "happiness": -5,
-    },
-    "id": "fa-quarrel",
-    "text": "为一笔说不清的开销，和周国栋冷战了半个月。",
-    "year": 2021,
-  },
-  {
-    "age": 27,
-    "domain": "career",
-    "effects": {
-      "happiness": 2,
-      "wealth": 2,
-    },
-    "id": "ca-switch",
-    "text": "隔行如隔山，张子轩还是把锄头换成了扳手。",
+    "text": "同龄人开始陆续进出医院，张子轩决定对自己狠一点。 生死有命，多喝热水。",
     "year": 2022,
   },
   {
@@ -468,6 +461,16 @@ exports[`黄金快照 seed=42/CHN/1995/m（真实 world.json） > 事件序列�
     "year": 2023,
   },
   {
+    "age": 28,
+    "domain": "family",
+    "effects": {
+      "happiness": -5,
+    },
+    "id": "fa-quarrel",
+    "text": "为一笔说不清的开销，和李伟民冷战了半个月。",
+    "year": 2023,
+  },
+  {
     "age": 29,
     "domain": "career",
     "effects": {
@@ -482,42 +485,43 @@ exports[`黄金快照 seed=42/CHN/1995/m（真实 world.json） > 事件序列�
     "age": 30,
     "domain": "career",
     "effects": {
-      "happiness": -8,
-      "wealth": -12,
+      "happiness": 2,
+      "wealth": 2,
     },
-    "id": "ca-layoff",
-    "text": "公告栏前站满了人，张子轩的名字在第三张纸上。",
+    "id": "ca-switch",
+    "text": "隔行如隔山，张子轩还是把锄头换成了扳手。",
     "year": 2025,
   },
   {
     "age": 31,
-    "domain": "family",
+    "domain": "career",
     "effects": {
-      "happiness": 5,
-      "wealth": 6,
+      "education": 1,
+      "wealth": 5,
     },
-    "id": "fa-new-house",
-    "text": "攒了半辈子，新房终于上了梁。",
+    "id": "ca-craft-name",
+    "text": "手艺传出了名，有人慕名而来，站在一旁看你做完最后一步。",
     "year": 2026,
   },
   {
     "age": 32,
-    "domain": "family",
+    "domain": "career",
     "effects": {
-      "happiness": 6,
+      "happiness": -4,
+      "wealth": -6,
     },
-    "id": "fa-reunion",
-    "text": "年夜饭坐满一桌，杨丽华又长高了一头。",
+    "id": "ca-layoff",
+    "text": "厂门口的公告栏前站了很久，通知上的章比名字还清楚。",
     "year": 2027,
   },
   {
     "age": 33,
     "domain": "family",
     "effects": {
-      "happiness": 3,
+      "happiness": 6,
     },
-    "id": "fa-old-letter",
-    "text": "一封家书读了三遍，信纸的折痕处已经磨得发亮。",
+    "id": "fa-reunion",
+    "text": "年夜饭坐满一桌，杨丽华又长高了一头。",
     "year": 2028,
   },
   {
@@ -544,17 +548,27 @@ exports[`黄金快照 seed=42/CHN/1995/m（真实 world.json） > 事件序列�
   },
   {
     "age": 36,
-    "domain": "career",
+    "domain": "family",
     "effects": {
-      "education": 1,
-      "wealth": 5,
+      "happiness": 5,
+      "wealth": 6,
     },
-    "id": "ca-craft-name",
-    "text": "手艺传出了名，有人慕名而来，站在一旁看你做完最后一步。",
+    "id": "fa-new-house",
+    "text": "攒了半辈子，新房终于上了梁。",
     "year": 2031,
   },
   {
     "age": 36,
+    "domain": "family",
+    "effects": {
+      "happiness": 3,
+    },
+    "id": "fa-old-letter",
+    "text": "一封家书读了三遍，信纸的折痕处已经磨得发亮。",
+    "year": 2031,
+  },
+  {
+    "age": 37,
     "domain": "career",
     "effects": {
       "happiness": 6,
@@ -562,16 +576,6 @@ exports[`黄金快照 seed=42/CHN/1995/m（真实 world.json） > 事件序列�
     },
     "id": "ca-award",
     "text": "行业里发了个不起眼的奖，张子轩把它摆在了柜子最上层。",
-    "year": 2031,
-  },
-  {
-    "age": 37,
-    "domain": "health",
-    "effects": {
-      "health": 3,
-    },
-    "id": "he-checkup",
-    "text": "体检单下来，指标栏里有两个箭头。",
     "year": 2032,
   },
   {
@@ -642,12 +646,10 @@ exports[`黄金快照 seed=42/CHN/1995/m（真实 world.json） > 事件序列�
     "age": 47,
     "domain": "family",
     "effects": {
-      "happiness": -3,
-      "health": -2,
-      "wealth": -5,
+      "happiness": 5,
     },
-    "id": "fa-hospital-night",
-    "text": "手术室的灯亮了一整夜，走廊的长椅上坐满了攥着缴费单的人。",
+    "id": "fa-big-family-photo",
+    "text": "全家人凑齐拍了一张合影，摄影师喊"看这里"，所有人都看向了你。",
     "year": 2042,
   },
   {
@@ -663,24 +665,22 @@ exports[`黄金快照 seed=42/CHN/1995/m（真实 world.json） > 事件序列�
   },
   {
     "age": 49,
-    "domain": "career",
+    "domain": "family",
     "effects": {
-      "health": -2,
-      "wealth": 3,
+      "happiness": -10,
     },
-    "id": "ca-market-stall",
-    "text": "下班后再去夜市守两个小时摊，收摊时月亮已经很高。",
+    "id": "fa-father-pass",
+    "text": "父亲的手凉下来的时候，屋里静得能听见香灰落下。",
     "year": 2044,
   },
   {
     "age": 50,
     "domain": "health",
     "effects": {
-      "happiness": 5,
-      "health": 10,
+      "health": 3,
     },
-    "id": "he-recover",
-    "text": "出院那天，路边的桂花香得让人鼻子发酸。",
+    "id": "he-checkup",
+    "text": "体检单下来，指标栏里有两个箭头。",
     "year": 2045,
   },
   {
@@ -689,8 +689,8 @@ exports[`黄金快照 seed=42/CHN/1995/m（真实 world.json） > 事件序列�
     "effects": {
       "happiness": -10,
     },
-    "id": "fa-father-pass",
-    "text": "父亲的手凉下来的时候，屋里静得能听见香灰落下。",
+    "id": "fa-mother-pass",
+    "text": "母亲走了。从此再没人喊张子轩的小名。",
     "year": 2047,
   },
   {
@@ -706,22 +706,23 @@ exports[`黄金快照 seed=42/CHN/1995/m（真实 world.json） > 事件序列�
   },
   {
     "age": 53,
-    "domain": "family",
+    "domain": "health",
     "effects": {
       "happiness": 5,
+      "health": 10,
     },
-    "id": "fa-big-family-photo",
-    "text": "全家人凑齐拍了一张合影，摄影师喊"看这里"，所有人都看向了你。",
+    "id": "he-recover",
+    "text": "出院那天，路边的桂花香得让人鼻子发酸。",
     "year": 2048,
   },
   {
     "age": 54,
     "domain": "family",
     "effects": {
-      "happiness": -5,
+      "happiness": 4,
     },
-    "id": "fa-quarrel",
-    "text": "为一笔说不清的开销，和周国栋冷战了半个月。",
+    "id": "fa-quiet-anniversary",
+    "text": "结婚纪念日的晚上，两个人对坐着剥完了一碟花生，谁也没提这事。",
     "year": 2049,
   },
   {
@@ -768,10 +769,10 @@ exports[`黄金快照 seed=42/CHN/1995/m（真实 world.json） > 事件序列�
     "age": 58,
     "domain": "family",
     "effects": {
-      "happiness": -10,
+      "happiness": -5,
     },
-    "id": "fa-mother-pass",
-    "text": "母亲走了。从此再没人喊张子轩的小名。",
+    "id": "fa-quarrel",
+    "text": "为一笔说不清的开销，和李伟民冷战了半个月。",
     "year": 2053,
   },
   {
@@ -789,10 +790,12 @@ exports[`黄金快照 seed=42/CHN/1995/m（真实 world.json） > 事件序列�
     "age": 60,
     "domain": "family",
     "effects": {
-      "happiness": 3,
+      "happiness": -3,
+      "health": -2,
+      "wealth": -5,
     },
-    "id": "fa-old-letter",
-    "text": "一封家书读了三遍，信纸的折痕处已经磨得发亮。",
+    "id": "fa-hospital-night",
+    "text": "手术室的灯亮了一整夜，走廊的长椅上坐满了攥着缴费单的人。",
     "year": 2055,
   },
   {
@@ -809,10 +812,10 @@ exports[`黄金快照 seed=42/CHN/1995/m（真实 world.json） > 事件序列�
     "age": 61,
     "domain": "family",
     "effects": {
-      "happiness": 4,
+      "happiness": 6,
     },
-    "id": "fa-quiet-anniversary",
-    "text": "结婚纪念日的晚上，两个人对坐着剥完了一碟花生，谁也没提这事。",
+    "id": "fa-reunion",
+    "text": "年夜饭坐满一桌，杨丽华又长高了一头。",
     "year": 2056,
   },
   {
@@ -828,16 +831,6 @@ exports[`黄金快照 seed=42/CHN/1995/m（真实 world.json） > 事件序列�
   },
   {
     "age": 62,
-    "domain": "health",
-    "effects": {
-      "health": 3,
-    },
-    "id": "he-checkup",
-    "text": "体检单下来，指标栏里有两个箭头。",
-    "year": 2057,
-  },
-  {
-    "age": 63,
     "domain": "career",
     "effects": {
       "happiness": 3,
@@ -845,16 +838,28 @@ exports[`黄金快照 seed=42/CHN/1995/m（真实 world.json） > 事件序列�
     },
     "id": "ca-artisan",
     "text": "手艺这件事急不得——又磨了十年。",
+    "year": 2057,
+  },
+  {
+    "age": 63,
+    "domain": "health",
+    "effects": {
+      "health": -2,
+      "wealth": -2,
+    },
+    "id": "he-toothache",
+    "text": "牙疼不是病。等到拔的时候，半边脸肿得变了形。",
     "year": 2058,
   },
   {
     "age": 63,
-    "domain": "family",
+    "domain": "health",
     "effects": {
-      "happiness": 6,
+      "happiness": -3,
+      "health": -3,
     },
-    "id": "fa-reunion",
-    "text": "年夜饭坐满一桌，杨丽华又长高了一头。",
+    "id": "he-insomnia",
+    "text": "后半夜的月光挪过窗台，人还睁着眼。",
     "year": 2058,
   },
   {
@@ -871,36 +876,25 @@ exports[`黄金快照 seed=42/CHN/1995/m（真实 world.json） > 事件序列�
     "age": 65,
     "domain": "health",
     "effects": {
-      "happiness": -3,
-      "health": -3,
+      "happiness": 5,
+      "health": 10,
     },
-    "id": "he-insomnia",
-    "text": "后半夜的月光挪过窗台，人还睁着眼。",
+    "id": "he-recover",
+    "text": "出院那天，路边的桂花香得让人鼻子发酸。",
     "year": 2060,
   },
   {
     "age": 66,
     "domain": "health",
     "effects": {
-      "health": -2,
-      "wealth": -2,
-    },
-    "id": "he-toothache",
-    "text": "牙疼不是病。等到拔的时候，半边脸肿得变了形。",
-    "year": 2061,
-  },
-  {
-    "age": 68,
-    "domain": "health",
-    "effects": {
       "health": -1,
     },
     "id": "he-reading-glasses",
     "text": "报纸要拿远了才看得清，第一副老花镜配了好半天。",
-    "year": 2063,
+    "year": 2061,
   },
   {
-    "age": 69,
+    "age": 68,
     "domain": "health",
     "effects": {
       "happiness": 2,
@@ -908,10 +902,10 @@ exports[`黄金快照 seed=42/CHN/1995/m（真实 world.json） > 事件序列�
     },
     "id": "he-chronic-peace",
     "text": "药盒按早中晚分了三格。和身体谈成了和解，日子照过。",
-    "year": 2064,
+    "year": 2063,
   },
   {
-    "age": 70,
+    "age": 69,
     "domain": "health",
     "effects": {
       "health": -10,
@@ -919,35 +913,35 @@ exports[`黄金快照 seed=42/CHN/1995/m（真实 world.json） > 事件序列�
     },
     "id": "he-surgery",
     "text": "手术室的灯亮了四个小时，家属签了三回字。",
-    "year": 2065,
+    "year": 2064,
   },
   {
-    "age": 71,
+    "age": 70,
     "domain": "health",
     "effects": {
       "health": -8,
     },
     "id": "he-chronic",
     "text": "老慢病落了根，药盒按早中晚分了三格。",
-    "year": 2066,
+    "year": 2065,
   },
   {
-    "age": 72,
+    "age": 71,
     "domain": "family",
     "effects": {
       "happiness": 4,
     },
     "id": "fa-quiet-anniversary",
     "text": "结婚纪念日的晚上，两个人对坐着剥完了一碟花生，谁也没提这事。",
-    "year": 2067,
+    "year": 2066,
   },
 ]
 `;
 
 exports[`黄金快照 seed=42/CHN/1995/m（真实 world.json） > 终局摘要快照 1`] = `
 {
-  "cause": "无疾而终，像一盏灯自己暗了",
-  "deathAge": 94.1,
+  "cause": "器官安然退场",
+  "deathAge": 82.1,
   "stats": {
     "choicesMade": 5,
     "domainsTouched": [
@@ -958,13 +952,13 @@ exports[`黄金快照 seed=42/CHN/1995/m（真实 world.json） > 终局摘要�
       "era",
       "career",
     ],
-    "eventsSeen": 81,
+    "eventsSeen": 80,
   },
   "vsLex": {
     "born": 1995,
     "bornCountryLex": 70.4,
-    "died": 2089,
-    "pct": 133.7,
+    "died": 2077,
+    "pct": 116.6,
   },
 }
 `;
