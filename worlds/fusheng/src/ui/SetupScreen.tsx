@@ -131,8 +131,20 @@ export default function SetupScreen({
             />
           </div>
           <div className="year-ticks" aria-hidden="true">
-            {decades.map((d) => (
-              <span key={d}>{d}</span>
+            {(yMin < 1750 ? [
+              { pos: ((-2100 - yMin) / (yMax - yMin)) * 100, label: '青铜', deep: true },
+              { pos: ((-500 - yMin) / (yMax - yMin)) * 100, label: '古典', deep: true },
+              { pos: ((1000 - yMin) / (yMax - yMin)) * 100, label: '中世纪', deep: true },
+              { pos: ((1500 - yMin) / (yMax - yMin)) * 100, label: '大航海', deep: true },
+            ] : []).map((m) => (
+              <span key={m.label} className={`era-mark${m.deep ? ' deep' : ''}`} style={{ left: `${m.pos}%` }}>
+                {m.label}
+              </span>
+            ))}
+            {decades.filter((d) => d >= 1750).map((d) => (
+              <span key={d} className="era-mark" style={{ left: `${((d - yMin) / (yMax - yMin)) * 100}%` }}>
+                {d}
+              </span>
             ))}
           </div>
         </section>
