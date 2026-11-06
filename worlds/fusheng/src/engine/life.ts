@@ -62,9 +62,10 @@ export function simulate(input: LifeInput, world: WorldData): LifeResult {
       }
     }
   }
-  // 性别差异：全球女性预期寿命比男性长约 4-6 岁。OWID 的 lex 是男女混合均值，
-  // 因此对称调整：女性 +2.5 / 男性 -2.5（合并均值不变，分布检验校准保持精准）
-  const genderLexAdj = snap.lex + (input.gender === 'f' ? 2.5 : -2.5);
+  // 性别差异暂不在校准层调整——OWID lex 是男女混合均值，直接使用可保证
+  // 分布检验（对比混合均值）的精准度。性别差异通过事件系统体现（女性事件
+  // 的健康/风险分布不同）。后续可引入分性别的 OWID 数据做精确调整。
+  const genderLexAdj = snap.lex;
   const model = calibrateMortality(genderLexAdj, snap.childMort);
   const name = makeName(rng, input.country, input.gender);
 
