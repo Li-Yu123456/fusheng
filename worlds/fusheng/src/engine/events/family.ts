@@ -74,6 +74,7 @@ export const FAMILY: EventTemplate[] = [
   },
   {
     id: 'fa-new-house',
+    maxYear: 2010,
     domain: 'family',
     minAge: 28,
     maxAge: 50,
@@ -140,6 +141,7 @@ export const FAMILY: EventTemplate[] = [
   },
   {
     id: 'fa-old-letter',
+    maxYear: 1995,
     domain: 'family',
     minAge: 20,
     maxAge: 60,

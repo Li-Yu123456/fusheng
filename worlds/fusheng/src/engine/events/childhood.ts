@@ -13,6 +13,7 @@ export const CHILDHOOD: EventTemplate[] = [
   },
   {
     id: 'ch-fever',
+    maxYear: 1990, // 赤脚医生制度 1985 年正式终结
     domain: 'childhood',
     minAge: 0,
     maxAge: 5,
@@ -138,6 +139,7 @@ export const CHILDHOOD: EventTemplate[] = [
     domain: 'childhood',
     minAge: 6,
     maxAge: 12,
+    maxYear: 1990, // 挑水/牛车是前现代农村
     // 低收入家庭的童年更早承担家务与农活——数据直接进条件
     cond: (c) => c.snapshot.gdpPc < 3000,
     text: '挑水的扁担磨红了肩，你在门口数过路过的每一辆牛车。',

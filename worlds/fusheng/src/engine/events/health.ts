@@ -114,7 +114,8 @@ export const HEALTH: EventTemplate[] = [
 
   // ---- M4 扩容：身体的账本 ----
   {
-    id: 'he-vaccine', minYear: 1974,
+    id: 'he-vaccine',
+    maxYear: 1990, minYear: 1974, // 赤脚医生制度 1985 年正式终结
     domain: 'health',
     minAge: 0,
     maxAge: 12,

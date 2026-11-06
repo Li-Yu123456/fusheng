@@ -26,6 +26,7 @@ export const CAREER: EventTemplate[] = [
   },
   {
     id: 'ca-farm',
+    maxYear: 1995,
     domain: 'career',
     minAge: 17,
     maxAge: 60,
@@ -52,6 +53,7 @@ export const CAREER: EventTemplate[] = [
   },
   {
     id: 'ca-switch',
+    maxYear: 1990,
     domain: 'career',
     minAge: 25,
     maxAge: 50,
@@ -101,6 +103,7 @@ export const CAREER: EventTemplate[] = [
   },
   {
     id: 'ca-apprentice',
+    maxYear: 1990,
     domain: 'career',
     minAge: 16,
     maxAge: 22,
@@ -148,6 +151,7 @@ export const CAREER: EventTemplate[] = [
   },
   {
     id: 'ca-apprentice',
+    maxYear: 1990,
     domain: 'career',
     minAge: 45,
     maxAge: 65,
