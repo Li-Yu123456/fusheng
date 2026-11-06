@@ -1,6 +1,6 @@
-// 年代滑块全域——锁定 1750-2026（真实分国数据最完整的 276 年）。
-// 深史估计（BC2100-1749）保留为引擎降级层，但不作为玩家可选——精准优先于广度。
-export const YEAR_MIN = 1750;
+// 方案 A：锁定 1990-2026（200 国寿命数据 100% 覆盖区间）
+// 每个数字来自 OWID/UN 真实分国记录——精准优先于广度。
+export const YEAR_MIN = 1990;
 export const YEAR_MAX = 2026;
 
 export function clampYear(y: number): number {

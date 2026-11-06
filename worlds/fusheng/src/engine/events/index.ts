@@ -11,6 +11,7 @@ import { ERA } from './era';
 import { CULTURAL_EVENTS } from './cultural';
 import { ERA_EVENTS } from './eras';
 import { REGIONAL_EVENTS } from './regional';
+import { CHINA } from './china';
 
 /** 事件条件与选项加权所能看到的全部世界——只读，保证纯函数 */
 export interface EventContext {
@@ -62,6 +63,7 @@ const BASE: EventTemplate[] = [
   ...CULTURAL_EVENTS, // 文化圈专属事件（cond 按 country 匹配文化圈触发）
   ...Object.values(ERA_EVENTS).flat(), // 时代分层事件（青铜/古典/中世纪/近代早期）
   ...REGIONAL_EVENTS, // 地区完整叙事（1750-2026，六地区各有自己的历史事件链）
+  ...CHINA, // 中国完整叙事（1990-2026，有因果链的国别事件体系）
 ];
 
 let extra: EventTemplate[] = [];

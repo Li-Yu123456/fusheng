@@ -1,0 +1,201 @@
+// 方案 A 事件体系：1990-2026 × 200 国 × 六地区
+// 铁律：每条事件只在那国那年才可能发生——有具体日期、具体国家、具体后果。
+// 写完自检：换成另一国另一年，这段文字还成立吗？成立就删掉重写。
+// 事件之间有因果链：童年教育→青年就业→中年收入→晚年健康（不只是随机出牌）。
+import type { EventTemplate } from './index';
+import { cultureOf } from '../cultureRegions';
+
+const is = (r: string) => (c: { country: string }) => cultureOf(c.country) === r;
+
+// ═══════════════════════════════════════════════════════════════
+// 东亚 1990-2026：中国崛起/日本泡沫破裂/韩国民主化/朝鲜饥荒
+// ═══════════════════════════════════════════════════════════════
+const EA: EventTemplate[] = [
+  // 中国特有
+  { id: 'cn-dengnan', domain: 'career', minAge: 18, maxAge: 40, minYear: 1992, maxYear: 2000,
+    cond: (c) => c.country === 'CHN',
+    text: '南下的大巴挤得车门关不上。到了深圳，你发现连空气里都是钱的味道——工资是老家的八倍，但房租也是。',
+    effects: { wealth: 8, health: -3 }, weight: 3, once: true, dataSource: '1992 邓小平南方谈话后民工潮' },
+  { id: 'cn-gaokao-90s', domain: 'education', minAge: 18, maxAge: 23, minYear: 1994, maxYear: 2003,
+    cond: (c) => c.country === 'CHN' && c.snapshot.schooling < 6,
+    text: '高考成绩下来那天，全家人围在一部固定电话旁边等。你考过了重点线，是村里第一个大学生。',
+    effects: { education: 8, happiness: 6 }, weight: 5, once: true, dataSource: '中国高校扩招前（1999 前录取率 <40%）' },
+  { id: 'cn-wto', domain: 'career', minAge: 20, maxAge: 50, minYear: 2001, maxYear: 2010,
+    cond: (c) => c.country === 'CHN',
+    text: '入世了。码头上的集装箱一夜之间堆成了山，车间三班倒，你的加班费第一次超过了基本工资。',
+    effects: { wealth: 8, health: -4 }, weight: 3, dataSource: '中国 2001 年 12 月加入 WTO' },
+  { id: 'cn-beijing-olympics', domain: 'era', minAge: 5, maxAge: 80, minYear: 2008, maxYear: 2008,
+    cond: (c) => c.country === 'CHN',
+    text: '电视里的烟火在大脚印一步步走向鸟巢。街上的人都在喊「中国加油」，你也跟着喊了。',
+    effects: { happiness: 6 }, weight: 5, once: true, dataSource: '北京奥运会 2008 年 8 月' },
+  { id: 'cn-996', domain: 'career', minAge: 22, maxAge: 45, minYear: 2015, maxYear: 2026,
+    cond: (c) => c.country === 'CHN' && c.snapshot.gdpPc > 8000,
+    text: '凌晨两点，写字楼的灯还亮着大半。手机上弹出第七条工作群消息，你看了眼窗外——对面楼也是。',
+    effects: { wealth: 5, health: -8 }, weight: 3, dataSource: '996 工作制（2010 年代中国互联网行业）' },
+  { id: 'cn-covid-lockdown', domain: 'era', minAge: 0, maxAge: 90, minYear: 2020, maxYear: 2022,
+    cond: (c) => c.country === 'CHN',
+    text: '小区的门被铁皮封上了。你排队做第七轮核酸，手机里的健康码从绿变黄又变绿。',
+    effects: { health: -3, happiness: -8 }, weight: 4, once: true, dataSource: 'COVID-19 疫情防控 2020-2022' },
+
+  // 日本特有
+  { id: 'jp-bubble-burst', domain: 'career', minAge: 25, maxAge: 50, minYear: 1992, maxYear: 2000,
+    cond: (c) => c.country === 'JPN',
+    text: '公司的年终奖从六个月工资变成了两个月。前辈们开始用「结构调整」这个词，你知道那意味着什么。',
+    effects: { wealth: -6, happiness: -5 }, weight: 3, once: true, dataSource: '日本泡沫经济破裂 1991-2000' },
+  { id: 'jp-lost-decade', domain: 'career', minAge: 22, maxAge: 45, minYear: 1998, maxYear: 2012,
+    cond: (c) => c.country === 'JPN',
+    text: '毕业后你找到了一份临时工——合同一年一签，没有奖金，没有晋升。你的教授说这叫「就业冰河期」。',
+    effects: { wealth: -3, happiness: -6 }, weight: 3, once: true, dataSource: '日本就业冰河期 1993-2005' },
+
+  // 韩国特有
+  { id: 'kr-imf', domain: 'career', minAge: 25, maxAge: 55, minYear: 1997, maxYear: 1998,
+    cond: (c) => c.country === 'KOR',
+    text: 'IMF 来了。公司门口贴出了裁员名单，你数了三遍——你的名字在第二列。街上有人排队捐金戒指。',
+    effects: { wealth: -8, happiness: -10 }, weight: 5, once: true, dataSource: '韩国 IMF 危机 1997-1998' },
+  { id: 'kr-hallyu', domain: 'career', minAge: 15, maxAge: 35, minYear: 2005, maxYear: 2026,
+    cond: (c) => c.country === 'KOR',
+    text: '你train了七年终于出道。练习室的镜子前你度过了整个青春期，出道曲的MV三天破了一百万。',
+    effects: { wealth: 7, happiness: 3, health: -5 }, weight: 2, once: true, dataSource: 'K-pop 韩流产业（2000 年代起）' },
+
+  // 朝鲜特有
+  { id: 'kp-famine', domain: 'era', minAge: 0, maxAge: 60, minYear: 1994, maxYear: 1998,
+    cond: (c) => c.country === 'PRK',
+    text: '配给制停了。公共分配系统送来的粮食从一天三顿变成一天一顿，然后变成什么也不送。山坡上的树皮被剥光了。',
+    effects: { health: -15, happiness: -12 }, weight: 5, once: true, dataSource: '朝鲜饥荒「苦难行军」1994-1998（估计 24-350 万人死亡）' },
+];
+
+// ═══════════════════════════════════════════════════════════════
+// 欧洲 1990-2026：苏联解体/巴尔干战争/欧盟东扩/欧元/难民危机/脱欧
+// ═══════════════════════════════════════════════════════════════
+const EU: EventTemplate[] = [
+  { id: 'su-collapse', domain: 'era', minAge: 10, maxAge: 70, minYear: 1991, maxYear: 1992,
+    cond: (c) => ['RUS','UKR','BLR','LTU','LVA','EST','MDA','ARM','AZE','GEO','KAZ','KGZ','TJK','TKM','UZB'].includes(c.country),
+    text: '国旗一夜之间换了。你的积蓄在同一周变成了废纸——一袋面粉的价钱从三卢布涨到了三千。街上有人排队用皮大衣换面包。',
+    effects: { wealth: -12, happiness: -8 }, weight: 5, once: true, dataSource: '苏联解体 1991 年 12 月/恶性通胀 1992-1994' },
+  { id: 'yugo-war', domain: 'era', minAge: 8, maxAge: 60, minYear: 1992, maxYear: 1995,
+    cond: (c) => ['SRB','HRV','BIH','SVN','MKD','MNE'].includes(c.country),
+    text: '邻居成了敌人。你们说同一种语言，只是去不同的教堂。炮弹落在你上学的那条街上，从此你走另一条路。',
+    effects: { health: -10, happiness: -12, wealth: -8 }, weight: 5, once: true, dataSource: '南斯拉夫战争 1991-1999/萨拉热窝围城 1425 天' },
+  { id: 'eu-schengen', domain: 'family', minAge: 18, maxAge: 60, minYear: 1995, maxYear: 2026,
+    cond: is('europe'),
+    text: '你开着车过了国境——没有停下，没有出示护照，连减速都不用。你后视镜里那个边境检查站已经拆掉了。',
+    effects: { happiness: 5, wealth: 3 }, weight: 2, once: true, dataSource: '申根协定 1995 年生效' },
+  { id: 'eu-euro', domain: 'career', minAge: 20, maxAge: 60, minYear: 2002, maxYear: 2002,
+    cond: is('europe'),
+    text: '钱包里的法郎/马克/里拉换成了同一种纸币。你摸着新硬币上的欧元符号，不太确定这是不是一件好事。',
+    effects: { wealth: 2, happiness: 2 }, weight: 3, once: true, dataSource: '欧元流通 2002 年 1 月' },
+  { id: 'eu-berlin-wall-fall', domain: 'era', minAge: 10, maxAge: 70, minYear: 1989, maxYear: 1990,
+    cond: (c) => c.country === 'DEU',
+    text: '墙倒了。你拿着锤子在混凝土上敲了一块下来——它现在还放在你书架上，棱角锋利。',
+    effects: { happiness: 10 }, weight: 5, once: true, dataSource: '柏林墙倒塌 1989 年 11 月 9 日' },
+  { id: 'eu-migrant-crisis', domain: 'era', minAge: 12, maxAge: 70, minYear: 2015, maxYear: 2016,
+    cond: is('europe'),
+    text: '火车站挤满了从叙利亚来的人。有个女人抱着孩子在你脚边坐下，你不确定该说什么语言。',
+    effects: { happiness: -3 }, weight: 3, once: true, dataSource: '欧洲难民危机 2015-2016（100 万+抵达欧洲）' },
+  { id: 'eu-brexit', domain: 'era', minAge: 16, maxAge: 70, minYear: 2016, maxYear: 2020,
+    cond: (c) => c.country === 'GBR',
+    text: '公投结果出来那天，你公司的欧洲总部开始讨论搬去法兰克福。你的欧盟同事开始学荷兰语。',
+    effects: { wealth: -3, happiness: -5 }, weight: 3, once: true, dataSource: '英国脱欧公投 2016 年 6 月 23 日' },
+];
+
+// ═══════════════════════════════════════════════════════════════
+// 南亚 1990-2026：印度自由化/IT 革命/巴基斯坦动荡/孟加拉制衣
+// ═══════════════════════════════════════════════════════════════
+const SA: EventTemplate[] = [
+  { id: 'in-liberalization', domain: 'career', minAge: 20, maxAge: 50, minYear: 1991, maxYear: 2000,
+    cond: (c) => c.country === 'IND',
+    text: '电视里第一次出现了可口可乐的广告。你父亲那辈人只在外国电影里见过这种东西，而你可以在街角买到。',
+    effects: { wealth: 4, happiness: 3 }, weight: 3, once: true, dataSource: '印度经济自由化 1991（结束 Licence Raj）' },
+  { id: 'in-it-boom', domain: 'career', minAge: 21, maxAge: 40, minYear: 1998, maxYear: 2026,
+    cond: (c) => c.country === 'IND' && c.state.education > 50,
+    text: '你敲下了人生第一行代码。班加罗尔办公室的窗外，牛还在路边慢慢走。你的工资是父亲的二十倍。',
+    effects: { wealth: 10, education: 5 }, weight: 4, once: true, dataSource: '印度 IT 外包革命（1990 年代末起，班加罗尔）' },
+  { id: 'in-girl-education', domain: 'education', minAge: 6, maxAge: 16, minYear: 1990, maxYear: 2026,
+    cond: (c) => c.country === 'IND' && c.gender === 'f' && c.snapshot.schooling < 4,
+    text: '村里的女孩上学要走十里路。你天不亮出发，书包里除了课本还有一根木棍——防狗。',
+    effects: { education: 5, health: -2 }, weight: 3, once: true, dataSource: '印度女童教育（Beti Bachao Beti Padhao 等）' },
+  { id: 'bd-garment', domain: 'career', minAge: 16, maxAge: 40, minYear: 1995, maxYear: 2026,
+    cond: (c) => c.country === 'BGD' && c.gender === 'f',
+    text: '你进了制衣厂。缝纫机的声音从早八点到晚十点，但月薪是你在家种田的三倍——你第一次有了自己的银行账户。',
+    effects: { wealth: 6, health: -5, education: 2 }, weight: 4, once: true, dataSource: '孟加拉成衣产业（全球第二大出口国，400 万从业者多为女性）' },
+  { id: 'bd-rana-plaza', domain: 'era', minAge: 15, maxAge: 50, minYear: 2013, maxYear: 2013,
+    cond: (c) => c.country === 'BGD',
+    text: '那栋八层楼的制衣厂塌了。你认识的人里有人逃出来了，有人没有。第二天的报纸头版全是水泥板下的衣服标签。',
+    effects: { happiness: -10 }, weight: 5, once: true, dataSource: 'Rana Plaza 坍塌 2013 年 4 月（1134 人死亡）' },
+];
+
+// ═══════════════════════════════════════════════════════════════
+// 撒哈拉以南非洲 1990-2026：卢旺达/艾滋病/手机革命/中国投资
+// ═══════════════════════════════════════════════════════════════
+const AF: EventTemplate[] = [
+  { id: 'rw-genocide', domain: 'era', minAge: 0, maxAge: 60, minYear: 1994, maxYear: 1994,
+    cond: (c) => c.country === 'RWA',
+    text: '广播里说「把高的树砍掉」。邻居拿起了砍刀。一百天之后，街上一半的名字从门牌上消失了。',
+    effects: { happiness: -15, health: -8 }, weight: 5, once: true, dataSource: '卢旺达大屠杀 1994 年 4-7 月（约 80 万人死亡/100 天）' },
+  { id: 'af-hiv-peak', domain: 'health', minAge: 15, maxAge: 50, minYear: 1995, maxYear: 2005,
+    cond: (c) => c.country === 'ZAF' || c.country === 'BWA' || c.country === 'ZWE' || c.country === 'SWZ',
+    text: '村里葬礼越来越频繁。你数过——去年一年，街对面那排房子走了七个人，最年轻的是你小学同桌。',
+    effects: { health: -12, happiness: -10 }, weight: 4, once: true, dataSource: '南部非洲 HIV/AIDS 高峰（博茨瓦纳/南非感染率 >25%）' },
+  { id: 'af-mobile-money', domain: 'career', minAge: 18, maxAge: 50, minYear: 2007, maxYear: 2026,
+    cond: (c) => c.country === 'KEN',
+    text: '你用手机转了第一笔钱给城里的妹妹——不需要银行，不需要现金。信号塔竖在村口的山头上，信号比电还稳。',
+    effects: { wealth: 5, happiness: 3 }, weight: 4, once: true, dataSource: 'M-Pesa 移动支付（肯尼亚 2007 年推出）' },
+  { id: 'af-china-road', domain: 'career', minAge: 20, maxAge: 55, minYear: 2010, maxYear: 2026,
+    cond: (c) => c.snapshot.gdpPc < 3000,
+    text: '中国人来修路了。新的柏油路从首都一直通到你村口，路牌是中文和当地文并列的。',
+    effects: { wealth: 3, happiness: 2 }, weight: 2, dataSource: '一带一路非洲基础设施投资（2013 年起）' },
+  { id: 'nig-boko', domain: 'era', minAge: 5, maxAge: 40, minYear: 2009, maxYear: 2026,
+    cond: (c) => c.country === 'NGA',
+    text: '夜里传来枪声。第二天早上，隔壁村的学校只剩下墙——女孩们被带走了，从此没有人再见过她们。',
+    effects: { happiness: -12, education: -3 }, weight: 3, once: true, dataSource: '博科圣地叛乱 2009-（东北尼日利亚）' },
+];
+
+// ═══════════════════════════════════════════════════════════════
+// 拉丁美洲 1990-2026：债务危机后/民主化/左转/商品繁荣/委内瑞拉
+// ═══════════════════════════════════════════════════════════════
+const LA: EventTemplate[] = [
+  { id: 'la-hyperinflation', domain: 'career', minAge: 20, maxAge: 60, minYear: 1990, maxYear: 1994,
+    cond: (c) => c.country === 'BRA' || c.country === 'ARG',
+    text: '货币一夜之间多了一个零。你攒了半辈子的积蓄买不起一袋面粉，超市里有人推着整车的现金去结账。',
+    effects: { wealth: -12, happiness: -8 }, weight: 5, once: true, dataSource: '巴西/阿根廷恶性通胀 1990-1994' },
+  { id: 've-chavez', domain: 'era', minAge: 15, maxAge: 60, minYear: 1999, maxYear: 2013,
+    cond: (c) => c.country === 'VEN',
+    text: '新总统在电视上讲了四个小时。第二天，油价涨的钱到了你家门口——免费医疗、免费教育、免费住房。',
+    effects: { wealth: 6, happiness: 5 }, weight: 3, once: true, dataSource: '查韦斯玻利瓦尔革命 1999-2013' },
+  { id: 've-collapse', domain: 'era', minAge: 10, maxAge: 60, minYear: 2015, maxYear: 2026,
+    cond: (c) => c.country === 'VEN',
+    text: '超市的货架空了。你排了六个小时的队买到了一包玉米粉——这是今天全家唯一的食物。隔壁楼又走了三家人。',
+    effects: { health: -12, wealth: -10, happiness: -12 }, weight: 4, once: true, dataSource: '委内瑞拉经济危机 2015-（700 万人离境）' },
+  { id: 'mx-cartel', domain: 'era', minAge: 12, maxAge: 50, minYear: 2008, maxYear: 2026,
+    cond: (c) => c.country === 'MEX',
+    text: '街角又发现了一具尸体。你已经学会了不去看——这条路上每年都有，警察来了拍照就走。',
+    effects: { happiness: -8 }, weight: 3, dataSource: '墨西哥毒品战争 2006-（30 万+死亡）' },
+];
+
+// ═══════════════════════════════════════════════════════════════
+// 中东 1990-2026：海湾战争/9·11/伊拉克战争/阿拉伯之春/叙利亚
+// ═══════════════════════════════════════════════════════════════
+const ME: EventTemplate[] = [
+  { id: 'gulf-war', domain: 'era', minAge: 5, maxAge: 60, minYear: 1990, maxYear: 1991,
+    cond: (c) => c.country === 'IRQ' || c.country === 'KWT',
+    text: '战斗机从头顶飞过，声音大得让你牙齿发麻。电视里说这是「沙漠风暴」，你只知道灯灭了，水也停了。',
+    effects: { health: -8, wealth: -6, happiness: -8 }, weight: 5, once: true, dataSource: '海湾战争 1990-1991' },
+  { id: 'iraq-war', domain: 'era', minAge: 5, maxAge: 60, minYear: 2003, maxYear: 2011,
+    cond: (c) => c.country === 'IRQ',
+    text: '美军的坦克从城南开进来。你叔父家的屋顶被炸了一个洞，他说没关系，至少现在可以说真话了。',
+    effects: { health: -10, happiness: -5, wealth: -5 }, weight: 4, once: true, dataSource: '伊拉克战争 2003-2011' },
+  { id: 'arab-spring', domain: 'era', minAge: 15, maxAge: 60, minYear: 2011, maxYear: 2011,
+    cond: (c) => ['TUN','EGY','LBY','SYR','YEM'].includes(c.country),
+    text: '广场上的人越聚越多。年轻人举着手机，屏幕上显示的不是新闻——是他们自己拍的视频。有人喊了一声，所有人都跟着喊。',
+    effects: { happiness: 6 }, weight: 5, once: true, dataSource: '阿拉伯之春 2010-2011（突尼斯茉莉花革命起）' },
+  { id: 'syria-war', domain: 'era', minAge: 0, maxAge: 60, minYear: 2012, maxYear: 2026,
+    cond: (c) => c.country === 'SYR',
+    text: '你们连夜收拾了三样东西——水、面粉和一包照片——从此再没有回过那个家。渡海的橡皮艇上有二十七个人，你数了三遍。',
+    effects: { health: -12, wealth: -12, happiness: -15 }, weight: 5, once: true, dataSource: '叙利亚内战 2011-（1300 万人流离失所）' },
+  { id: 'me-oil-wealth', domain: 'career', minAge: 22, maxAge: 50, minYear: 2000, maxYear: 2014,
+    cond: (c) => ['SAU','ARE','QAT','KWT'].includes(c.country),
+    text: '石油的价格涨到了一百多美元一桶。你的工资跟着涨了三倍，公司楼下车位不够用了，一半是奔驰一半是路虎。',
+    effects: { wealth: 10, happiness: 3 }, weight: 3, dataSource: '油价高峰期 2008/2011-2014' },
+];
+
+export const PLAN_A_EVENTS: EventTemplate[] = [...EA, ...EU, ...SA, ...AF, ...LA, ...ME];

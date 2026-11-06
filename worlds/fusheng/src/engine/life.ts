@@ -62,7 +62,10 @@ export function simulate(input: LifeInput, world: WorldData): LifeResult {
       }
     }
   }
-  const model = calibrateMortality(snap.lex, snap.childMort);
+  // 性别差异：全球女性预期寿命比男性长约 4-6 岁。OWID 的 lex 是男女混合均值，
+  // 因此对称调整：女性 +2.5 / 男性 -2.5（合并均值不变，分布检验校准保持精准）
+  const genderLexAdj = snap.lex + (input.gender === 'f' ? 2.5 : -2.5);
+  const model = calibrateMortality(genderLexAdj, snap.childMort);
   const name = makeName(rng, input.country, input.gender);
 
   // ── 出生属性 ──────────────────────────────────────────────────────────────
@@ -147,7 +150,7 @@ export function simulate(input: LifeInput, world: WorldData): LifeResult {
     // 时代分层（默认严格）：未标注 minYear 的事件视为「工业后叙事」——只在 1750 年后触发。
     // 时代专属池（eras.ts）自带精确 minYear/maxYear，覆盖青铜→近代早期（-2100~1750）。
     // 真正的普世事件（出生/学步/衰老）标 minYear: -2100 全域触发。
-    const minYear = t.minYear ?? 1750;
+    const minYear = t.minYear ?? 1990; // 方案 A：默认事件只在 1990 后触发
     if (year < minYear) return false;
     if (t.maxYear !== undefined && year > t.maxYear) return false;
     if (t.once && firedOnce.has(t.id)) return false;
