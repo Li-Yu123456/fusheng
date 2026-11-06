@@ -144,6 +144,12 @@ export function simulate(input: LifeInput, world: WorldData): LifeResult {
 
   const eligible = (t: EventTemplate, age: number, year: number, useRecent: boolean): boolean => {
     if (age < t.minAge || age > t.maxAge) return false;
+    // 时代分层（默认严格）：未标注 minYear 的事件视为「工业后叙事」——只在 1750 年后触发。
+    // 时代专属池（eras.ts）自带精确 minYear/maxYear，覆盖青铜→近代早期（-2100~1750）。
+    // 真正的普世事件（出生/学步/衰老）标 minYear: -2100 全域触发。
+    const minYear = t.minYear ?? 1750;
+    if (year < minYear) return false;
+    if (t.maxYear !== undefined && year > t.maxYear) return false;
     if (t.once && firedOnce.has(t.id)) return false;
     if (firedThisYear.has(t.id)) return false;
     if ((firedCount.get(t.id) ?? 0) >= 2) return false;

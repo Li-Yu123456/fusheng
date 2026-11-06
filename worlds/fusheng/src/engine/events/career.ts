@@ -5,6 +5,7 @@ import type { EventTemplate } from './index';
 export const CAREER: EventTemplate[] = [
   {
     id: 'ca-first-job',
+    minYear: 1750,
     domain: 'career',
     minAge: 19,
     maxAge: 26,
@@ -14,6 +15,7 @@ export const CAREER: EventTemplate[] = [
   },
   {
     id: 'ca-factory',
+    minYear: 1750,
     domain: 'career',
     minAge: 18,
     maxAge: 30,
@@ -128,6 +130,7 @@ export const CAREER: EventTemplate[] = [
   },
   {
     id: 'ca-layoff',
+    minYear: 1750,
     domain: 'career',
     minAge: 30,
     maxAge: 55,

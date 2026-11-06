@@ -5,6 +5,7 @@ import type { EventTemplate } from './index';
 export const HEALTH: EventTemplate[] = [
   {
     id: 'he-checkup',
+    minYear: 1800,
     domain: 'health',
     minAge: 30,
     maxAge: 70,
@@ -67,6 +68,7 @@ export const HEALTH: EventTemplate[] = [
   },
   {
     id: 'he-chronic',
+    minYear: 1800,
     domain: 'health',
     minAge: 55,
     maxAge: 80,
@@ -83,6 +85,7 @@ export const HEALTH: EventTemplate[] = [
   },
   {
     id: 'he-eyes',
+    minYear: 1800,
     domain: 'health',
     minAge: 50,
     maxAge: 70,
@@ -91,6 +94,7 @@ export const HEALTH: EventTemplate[] = [
   },
   {
     id: 'he-surgery',
+    minYear: 1800,
     domain: 'health',
     minAge: 45,
     maxAge: 75,
@@ -111,6 +115,7 @@ export const HEALTH: EventTemplate[] = [
   // ---- M4 扩容：身体的账本 ----
   {
     id: 'he-vaccine',
+    minYear: 1800,
     domain: 'health',
     minAge: 0,
     maxAge: 12,
@@ -147,6 +152,7 @@ export const HEALTH: EventTemplate[] = [
   },
   {
     id: 'he-reading-glasses',
+    minYear: 1800,
     domain: 'health',
     minAge: 45,
     maxAge: 70,
@@ -155,6 +161,7 @@ export const HEALTH: EventTemplate[] = [
   },
   {
     id: 'he-chronic-peace',
+    minYear: 1800,
     domain: 'health',
     minAge: 50,
     maxAge: 85,

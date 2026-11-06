@@ -5,6 +5,7 @@ import type { EventTemplate } from './index';
 export const EDUCATION: EventTemplate[] = [
   {
     id: 'ed-start',
+    minYear: 1000,
     domain: 'education',
     minAge: 6,
     maxAge: 7,
@@ -22,6 +23,7 @@ export const EDUCATION: EventTemplate[] = [
   },
   {
     id: 'ed-exam-fail',
+    minYear: 1900,
     domain: 'education',
     minAge: 10,
     maxAge: 18,

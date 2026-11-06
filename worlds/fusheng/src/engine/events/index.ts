@@ -9,6 +9,7 @@ import { FAMILY } from './family';
 import { HEALTH } from './health';
 import { ERA } from './era';
 import { CULTURAL_EVENTS } from './cultural';
+import { ERA_EVENTS } from './eras';
 
 /** 事件条件与选项加权所能看到的全部世界——只读，保证纯函数 */
 export interface EventContext {
@@ -37,6 +38,8 @@ export interface EventTemplate {
   domain: Domain;
   minAge: number;
   maxAge: number;
+  minYear?: number; // 此年后才可能发生（如"进厂"须 ≥1750）——时代分层的根基
+  maxYear?: number; // 此年前才可能发生（如"神庙劳役"须 <500）
   weight?: number; // 抽取权重，默认 1
   cond?: (ctx: EventContext) => boolean;
   text: string; // 支持 {name}/{partner}/{child} 插值
@@ -56,6 +59,7 @@ const BASE: EventTemplate[] = [
   ...HEALTH,
   ...ERA,
   ...CULTURAL_EVENTS, // 文化圈专属事件（cond 按 country 匹配文化圈触发）
+  ...Object.values(ERA_EVENTS).flat(), // 时代分层事件（青铜/古典/中世纪/近代早期）
 ];
 
 let extra: EventTemplate[] = [];

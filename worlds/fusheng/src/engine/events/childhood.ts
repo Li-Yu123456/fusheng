@@ -21,6 +21,7 @@ export const CHILDHOOD: EventTemplate[] = [
   },
   {
     id: 'ch-play',
+    minYear: 1900,
     domain: 'childhood',
     minAge: 3,
     maxAge: 8,
@@ -63,6 +64,7 @@ export const CHILDHOOD: EventTemplate[] = [
   },
   {
     id: 'ch-talent',
+    minYear: 1000,
     domain: 'childhood',
     minAge: 6,
     maxAge: 12,

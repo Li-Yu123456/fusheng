@@ -130,6 +130,7 @@ export const FAMILY: EventTemplate[] = [
   },
   {
     id: 'fa-hospital-night',
+    minYear: 1800,
     domain: 'family',
     minAge: 40,
     maxAge: 70,
