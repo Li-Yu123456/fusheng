@@ -18,11 +18,6 @@ const FALLBACK_WORLDS = [
   },
 ];
 const FALLBACK_WORLD = FALLBACK_WORLDS[0];
-  name: { zh: '浮生' },
-  path: 'worlds/fusheng/', // 相对路径：hub（/）与 Pages（/fusheng/）下都解析正确
-  desc: { zh: '按真实统计数据投胎，把这一生过到最后' },
-  emoji: '♾️',
-};
 
 export function renderWorlds(containerEl) {
   if (__FS_STATIC__) { mount(containerEl, FALLBACK_WORLDS); return; } // 静态版：硬编码表直出，零请求
