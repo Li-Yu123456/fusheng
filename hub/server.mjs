@@ -81,6 +81,14 @@ const WORLDS = {
       desc: { zh: '按真实统计数据投胎，把这一生过到最后' },
       emoji: '♾️',
     },
+    {
+      key: 'abstract',
+      host: null,
+      name: { zh: '抽象宇宙' },
+      path: '/worlds/abstract/',
+      desc: { zh: '抽象人生 × 抽象词典 × 抽象新闻 × 抽象塔罗——四大抽象，一网打尽' },
+      emoji: '😅',
+    },
   ],
 };
 

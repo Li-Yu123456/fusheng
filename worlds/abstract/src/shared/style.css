@@ -1,0 +1,391 @@
+/* 抽象宇宙·全局样式——赛博朋克×中式互联网美学，刻意"丑得酷" */
+:root {
+  --bg: #0a0a0f;
+  --bg-card: #12121a;
+  --bg-card-hover: #1a1a28;
+  --neon-green: #00ff88;
+  --neon-pink: #ff00aa;
+  --neon-blue: #00ccff;
+  --neon-yellow: #ffee00;
+  --text: #e0e0e0;
+  --text-dim: #888;
+  --border: #2a2a3a;
+  --font-main: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Noto Serif SC', 'Songti SC', serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-main);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--neon-green); color: var(--bg); }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ── 布局 ── */
+.app-shell {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 20px 16px 80px;
+  min-height: 100vh;
+}
+
+/* ── 导航 ── */
+.nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  background: rgba(10,10,15,.95);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border);
+  padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+  z-index: 100;
+}
+.nav-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-family: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  padding: 4px 12px;
+  border-radius: 8px;
+  transition: all .2s;
+}
+.nav-btn .nav-icon { font-size: 20px; }
+.nav-btn.active { color: var(--neon-green); }
+.nav-btn:hover { color: var(--text); background: var(--bg-card); }
+
+/* ── 通用卡片 ── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  transition: all .2s;
+}
+.card:hover { border-color: var(--neon-green); background: var(--bg-card-hover); }
+
+/* ── 标签 ── */
+.tag {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-right: 6px;
+  margin-bottom: 4px;
+}
+.tag-neon { background: rgba(0,255,136,.15); color: var(--neon-green); border: 1px solid rgba(0,255,136,.3); }
+.tag-pink { background: rgba(255,0,170,.15); color: var(--neon-pink); border: 1px solid rgba(255,0,170,.3); }
+.tag-blue { background: rgba(0,204,255,.15); color: var(--neon-blue); border: 1px solid rgba(0,204,255,.3); }
+.tag-yellow { background: rgba(255,238,0,.15); color: var(--neon-yellow); border: 1px solid rgba(255,238,0,.3); }
+
+/* ── 抽象值 ── */
+.stats-bar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.stat-value { font-weight: 700; font-size: 16px; color: var(--neon-green); font-variant-numeric: tabular-nums; }
+.stat-value.pink { color: var(--neon-pink); }
+.stat-value.blue { color: var(--neon-blue); }
+.stat-value.yellow { color: var(--neon-yellow); }
+
+/* ── 按钮 ── */
+.btn {
+  display: inline-block;
+  padding: 12px 32px;
+  background: var(--neon-green);
+  color: var(--bg);
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .2s;
+  text-align: center;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,255,136,.3); }
+.btn:active { transform: translateY(0); }
+.btn-outline {
+  background: none;
+  color: var(--neon-green);
+  border: 1px solid var(--neon-green);
+}
+.btn-pink { background: var(--neon-pink); }
+.btn-blue { background: var(--neon-blue); }
+.btn-sm { padding: 6px 16px; font-size: 13px; border-radius: 6px; }
+
+/* ── 输入框 ── */
+.input {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 15px;
+  outline: none;
+  transition: border-color .2s;
+}
+.input:focus { border-color: var(--neon-green); }
+.input::placeholder { color: var(--text-dim); }
+
+/* ── 动画 ── */
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(2px, -2px); }
+  60% { transform: translate(-1px, -1px); }
+  80% { transform: translate(1px, 1px); }
+}
+.glitch { animation: glitch 3s infinite; }
+
+@keyframes pulse-neon {
+  0%, 100% { box-shadow: 0 0 0 rgba(0,255,136,0); }
+  50% { box-shadow: 0 0 20px rgba(0,255,136,.3); }
+}
+.pulse { animation: pulse-neon 2s infinite; }
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fade-up .3s ease-out both; }
+
+/* ── 首页 ── */
+.hero {
+  text-align: center;
+  padding: 60px 0 40px;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 12vw, 80px);
+  font-weight: 900;
+  color: var(--neon-green);
+  text-shadow: 3px 3px 0 rgba(255,0,170,.4), -2px -2px 0 rgba(0,204,255,.3);
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+}
+.hero-sub {
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--text-dim);
+  letter-spacing: 0.2em;
+}
+
+.mode-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 24px;
+}
+.mode-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all .2s;
+}
+.mode-card:hover { border-color: var(--neon-green); transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,255,136,.1); }
+.mode-card .mode-icon { font-size: 36px; margin-bottom: 8px; }
+.mode-card .mode-name { font-weight: 700; font-size: 16px; color: var(--text); }
+.mode-card .mode-desc { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+
+/* ── 词典 ── */
+.dict-search { margin-bottom: 16px; }
+.dict-item { margin-bottom: 10px; }
+.dict-term {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--neon-green);
+  margin-bottom: 4px;
+}
+.dict-meaning { font-size: 14px; color: var(--text); margin-bottom: 4px; }
+.dict-meta { font-size: 12px; color: var(--text-dim); display: flex; gap: 8px; flex-wrap: wrap; }
+.dict-example {
+  font-size: 13px;
+  color: var(--neon-blue);
+  background: rgba(0,204,255,.08);
+  padding: 6px 12px;
+  border-radius: 6px;
+  margin-top: 6px;
+}
+.dict-level { display: inline-flex; gap: 1px; }
+.dict-level span { font-size: 10px; }
+
+/* ── 新闻 ── */
+.news-headline {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.news-body { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
+.news-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
+.news-cred { font-size: 11px; color: var(--neon-pink); }
+.news-date { font-size: 11px; color: var(--text-dim); }
+
+/* ── 塔罗 ── */
+.tarot-deck {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin: 20px 0;
+}
+.tarot-card {
+  width: 100px;
+  height: 160px;
+  background: linear-gradient(145deg, var(--bg-card), #1a1a2a);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all .3s;
+  position: relative;
+  overflow: hidden;
+}
+.tarot-card::before {
+  content: '?';
+  font-size: 48px;
+  color: var(--text-dim);
+  font-weight: 900;
+  position: absolute;
+  transition: opacity .3s;
+}
+.tarot-card.revealed::before { opacity: 0; }
+.tarot-card .card-emoji { font-size: 32px; opacity: 0; transition: opacity .3s; }
+.tarot-card .card-name { font-size: 12px; font-weight: 700; color: var(--neon-green); opacity: 0; transition: opacity .3s; text-align: center; padding: 0 4px; }
+.tarot-card.revealed .card-emoji,
+.tarot-card.revealed .card-name { opacity: 1; }
+.tarot-card:hover { border-color: var(--neon-pink); transform: translateY(-4px) rotate(1deg); }
+.tarot-card.revealed { border-color: var(--neon-green); }
+
+.tarot-reading {
+  background: var(--bg-card);
+  border: 1px solid var(--neon-green);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 16px;
+  text-align: center;
+}
+.tarot-reading .reading-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--neon-yellow);
+  margin-bottom: 12px;
+}
+.tarot-reading .reading-text {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.8;
+  text-align: left;
+}
+
+/* ── 抽象人生 ── */
+.life-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.life-stat {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 8px;
+  text-align: center;
+}
+.life-stat .stat-label { font-size: 10px; color: var(--text-dim); margin-bottom: 4px; }
+.life-stat .stat-num { font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+.life-event {
+  padding: 12px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 1.7;
+  animation: fade-up .3s ease-out both;
+}
+
+.life-choice {
+  padding: 16px;
+  background: var(--bg-card);
+  border: 2px solid var(--neon-pink);
+  border-radius: 12px;
+  margin: 12px 0;
+}
+.life-choice .choice-prompt {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--neon-pink);
+  margin-bottom: 12px;
+}
+.life-choice .choice-btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 8px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all .2s;
+  text-align: left;
+}
+.life-choice .choice-btn:hover { border-color: var(--neon-green); background: var(--bg-card-hover); }
+
+/* ── 响应式 ── */
+@media (max-width: 480px) {
+  .mode-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .mode-card { padding: 16px 8px; }
+  .tarot-card { width: 80px; height: 130px; }
+  .life-stats { grid-template-columns: repeat(2, 1fr); }
+}

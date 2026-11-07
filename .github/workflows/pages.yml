@@ -26,11 +26,14 @@ jobs:
       - run: npm install --no-audit --no-fund
       - run: FS_STATIC=1 npm run build -w home
       - run: FS_STATIC=1 npm run build -w worlds/fusheng
+      - run: cd worlds/abstract && FS_STATIC=1 npx vite build --outDir dist
       - name: 组装 Pages 产物（与 hub 路径同构：主页在根、世界在 /worlds/fusheng/）
         run: |
           mkdir -p site/worlds/fusheng
           cp home/dist/index.html site/index.html
           cp -r worlds/fusheng/dist/* site/worlds/fusheng/
+          mkdir -p site/worlds/abstract
+          cp -r worlds/abstract/dist/* site/worlds/abstract/
           cat > site/worlds.json <<'W'
           {"worlds":[{"key":"fusheng","host":null,"name":{"zh":"浮生"},"path":"worlds/fusheng/","desc":{"zh":"按真实统计数据投胎，把这一生过到最后"},"emoji":"♾️"}]}
           W

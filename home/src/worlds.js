@@ -1,8 +1,23 @@
 // worlds.js —— 拉取 /worlds.json 渲染世界卡
 // 为什么硬编码回退：M1 单世界（fusheng）信息在契约里冻结，接口偶发失败也不该让主页空场
 
-const FALLBACK_WORLD = {
-  key: 'fusheng',
+const FALLBACK_WORLDS = [
+  {
+    key: 'fusheng',
+    name: { zh: '浮生' },
+    path: 'worlds/fusheng/',
+    desc: { zh: '按真实统计数据投胎，把这一生过到最后' },
+    emoji: '♾️',
+  },
+  {
+    key: 'abstract',
+    name: { zh: '抽象宇宙' },
+    path: 'worlds/abstract/',
+    desc: { zh: '抽象人生 × 抽象词典 × 抽象新闻 × 抽象塔罗' },
+    emoji: '😅',
+  },
+];
+const FALLBACK_WORLD = FALLBACK_WORLDS[0];
   name: { zh: '浮生' },
   path: 'worlds/fusheng/', // 相对路径：hub（/）与 Pages（/fusheng/）下都解析正确
   desc: { zh: '按真实统计数据投胎，把这一生过到最后' },
@@ -10,7 +25,7 @@ const FALLBACK_WORLD = {
 };
 
 export function renderWorlds(containerEl) {
-  if (__FS_STATIC__) { mount(containerEl, [FALLBACK_WORLD]); return; } // 静态版：硬编码表直出，零请求
+  if (__FS_STATIC__) { mount(containerEl, FALLBACK_WORLDS); return; } // 静态版：硬编码表直出，零请求
   fetch('worlds.json') // 相对：hub 根与 Pages site 根都有 worlds.json
     .then((r) => {
       if (!r.ok) throw new Error('http ' + r.status);
