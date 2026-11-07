@@ -5,7 +5,7 @@ import type { AbstractLifeEvent } from '../../shared/types';
 // ── 抽象事件池（比浮生短但更癫）──
 const EVENTS: AbstractLifeEvent[] = [
   { age: 0, text: '你出生了。护士看了你一眼，说：「这孩子面相……很抽象。」', type: 'meme', effects: { abstractPower: 5, memeIndex: 1 } },
-  { age: 1, text: '你学会了说话。你说的第一个词不是「妈妈」，是「典」。你妈破防了。', type: 'meme', effects: { abstractPower: 10, mentalDamage: -5, memeIndex: 3 } },
+  { age: 1, text: '你学会了说话。你说的第一个词不是「妈妈」，是「典」。你妈沉默了三秒。', type: 'meme', effects: { abstractPower: 10, mentalDamage: -5, memeIndex: 3 } },
   { age: 3, text: '你把家里的电视遥控器拆了，然后按回去了——多出来三个零件。你爹看着手里的螺丝，陷入了沉思。', type: 'random', effects: { abstractPower: 8, mentalDamage: 3 } },
   { age: 5, text: '幼儿园老师问大家长大想做什么。别的小朋友说「宇航员」「医生」，你说：「我想被优化。」教室安静了三秒。', type: 'meme', effects: { abstractPower: 15, mentalDamage: 5, socialCredit: -3 } },
   { age: 7, text: '你在学校考了全班倒数第三。你爹很生气，你说：「至少我不是倒数第一，遥遥领先。」你爹的巴掌也遥遥领先。', type: 'meme', effects: { abstractPower: 12, mentalDamage: 8, socialCredit: -5 } },
@@ -168,7 +168,7 @@ export default function LifeMode() {
 
       <div className="stats-bar">
         <div className="stat">抽象值 <span className="stat-value">{state.abstractPower}</span></div>
-        <div className="stat">破防度 <span className="stat-value pink">{state.mentalDamage}</span></div>
+        <div className="stat">心态值 <span className="stat-value pink">{state.mentalDamage}</span></div>
         <div className="stat">社交分 <span className="stat-value blue">{state.socialCredit}</span></div>
         <div className="stat">梗力 <span className="stat-value yellow">{state.memeIndex}</span></div>
       </div>
